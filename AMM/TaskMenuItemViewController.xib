@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11762"/>
+        <capability name="box content view" minToolsVersion="7.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="AMMTaskMenuItemViewController" customModule="AMM" customModuleProvider="target">
+            <connections>
+                <outlet property="view" destination="Hz6-mo-xeY" id="0bl-1N-x8E"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <customView id="Hz6-mo-xeY">
+            <rect key="frame" x="0.0" y="0.0" width="684" height="30"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <subviews>
+                <box fixedFrame="YES" boxType="custom" borderType="bezel" title="Box" translatesAutoresizingMaskIntoConstraints="NO" id="lBp-kh-Wox" customClass="MenuItemBox" customModule="AMM" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="0.0" width="684" height="30"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <view key="contentView" ambiguous="YES" id="sgw-gd-OgS">
+                        <rect key="frame" x="1" y="1" width="682" height="28"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JZ8-4N-lxO">
+                                <rect key="frame" x="37" y="4" width="240" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="236" id="TGG-cQ-05A"/>
+                                    <constraint firstAttribute="height" constant="20" id="qKA-FV-5Wf"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="236" id="s5Z-mJ-NF0"/>
+                                </constraints>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Label" id="jQu-Sg-ieW">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" white="0.25" alpha="0.80000000000000004" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                                <connections>
+                                    <binding destination="-2" name="value" keyPath="self.task.title" id="Kfh-nJ-D8b"/>
+                                </connections>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9fK-pZ-8cu">
+                                <rect key="frame" x="285" y="4" width="64" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="60" id="bZm-Fm-ioi"/>
+                                    <constraint firstAttribute="height" constant="20" id="xoK-CF-j7l"/>
+                                </constraints>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Label" id="BF5-h3-sE9">
+                                    <font key="font" size="13" name="Monaco"/>
+                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                                <connections>
+                                    <binding destination="-2" name="value" keyPath="self.task.totalLengthReadable" id="UUz-6m-QYp"/>
+                                </connections>
+                            </textField>
+                            <progressIndicator wantsLayer="YES" canDrawConcurrently="YES" maxValue="100" style="bar" translatesAutoresizingMaskIntoConstraints="NO" id="vOf-bb-z3I">
+                                <rect key="frame" x="353" y="4" width="100" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="18" id="lae-CR-gjA"/>
+                                    <constraint firstAttribute="width" constant="100" id="sjl-ny-Z0Q"/>
+                                </constraints>
+                                <connections>
+                                    <binding destination="-2" name="value" keyPath="self.task.percentage" id="qYI-di-3g4"/>
+                                </connections>
+                            </progressIndicator>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jOh-uR-c8h">
+                                <rect key="frame" x="483" y="6" width="80" height="17"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="76" id="cLm-Vw-5RU"/>
+                                </constraints>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Label" id="b8r-a2-kgj">
+                                    <font key="font" size="13" name="Monaco"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                                <connections>
+                                    <binding destination="-2" name="value" keyPath="self.task.downloadSpeedReadable" id="gYp-Q3-hyx"/>
+                                </connections>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yge-N1-NaA">
+                                <rect key="frame" x="591" y="6" width="84" height="17"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="80" id="3VS-yo-U1O"/>
+                                </constraints>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Label" id="sKO-40-PLl">
+                                    <font key="font" size="13" name="Monaco"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                                <connections>
+                                    <binding destination="-2" name="value" keyPath="self.task.uploadSpeedReadable" id="hId-Lz-u5L"/>
+                                </connections>
+                            </textField>
+                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="3Yl-fS-u4b">
+                                <rect key="frame" x="20" y="6" width="16" height="16"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="16" id="Ey1-Zr-PFo"/>
+                                    <constraint firstAttribute="height" constant="16" id="lSV-uO-En4"/>
+                                </constraints>
+                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="3iB-a6-DT2"/>
+                                <connections>
+                                    <binding destination="-2" name="value" keyPath="self.task.statusIcon" id="XHA-if-oeR"/>
+                                </connections>
+                            </imageView>
+                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="mhY-vE-YZT">
+                                <rect key="frame" x="459" y="6" width="20" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="20" id="Wzn-AH-w7J"/>
+                                    <constraint firstAttribute="height" constant="20" id="YAE-41-EYm"/>
+                                </constraints>
+                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="fa-arrow-circle-down" id="gwu-iM-gHR"/>
+                            </imageView>
+                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="WID-AZ-TqP">
+                                <rect key="frame" x="567" y="6" width="20" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="20" id="56i-qa-IBv"/>
+                                    <constraint firstAttribute="height" constant="20" id="KZd-KB-dLF"/>
+                                </constraints>
+                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="fa-arrow-circle-up" id="t70-Nx-Wjy"/>
+                            </imageView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="JZ8-4N-lxO" firstAttribute="leading" secondItem="3Yl-fS-u4b" secondAttribute="trailing" constant="3" id="0t6-HO-rlQ"/>
+                            <constraint firstItem="yge-N1-NaA" firstAttribute="centerY" secondItem="WID-AZ-TqP" secondAttribute="centerY" constant="1" id="DOd-QP-p73"/>
+                            <constraint firstAttribute="bottom" secondItem="JZ8-4N-lxO" secondAttribute="bottom" constant="4" id="Din-qy-1Wn"/>
+                            <constraint firstItem="9fK-pZ-8cu" firstAttribute="centerY" secondItem="JZ8-4N-lxO" secondAttribute="centerY" id="Eqq-2v-Wje"/>
+                            <constraint firstItem="jOh-uR-c8h" firstAttribute="leading" secondItem="mhY-vE-YZT" secondAttribute="trailing" constant="6" id="JT3-1w-KSO"/>
+                            <constraint firstItem="yge-N1-NaA" firstAttribute="centerY" secondItem="JZ8-4N-lxO" secondAttribute="centerY" id="M6m-Mo-dPw"/>
+                            <constraint firstItem="WID-AZ-TqP" firstAttribute="leading" secondItem="jOh-uR-c8h" secondAttribute="trailing" constant="6" id="O5i-Cs-YgS"/>
+                            <constraint firstItem="vOf-bb-z3I" firstAttribute="leading" secondItem="9fK-pZ-8cu" secondAttribute="trailing" constant="6" id="PmR-tW-E6h"/>
+                            <constraint firstItem="JZ8-4N-lxO" firstAttribute="centerY" secondItem="3Yl-fS-u4b" secondAttribute="centerY" id="RFN-Ci-j8J"/>
+                            <constraint firstItem="mhY-vE-YZT" firstAttribute="leading" secondItem="vOf-bb-z3I" secondAttribute="trailing" constant="6" id="RUu-nS-YDP"/>
+                            <constraint firstItem="9fK-pZ-8cu" firstAttribute="leading" secondItem="JZ8-4N-lxO" secondAttribute="trailing" constant="12" id="YCC-yT-NYs"/>
+                            <constraint firstItem="9fK-pZ-8cu" firstAttribute="centerY" secondItem="JZ8-4N-lxO" secondAttribute="centerY" id="fUZ-qj-ph9"/>
+                            <constraint firstItem="3Yl-fS-u4b" firstAttribute="leading" secondItem="sgw-gd-OgS" secondAttribute="leading" constant="20" id="go7-5O-Dtd"/>
+                            <constraint firstItem="vOf-bb-z3I" firstAttribute="centerY" secondItem="JZ8-4N-lxO" secondAttribute="centerY" id="lBM-X9-ncM"/>
+                            <constraint firstItem="yge-N1-NaA" firstAttribute="leading" secondItem="WID-AZ-TqP" secondAttribute="trailing" constant="6" id="osf-Ol-RVm"/>
+                            <constraint firstItem="jOh-uR-c8h" firstAttribute="centerY" secondItem="JZ8-4N-lxO" secondAttribute="centerY" id="tAM-Hx-P6D"/>
+                            <constraint firstItem="jOh-uR-c8h" firstAttribute="centerY" secondItem="mhY-vE-YZT" secondAttribute="centerY" constant="1" id="yE0-1g-aMs"/>
+                        </constraints>
+                    </view>
+                    <color key="borderColor" white="0.90000000000000002" alpha="0.5" colorSpace="calibratedWhite"/>
+                </box>
+            </subviews>
+            <point key="canvasLocation" x="186" y="35"/>
+        </customView>
+        <userDefaultsController representsSharedInstance="YES" id="hnS-7U-1wb"/>
+    </objects>
+    <resources>
+        <image name="fa-arrow-circle-down" width="256" height="256"/>
+        <image name="fa-arrow-circle-up" width="256" height="256"/>
+    </resources>
+</document>
