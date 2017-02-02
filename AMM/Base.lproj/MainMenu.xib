@@ -3,7 +3,6 @@
     <dependencies>
         <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11762"/>
-        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="NSApplication">
@@ -24,6 +23,9 @@
             <items>
                 <menuItem title="Preference" id="EAI-Oc-mp5">
                     <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="preferencesClicked:" target="0OG-Ou-z9N" id="aU5-Hu-Aot"/>
+                    </connections>
                 </menuItem>
                 <menuItem isSeparatorItem="YES" id="3vb-16-DSS"/>
                 <menuItem title="Quit" id="RuG-2j-vLq">
@@ -35,15 +37,5 @@
             </items>
             <point key="canvasLocation" x="24" y="-59"/>
         </menu>
-        <arrayController id="1PT-cK-bf1">
-            <connections>
-                <outlet property="content" destination="39T-G0-PGJ" id="MmJ-LZ-rjN"/>
-            </connections>
-        </arrayController>
-        <customView id="fuZ-Bb-x6S">
-            <rect key="frame" x="0.0" y="0.0" width="276" height="52"/>
-            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-            <point key="canvasLocation" x="195" y="147"/>
-        </customView>
     </objects>
 </document>
