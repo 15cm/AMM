@@ -8,36 +8,53 @@
 
 import Cocoa
 
-class MainMenu: NSObject {
-    var statusItem = NSStatusBar.system().statusItem(withLength: NSSquareStatusItemLength)
-    var amm: AMM
-    var serverMenuItems: [AMMServerMenuItem] = []
-    
-    override init() {
-        self.amm = AMM(servers: [AMMServer(host: "localhost", port: 6800, path: "jsonrpc", secret: "15cm", remark: "test", taskStatRefreshInterval: 2, activeTaskMaxNum: 5, waitingTaskMaxNum: 5, stoppedTaskMaxNum: 5)])
-        super.init()
-    }
+class MainMenu: NSObject, ServerProfileManagerDelegate {
+    var statusItem = NSStatusBar.system().statusItem(withLength: NSVariableStatusItemLength)
+    var servers: [ServerProfile] = []
+    var fixMenuItems: [NSMenuItem] = []
+    var preferencesWindowController: PreferencesWindowController? = nil
+    var profileManager = ServerProfileManager.instance
     
     @IBOutlet weak var menu: NSMenu!
+    
     override func awakeFromNib() {
-        self.statusItem.title = "AMM"
-        self.statusItem.menu = menu
-        // Init AMM Model
-        for server in amm.servers {
-            self.serverMenuItems.append(AMMServerMenuItem(server))
+        statusItem.title = "AMM"
+        statusItem.menu = menu
+        for i in ((statusItem.menu?.numberOfItems)! - 3) ..< (statusItem.menu?.numberOfItems)! {
+            fixMenuItems.append((statusItem.menu?.item(at: i))!)
         }
-        updateMenuItems()
+        profileManager.delegate = self
+        updateMenuItems(withServerProfiles: profileManager.servers)
     }
     
-    func updateMenuItems() {
-        for (index, item) in self.serverMenuItems.enumerated() {
-            self.statusItem.menu?.insertItem(item, at: index)
+    func updateMenuItems(withServerProfiles servers: [ServerProfile]) {
+        self.servers = servers
+        statusItem.menu?.removeAllItems()
+        for server in servers{
+            statusItem.menu?.addItem(ServerProfileMenuItem(server))
         }
+        for item in fixMenuItems {
+            statusItem.menu?.addItem(item)
+        }
+    }
+    
+    func onServerProfilesUpdate(withServerProfiles servers: [ServerProfile]) {
+        updateMenuItems(withServerProfiles: servers)
     }
     
     @IBAction func quitClicked(_ sender: NSMenuItem) {
         NSApplication.shared().terminate(self)
     }
     
+    @IBAction func preferencesClicked(_ sender: NSMenuItem) {
+        if preferencesWindowController != nil {
+            preferencesWindowController?.close()
+        }
+        let ctrl = PreferencesWindowController(windowNibName: "PreferenceWindowController")
+        preferencesWindowController = ctrl
+        ctrl.showWindow(self)
+        NSApp.activate(ignoringOtherApps: true)
+        ctrl.window?.makeKeyAndOrderFront(self)
+    }
 }
 
