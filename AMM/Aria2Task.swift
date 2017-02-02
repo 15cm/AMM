@@ -43,10 +43,12 @@ class Aria2Task: NSObject{
     init(json: JSON) {
         gid = json["gid"].stringValue
         status = Aria2TaskStatus(rawValue: json["status"].stringValue) ?? .unknown
-        if let taskName = json["bittorrent"]["info"]["name"].string {
-            title = taskName
+        if let taskTitle = json["bittorrent"]["info"]["name"].string {
+            title = taskTitle
+        } else if let firstFileTitle = json["files"][0]["path"].string{
+            title = firstFileTitle.components(separatedBy: "/").last!
         } else {
-            title = json["files"][0]["path"].stringValue.components(separatedBy: "/").last!
+            title = "Unknown"
         }
         downloadSpeed = Int(json["downloadSpeed"].stringValue) ?? 0
         uploadSpeed = Int(json["uploadSpeed"].stringValue) ?? 0
@@ -57,7 +59,7 @@ class Aria2Task: NSObject{
         }
     }
     
-    func copy(fromTask task: Aria2Task) {
+    func replace(fromTask task: Aria2Task) {
         gid = task.gid
         status = task.status
         title = task.title
