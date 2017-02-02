@@ -1,0 +1,41 @@
+//
+//  PreferencesWindowController.swift
+//  AMM
+//
+//  Created by Sinkerine on 01/02/2017.
+//  Copyright © 2017 sinkerine. All rights reserved.
+//
+
+import Cocoa
+
+class PreferencesWindowController: NSWindowController {
+    let profileManager = ServerProfileManager.instance
+    
+    override var windowNibName: String? {
+        return "PreferencesWindowController"
+    }
+    
+    @IBOutlet var arrayController: NSArrayController!
+    
+    override func windowDidLoad() {
+        super.windowDidLoad()
+
+        // Implement this method to handle any initialization after your window controller's window has been loaded from its nib file.
+    }
+    
+    func reloadProfiles() {
+        profileManager.loadPref()
+        arrayController.content = profileManager.servers
+    }
+    
+    @IBAction func okClicked(_ sender: Any) {
+        profileManager.savePref()
+        reloadProfiles()
+        window?.performClose(self)
+    }
+    
+    @IBAction func cancelClicked(_ sender: Any) {
+        reloadProfiles()
+        window?.performClose(self)
+    }
+}
