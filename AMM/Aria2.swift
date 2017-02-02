@@ -11,7 +11,10 @@ import SwiftyJSON
 import Starscream
 
 
-class Aria2{
+class Aria2: NSObject, NSCopying{
+    var host: String
+    var port: Int
+    var path: String
     var rpc: URL
     var secret: String
     var socket: WebSocket
@@ -22,14 +25,14 @@ class Aria2{
     class Aria2RpcCallback {
         var method: Aria2Methods
         var callbackTasks: (([Aria2Task]) -> Void)? = nil
-        var callbackStat: ((Int) -> Void)? = nil
+        var callbackStat: ((Aria2Stat) -> Void)? = nil
         
         init(forMethod method: Aria2Methods, callback cb: @escaping ([Aria2Task]) -> Void) {
             self.method = method
             self.callbackTasks = cb
         }
         
-        init(forMethod method: Aria2Methods, callback cb: @escaping (Int) -> Void) {
+        init(forMethod method: Aria2Methods, callback cb: @escaping (Aria2Stat) -> Void) {
             self.method = method
             self.callbackStat = cb
         }
@@ -40,25 +43,38 @@ class Aria2{
             }
         }
         
-        func exec(_ arg: Int) -> Void {
-            self.callbackStat?(arg)
+        func exec(_ arg: Aria2Stat?) -> Void {
+            if (arg != nil) {
+                self.callbackStat?(arg!)
+            }
         }
     }
     
     init?(host: String, port: Int, path: String, secret: String? = nil) {
-        guard let rpc = URL(string: "ws://\(host):\(port)/\(path)") else {
+        self.host = host
+        self.port = port
+        self.path = path
+        guard let rpc = URL(string: "ws://\(host):\(port)\(path)") else {
             return nil
         }
         self.socket = WebSocket(url: rpc)
         self.rpc = rpc
         self.secret = secret ?? ""
+        super.init()
         self.socket.delegate = self
+    }
+    
+    func copy(with zone: NSZone? = nil) -> Any {
+        return Aria2(host: host, port: port, path: path, secret: secret) as Any
     }
     
     // Call method via rpc and register callback
     func call(withParams params: [Any]?, callback cb: Aria2RpcCallback) {
         let id = NSUUID()
-        callbacks[id.uuidString] = cb
+        let uuidStr = id.uuidString
+        objc_sync_enter(self.callbacks)
+        callbacks[uuidStr] = cb
+        objc_sync_exit(self.callbacks)
         call(forMethod: cb.method, withParams: params, withID: id)
     }
     
@@ -78,13 +94,16 @@ class Aria2{
     // connect Aria2
     func connect() {
         status = .connecting
-        self.socket.connect()
+        socket.connect()
     }
     
     // disconnect Aria2
     func disconnect() {
-        self.socket.disconnect()
-        self.status = .disconnected
+        socket.disconnect()
+    }
+    
+    func getGlobalStat(callback cb: @escaping (Aria2Stat) -> Void) {
+        call(withParams: nil, callback: Aria2RpcCallback(forMethod: .getGlobalStat, callback: cb))
     }
     
     // get active tasks
@@ -101,6 +120,10 @@ class Aria2{
     func tellStopped(offset: Int?, num: Int, callback cb: @escaping ([Aria2Task]) -> Void) {
         call(withParams: [offset ?? -1, num], callback: Aria2RpcCallback(forMethod: .tellStopped, callback: cb))
     }
+    
+    deinit {
+        disconnect()
+    }
 }
 
 // Helper functions
@@ -110,6 +133,14 @@ extension Aria2 {
             return tasks.map({ task in
                 Aria2Task(json: task)
             })
+        } else {
+            return nil
+        }
+    }
+    
+    static func getStat(fromResponse res: JSON) -> Aria2Stat? {
+        if let stat = res["result"].dictionary {
+            return Aria2Stat(downloadSpeed: Int((stat["downloadSpeed"]?.stringValue)!)!, uploadSpeed: Int((stat["uploadSpeed"]?.stringValue)!)!)
         } else {
             return nil
         }
@@ -134,40 +165,34 @@ extension Aria2 {
  */
 extension Aria2: WebSocketDelegate {
     public func websocketDidConnect(socket: WebSocket) {
+        status = .connected
         print("Aria2 connected at: \(rpc)")
     }
     
     public func websocketDidDisconnect(socket: WebSocket, error: NSError?) {
-        print("Websocket disconnected: \(error)")
+        status =  .disconnected
+        print("Aria2 at \(rpc) disconnected: \(error)")
     }
     
     public func websocketDidReceiveData(socket: WebSocket, data: Data) {
-        print(data)
     }
     
     public func websocketDidReceiveMessage(socket: WebSocket, text: String) {
         let res = JSON(data: text.data(using: .utf8)!)
-        if res["error"]["message"] == "Unauthorized" {
-            self.status = .unauthorized
-        } else {
-            self.status = .connected
-        }
-//        let method = 
-//        if res["method"].stringValue == ""aria2.onDownloadStart" || res["]
         if let method = res["method"].string {
            // Notification
         } else {
             let id = res["id"].stringValue
             if let callback = callbacks[id] {
                 switch callback.method {
+                case .getGlobalStat:
+                    callback.exec(Aria2.getStat(fromResponse: res))
                 case .tellActive:
                     callback.exec(Aria2.getTasks(fromResponse: res))
                 case .tellWaiting:
                     callback.exec(Aria2.getTasks(fromResponse: res))
                 case .tellStopped:
                     callback.exec(Aria2.getTasks(fromResponse: res))
-                default:
-                    break
                 }
                 callbacks.removeValue(forKey: id)
             } else {
