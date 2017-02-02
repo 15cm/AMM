@@ -1,3 +1,4 @@
+
 //
 //  AMMConstants.swift
 //  AMM
@@ -10,10 +11,11 @@ import Foundation
 
 let defaultHost = "localhost"
 let defaultPort = 6800
-let defaultPath = "jsonrpc"
+let defaultPath = "/jsonrpc"
 let defaultRemark = "Untitled Server"
-let defaultGlobalStatRefreshInterval = 1
-let defaultTaskStatRefreshInterval = 5
+let defaultGlobalStatRefreshInterval: Double = 1
+let defaultTaskStatRefreshInterval: Double = 3
 let defaultActiveTaskMaxNum = 5
 let defaultWaitingTaskMaxNum = 5
 let defaultStoppedTaskMaxNum = 5
+
