@@ -7,18 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2E02C9791E438DF500A6272D /* TaskMenuItemSeperatorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E02C9771E438DF500A6272D /* TaskMenuItemSeperatorViewController.swift */; };
+		2E02C97A1E438DF500A6272D /* TaskMenuItemSeperatorViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2E02C9781E438DF500A6272D /* TaskMenuItemSeperatorViewController.xib */; };
+		2E02C97C1E438F7B00A6272D /* TaskMenuItemSeperator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E02C97B1E438F7B00A6272D /* TaskMenuItemSeperator.swift */; };
+		2E02C97E1E4392C100A6272D /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E02C97D1E4392C100A6272D /* Constants.swift */; };
 		2E03C1721E3EE24F00E8BE9E /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E03C1711E3EE24F00E8BE9E /* SwiftyJSON.framework */; };
 		2E03C1731E3EE24F00E8BE9E /* SwiftyJSON.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2E03C1711E3EE24F00E8BE9E /* SwiftyJSON.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		2E03C1751E3EE3B100E8BE9E /* AMMTaskMenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E03C1741E3EE3B100E8BE9E /* AMMTaskMenuItem.swift */; };
-		2E03C1781E3F621800E8BE9E /* AMMTaskMenuItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E03C1761E3F621800E8BE9E /* AMMTaskMenuItemViewController.swift */; };
-		2E03C1791E3F621800E8BE9E /* AMMTaskMenuItemViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2E03C1771E3F621800E8BE9E /* AMMTaskMenuItemViewController.xib */; };
+		2E03C1751E3EE3B100E8BE9E /* TaskMenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E03C1741E3EE3B100E8BE9E /* TaskMenuItem.swift */; };
+		2E03C1781E3F621800E8BE9E /* TaskMenuItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E03C1761E3F621800E8BE9E /* TaskMenuItemViewController.swift */; };
+		2E03C1791E3F621800E8BE9E /* TaskMenuItemViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2E03C1771E3F621800E8BE9E /* TaskMenuItemViewController.xib */; };
 		2E03C17B1E40870500E8BE9E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2E03C17A1E40870500E8BE9E /* Assets.xcassets */; };
 		2E045E501E3CB39B0079EE52 /* Aria2Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E045E4F1E3CB39B0079EE52 /* Aria2Tests.swift */; };
 		2E468A5D1E398482009C6CA3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E468A5C1E398482009C6CA3 /* AppDelegate.swift */; };
 		2E468A621E398482009C6CA3 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2E468A601E398482009C6CA3 /* MainMenu.xib */; };
-		2E468A6D1E398482009C6CA3 /* AMMTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E468A6C1E398482009C6CA3 /* AMMTests.swift */; };
-		2E468AA01E398B61009C6CA3 /* AMM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E468A9C1E398B61009C6CA3 /* AMM.swift */; };
-		2E468AA11E398B61009C6CA3 /* AMMConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E468A9D1E398B61009C6CA3 /* AMMConstants.swift */; };
+		2E468AA01E398B61009C6CA3 /* ServerProfileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E468A9C1E398B61009C6CA3 /* ServerProfileManager.swift */; };
 		2E468AA31E398B61009C6CA3 /* Aria2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E468A9F1E398B61009C6CA3 /* Aria2.swift */; };
 		2E468AA51E398B86009C6CA3 /* MainMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E468AA41E398B86009C6CA3 /* MainMenu.swift */; };
 		2E468AA81E398CC6009C6CA3 /* Starscream.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E468AA71E398CC6009C6CA3 /* Starscream.framework */; };
@@ -26,8 +28,16 @@
 		2E468AAA1E398CC9009C6CA3 /* Starscream.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2E468AA71E398CC6009C6CA3 /* Starscream.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2E468AAC1E39B123009C6CA3 /* Aria2Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E468AAB1E39B123009C6CA3 /* Aria2Task.swift */; };
 		2E468AAE1E39BA45009C6CA3 /* Aria2Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E468AAD1E39BA45009C6CA3 /* Aria2Constants.swift */; };
-		2EF593831E3D827500454B9D /* AMMServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF593821E3D827500454B9D /* AMMServer.swift */; };
-		2EF593851E3D8CC200454B9D /* AMMServerMenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF593841E3D8CC200454B9D /* AMMServerMenuItem.swift */; };
+		2E644A551E41B24D00C6347C /* ServerProfileTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E644A541E41B24D00C6347C /* ServerProfileTests.swift */; };
+		2E644A5A1E41D85500C6347C /* PreferencesWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E644A581E41D85500C6347C /* PreferencesWindowController.swift */; };
+		2E644A5B1E41D85500C6347C /* PreferencesWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2E644A591E41D85500C6347C /* PreferencesWindowController.xib */; };
+		2E644A611E422B1D00C6347C /* ServerProfileArrayController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E644A601E422B1D00C6347C /* ServerProfileArrayController.swift */; };
+		2E644A641E42CDD700C6347C /* ServerProfileMenuItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E644A621E42CDD700C6347C /* ServerProfileMenuItemViewController.swift */; };
+		2E644A651E42CDD700C6347C /* ServerProfileMenuItemViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2E644A631E42CDD700C6347C /* ServerProfileMenuItemViewController.xib */; };
+		2E644A671E42DE4200C6347C /* Aria2Stat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E644A661E42DE4200C6347C /* Aria2Stat.swift */; };
+		2E644A6B1E43132B00C6347C /* MenuItemBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E644A6A1E43132B00C6347C /* MenuItemBox.swift */; };
+		2EF593831E3D827500454B9D /* ServerProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF593821E3D827500454B9D /* ServerProfile.swift */; };
+		2EF593851E3D8CC200454B9D /* ServerProfileMenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF593841E3D8CC200454B9D /* ServerProfileMenuItem.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,10 +66,14 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		2E02C9771E438DF500A6272D /* TaskMenuItemSeperatorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskMenuItemSeperatorViewController.swift; sourceTree = "<group>"; };
+		2E02C9781E438DF500A6272D /* TaskMenuItemSeperatorViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TaskMenuItemSeperatorViewController.xib; sourceTree = "<group>"; };
+		2E02C97B1E438F7B00A6272D /* TaskMenuItemSeperator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskMenuItemSeperator.swift; sourceTree = "<group>"; };
+		2E02C97D1E4392C100A6272D /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		2E03C1711E3EE24F00E8BE9E /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SwiftyJSON.framework; sourceTree = "<group>"; };
-		2E03C1741E3EE3B100E8BE9E /* AMMTaskMenuItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AMMTaskMenuItem.swift; sourceTree = "<group>"; };
-		2E03C1761E3F621800E8BE9E /* AMMTaskMenuItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AMMTaskMenuItemViewController.swift; sourceTree = "<group>"; };
-		2E03C1771E3F621800E8BE9E /* AMMTaskMenuItemViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AMMTaskMenuItemViewController.xib; sourceTree = "<group>"; };
+		2E03C1741E3EE3B100E8BE9E /* TaskMenuItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskMenuItem.swift; sourceTree = "<group>"; };
+		2E03C1761E3F621800E8BE9E /* TaskMenuItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskMenuItemViewController.swift; sourceTree = "<group>"; };
+		2E03C1771E3F621800E8BE9E /* TaskMenuItemViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TaskMenuItemViewController.xib; sourceTree = "<group>"; };
 		2E03C17A1E40870500E8BE9E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2E045E4F1E3CB39B0079EE52 /* Aria2Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Aria2Tests.swift; sourceTree = "<group>"; };
 		2E468A591E398482009C6CA3 /* AMM.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AMM.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -67,17 +81,23 @@
 		2E468A611E398482009C6CA3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		2E468A631E398482009C6CA3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2E468A681E398482009C6CA3 /* AMMTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AMMTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		2E468A6C1E398482009C6CA3 /* AMMTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AMMTests.swift; sourceTree = "<group>"; };
 		2E468A6E1E398482009C6CA3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		2E468A9C1E398B61009C6CA3 /* AMM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AMM.swift; sourceTree = "<group>"; };
-		2E468A9D1E398B61009C6CA3 /* AMMConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AMMConstants.swift; sourceTree = "<group>"; };
+		2E468A9C1E398B61009C6CA3 /* ServerProfileManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerProfileManager.swift; sourceTree = "<group>"; };
 		2E468A9F1E398B61009C6CA3 /* Aria2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Aria2.swift; sourceTree = "<group>"; };
 		2E468AA41E398B86009C6CA3 /* MainMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainMenu.swift; sourceTree = "<group>"; };
 		2E468AA71E398CC6009C6CA3 /* Starscream.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Starscream.framework; sourceTree = "<group>"; };
 		2E468AAB1E39B123009C6CA3 /* Aria2Task.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Aria2Task.swift; sourceTree = "<group>"; };
 		2E468AAD1E39BA45009C6CA3 /* Aria2Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Aria2Constants.swift; sourceTree = "<group>"; };
-		2EF593821E3D827500454B9D /* AMMServer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AMMServer.swift; sourceTree = "<group>"; };
-		2EF593841E3D8CC200454B9D /* AMMServerMenuItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AMMServerMenuItem.swift; sourceTree = "<group>"; };
+		2E644A541E41B24D00C6347C /* ServerProfileTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerProfileTests.swift; sourceTree = "<group>"; };
+		2E644A581E41D85500C6347C /* PreferencesWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreferencesWindowController.swift; sourceTree = "<group>"; };
+		2E644A591E41D85500C6347C /* PreferencesWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PreferencesWindowController.xib; sourceTree = "<group>"; };
+		2E644A601E422B1D00C6347C /* ServerProfileArrayController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerProfileArrayController.swift; sourceTree = "<group>"; };
+		2E644A621E42CDD700C6347C /* ServerProfileMenuItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerProfileMenuItemViewController.swift; sourceTree = "<group>"; };
+		2E644A631E42CDD700C6347C /* ServerProfileMenuItemViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ServerProfileMenuItemViewController.xib; sourceTree = "<group>"; };
+		2E644A661E42DE4200C6347C /* Aria2Stat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Aria2Stat.swift; sourceTree = "<group>"; };
+		2E644A6A1E43132B00C6347C /* MenuItemBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuItemBox.swift; sourceTree = "<group>"; };
+		2EF593821E3D827500454B9D /* ServerProfile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerProfile.swift; sourceTree = "<group>"; };
+		2EF593841E3D8CC200454B9D /* ServerProfileMenuItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerProfileMenuItem.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,16 +146,25 @@
 				2E03C17A1E40870500E8BE9E /* Assets.xcassets */,
 				2E468AA61E398C10009C6CA3 /* Aria2 */,
 				2E468AA41E398B86009C6CA3 /* MainMenu.swift */,
-				2E468A9C1E398B61009C6CA3 /* AMM.swift */,
-				2E468A9D1E398B61009C6CA3 /* AMMConstants.swift */,
+				2E468A9C1E398B61009C6CA3 /* ServerProfileManager.swift */,
+				2E02C97D1E4392C100A6272D /* Constants.swift */,
 				2E468A5C1E398482009C6CA3 /* AppDelegate.swift */,
 				2E468A601E398482009C6CA3 /* MainMenu.xib */,
 				2E468A631E398482009C6CA3 /* Info.plist */,
-				2EF593821E3D827500454B9D /* AMMServer.swift */,
-				2EF593841E3D8CC200454B9D /* AMMServerMenuItem.swift */,
-				2E03C1741E3EE3B100E8BE9E /* AMMTaskMenuItem.swift */,
-				2E03C1761E3F621800E8BE9E /* AMMTaskMenuItemViewController.swift */,
-				2E03C1771E3F621800E8BE9E /* AMMTaskMenuItemViewController.xib */,
+				2EF593821E3D827500454B9D /* ServerProfile.swift */,
+				2EF593841E3D8CC200454B9D /* ServerProfileMenuItem.swift */,
+				2E03C1741E3EE3B100E8BE9E /* TaskMenuItem.swift */,
+				2E03C1761E3F621800E8BE9E /* TaskMenuItemViewController.swift */,
+				2E03C1771E3F621800E8BE9E /* TaskMenuItemViewController.xib */,
+				2E644A581E41D85500C6347C /* PreferencesWindowController.swift */,
+				2E644A591E41D85500C6347C /* PreferencesWindowController.xib */,
+				2E644A601E422B1D00C6347C /* ServerProfileArrayController.swift */,
+				2E644A621E42CDD700C6347C /* ServerProfileMenuItemViewController.swift */,
+				2E644A631E42CDD700C6347C /* ServerProfileMenuItemViewController.xib */,
+				2E644A6A1E43132B00C6347C /* MenuItemBox.swift */,
+				2E02C9771E438DF500A6272D /* TaskMenuItemSeperatorViewController.swift */,
+				2E02C9781E438DF500A6272D /* TaskMenuItemSeperatorViewController.xib */,
+				2E02C97B1E438F7B00A6272D /* TaskMenuItemSeperator.swift */,
 			);
 			path = AMM;
 			sourceTree = "<group>";
@@ -144,8 +173,8 @@
 			isa = PBXGroup;
 			children = (
 				2E045E4F1E3CB39B0079EE52 /* Aria2Tests.swift */,
-				2E468A6C1E398482009C6CA3 /* AMMTests.swift */,
 				2E468A6E1E398482009C6CA3 /* Info.plist */,
+				2E644A541E41B24D00C6347C /* ServerProfileTests.swift */,
 			);
 			path = AMMTests;
 			sourceTree = "<group>";
@@ -166,6 +195,7 @@
 				2E468A9F1E398B61009C6CA3 /* Aria2.swift */,
 				2E468AAB1E39B123009C6CA3 /* Aria2Task.swift */,
 				2E468AAD1E39BA45009C6CA3 /* Aria2Constants.swift */,
+				2E644A661E42DE4200C6347C /* Aria2Stat.swift */,
 			);
 			name = Aria2;
 			sourceTree = "<group>";
@@ -254,9 +284,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2E03C1791E3F621800E8BE9E /* AMMTaskMenuItemViewController.xib in Resources */,
+				2E03C1791E3F621800E8BE9E /* TaskMenuItemViewController.xib in Resources */,
+				2E644A651E42CDD700C6347C /* ServerProfileMenuItemViewController.xib in Resources */,
 				2E03C17B1E40870500E8BE9E /* Assets.xcassets in Resources */,
+				2E644A5B1E41D85500C6347C /* PreferencesWindowController.xib in Resources */,
 				2E468A621E398482009C6CA3 /* MainMenu.xib in Resources */,
+				2E02C97A1E438DF500A6272D /* TaskMenuItemSeperatorViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -275,16 +308,23 @@
 			buildActionMask = 2147483647;
 			files = (
 				2E468AA51E398B86009C6CA3 /* MainMenu.swift in Sources */,
-				2E468AA11E398B61009C6CA3 /* AMMConstants.swift in Sources */,
+				2E02C97E1E4392C100A6272D /* Constants.swift in Sources */,
 				2E468AAE1E39BA45009C6CA3 /* Aria2Constants.swift in Sources */,
 				2E468AA31E398B61009C6CA3 /* Aria2.swift in Sources */,
-				2EF593831E3D827500454B9D /* AMMServer.swift in Sources */,
-				2E03C1781E3F621800E8BE9E /* AMMTaskMenuItemViewController.swift in Sources */,
-				2EF593851E3D8CC200454B9D /* AMMServerMenuItem.swift in Sources */,
-				2E03C1751E3EE3B100E8BE9E /* AMMTaskMenuItem.swift in Sources */,
+				2EF593831E3D827500454B9D /* ServerProfile.swift in Sources */,
+				2E03C1781E3F621800E8BE9E /* TaskMenuItemViewController.swift in Sources */,
+				2E644A5A1E41D85500C6347C /* PreferencesWindowController.swift in Sources */,
+				2E644A641E42CDD700C6347C /* ServerProfileMenuItemViewController.swift in Sources */,
+				2EF593851E3D8CC200454B9D /* ServerProfileMenuItem.swift in Sources */,
+				2E644A611E422B1D00C6347C /* ServerProfileArrayController.swift in Sources */,
+				2E03C1751E3EE3B100E8BE9E /* TaskMenuItem.swift in Sources */,
 				2E468A5D1E398482009C6CA3 /* AppDelegate.swift in Sources */,
+				2E644A6B1E43132B00C6347C /* MenuItemBox.swift in Sources */,
+				2E02C9791E438DF500A6272D /* TaskMenuItemSeperatorViewController.swift in Sources */,
+				2E02C97C1E438F7B00A6272D /* TaskMenuItemSeperator.swift in Sources */,
+				2E644A671E42DE4200C6347C /* Aria2Stat.swift in Sources */,
 				2E468AAC1E39B123009C6CA3 /* Aria2Task.swift in Sources */,
-				2E468AA01E398B61009C6CA3 /* AMM.swift in Sources */,
+				2E468AA01E398B61009C6CA3 /* ServerProfileManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -292,8 +332,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2E468A6D1E398482009C6CA3 /* AMMTests.swift in Sources */,
 				2E045E501E3CB39B0079EE52 /* Aria2Tests.swift in Sources */,
+				2E644A551E41B24D00C6347C /* ServerProfileTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
