@@ -10,7 +10,7 @@ import XCTest
 @testable import AMM
 
 class Aria2Tests: XCTestCase {
-    let aria2 = Aria2(host: "localhost", port: 6800, path: "jsonrpc", secret: "15cm")
+    let aria2 = Aria2(host: "localhost", port: 6800, path: "/jsonrpc", secret: "15cm")
 
     override func setUp() {
         super.setUp()
@@ -27,12 +27,10 @@ class Aria2Tests: XCTestCase {
         // Use XCTAssert and related functions to verify your tests produce the correct results.
         aria2?.connect()
         sleep(1)
-        aria2?.tellStopped(offset: -1, num: 10, callback: {tasks in
-            for task in tasks {
-                print(task.title)
-            }
+        aria2?.getGlobalStat(callback: {stat in
+            print(stat)
         })
-        sleep(1)
+        sleep(3)
         aria2?.disconnect()
     }
 
