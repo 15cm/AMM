@@ -11,6 +11,9 @@ Aria2 Menubar Monitor,  在 macOS 菜单栏上监控 Aria2 的工具。
 # 下载
 见 [Release](https://github.com/15cm/AMM/releases)
 
+# 运行环境
+OS X 10.10+ or macOS 10.12.x
+
 # 测试、构建环境
 - macOS Sierra 10.12.3 (16D32)
 - Xcode 8.2.1 (8C1002)

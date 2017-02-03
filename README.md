@@ -13,6 +13,9 @@ Aria2 Menubar Monitor, a tool to help with monitoring Aria2 Status on macOS menu
 # Download
 See [Release](https://github.com/15cm/AMM/releases)
 
+# Prerequisite
+OS X 10.10+ or macOS 10.12.x
+
 # Test and Build Environment
 - macOS Sierra 10.12.3 (16D32)
 - Xcode 8.2.1 (8C1002)
