@@ -9,7 +9,7 @@
 import Cocoa
 
 class MainMenu: NSObject, ServerProfileManagerDelegate {
-    var statusItem = NSStatusBar.system().statusItem(withLength: NSVariableStatusItemLength)
+    var statusItem = NSStatusBar.system().statusItem(withLength: NSSquareStatusItemLength)
     var servers: [ServerProfile] = []
     var fixMenuItems: [NSMenuItem] = []
     var preferencesWindowController: PreferencesWindowController? = nil
@@ -18,7 +18,7 @@ class MainMenu: NSObject, ServerProfileManagerDelegate {
     @IBOutlet weak var menu: NSMenu!
     
     override func awakeFromNib() {
-        statusItem.title = "AMM"
+        statusItem.image = #imageLiteral(resourceName: "menu-icon")
         statusItem.menu = menu
         for i in ((statusItem.menu?.numberOfItems)! - 3) ..< (statusItem.menu?.numberOfItems)! {
             fixMenuItems.append((statusItem.menu?.item(at: i))!)
