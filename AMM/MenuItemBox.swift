@@ -22,14 +22,15 @@ class MenuItemBox: NSBox {
         } else {
             noHighlight()
         }
+        NSRectFill(dirtyRect)
         super.draw(dirtyRect)
     }
     
     func highlight() {
-        fillColor = NSColor(calibratedRed: 0, green: 128, blue: 255, alpha: 0.2)
+        NSColor(calibratedRed: 0, green: 128, blue: 255, alpha: 0.1).setFill()
     }
     
     func noHighlight() {
-        fillColor = NSColor(calibratedRed: 0, green: 0, blue: 0, alpha: 0)
+         NSColor(calibratedRed: 0, green: 0, blue: 0, alpha: 0).setFill()
     }
 }
