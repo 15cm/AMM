@@ -8,7 +8,7 @@
 
 import Cocoa
 
-class PreferencesWindowController: NSWindowController {
+class PreferencesWindowController: NSWindowController, NSWindowDelegate {
     let profileManager = ServerProfileManager.instance
     
     override var windowNibName: String? {
@@ -30,12 +30,15 @@ class PreferencesWindowController: NSWindowController {
     
     @IBAction func okClicked(_ sender: Any) {
         profileManager.savePref()
-        reloadProfiles()
         window?.performClose(self)
     }
     
     @IBAction func cancelClicked(_ sender: Any) {
-        reloadProfiles()
         window?.performClose(self)
+    }
+    
+    func windowShouldClose(_ sender: Any) -> Bool {
+        reloadProfiles()
+        return true
     }
 }
