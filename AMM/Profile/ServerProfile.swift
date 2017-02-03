@@ -78,7 +78,12 @@ class ServerProfile: NSObject, NSCopying {
                 }
             }
         }
-        connectTimer?.activate()
+        if #available(OSX 10.12, *) {
+            connectTimer?.activate()
+        } else {
+            // Fallback on earlier versions
+            connectTimer?.resume()
+        }
     }
     
     // get global status
