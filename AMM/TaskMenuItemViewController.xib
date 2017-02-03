@@ -35,7 +35,7 @@
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Label" id="jQu-Sg-ieW">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" white="0.25" alpha="0.80000000000000004" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" white="1" alpha="0.0" colorSpace="deviceWhite"/>
                                 </textFieldCell>
                                 <connections>
                                     <binding destination="-2" name="value" keyPath="self.task.title" id="Kfh-nJ-D8b"/>
