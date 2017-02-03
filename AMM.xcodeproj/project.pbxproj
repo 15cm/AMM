@@ -11,6 +11,8 @@
 		2E02C97A1E438DF500A6272D /* TaskMenuItemSeperatorViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2E02C9781E438DF500A6272D /* TaskMenuItemSeperatorViewController.xib */; };
 		2E02C97C1E438F7B00A6272D /* TaskMenuItemSeperator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E02C97B1E438F7B00A6272D /* TaskMenuItemSeperator.swift */; };
 		2E02C97E1E4392C100A6272D /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E02C97D1E4392C100A6272D /* Constants.swift */; };
+		2E02C97F1E43962A00A6272D /* Starscream.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E468AA71E398CC6009C6CA3 /* Starscream.framework */; };
+		2E02C9801E43962A00A6272D /* Starscream.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2E468AA71E398CC6009C6CA3 /* Starscream.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2E03C1721E3EE24F00E8BE9E /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E03C1711E3EE24F00E8BE9E /* SwiftyJSON.framework */; };
 		2E03C1731E3EE24F00E8BE9E /* SwiftyJSON.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2E03C1711E3EE24F00E8BE9E /* SwiftyJSON.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2E03C1751E3EE3B100E8BE9E /* TaskMenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E03C1741E3EE3B100E8BE9E /* TaskMenuItem.swift */; };
@@ -23,9 +25,6 @@
 		2E468AA01E398B61009C6CA3 /* ServerProfileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E468A9C1E398B61009C6CA3 /* ServerProfileManager.swift */; };
 		2E468AA31E398B61009C6CA3 /* Aria2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E468A9F1E398B61009C6CA3 /* Aria2.swift */; };
 		2E468AA51E398B86009C6CA3 /* MainMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E468AA41E398B86009C6CA3 /* MainMenu.swift */; };
-		2E468AA81E398CC6009C6CA3 /* Starscream.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E468AA71E398CC6009C6CA3 /* Starscream.framework */; };
-		2E468AA91E398CC9009C6CA3 /* Starscream.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E468AA71E398CC6009C6CA3 /* Starscream.framework */; };
-		2E468AAA1E398CC9009C6CA3 /* Starscream.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2E468AA71E398CC6009C6CA3 /* Starscream.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2E468AAC1E39B123009C6CA3 /* Aria2Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E468AAB1E39B123009C6CA3 /* Aria2Task.swift */; };
 		2E468AAE1E39BA45009C6CA3 /* Aria2Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E468AAD1E39BA45009C6CA3 /* Aria2Constants.swift */; };
 		2E644A551E41B24D00C6347C /* ServerProfileTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E644A541E41B24D00C6347C /* ServerProfileTests.swift */; };
@@ -58,7 +57,7 @@
 			dstSubfolderSpec = 10;
 			files = (
 				2E03C1731E3EE24F00E8BE9E /* SwiftyJSON.framework in Embed Frameworks */,
-				2E468AAA1E398CC9009C6CA3 /* Starscream.framework in Embed Frameworks */,
+				2E02C9801E43962A00A6272D /* Starscream.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -105,9 +104,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2E468AA91E398CC9009C6CA3 /* Starscream.framework in Frameworks */,
-				2E468AA81E398CC6009C6CA3 /* Starscream.framework in Frameworks */,
 				2E03C1721E3EE24F00E8BE9E /* SwiftyJSON.framework in Frameworks */,
+				2E02C97F1E43962A00A6272D /* Starscream.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
