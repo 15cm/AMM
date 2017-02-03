@@ -37,6 +37,11 @@ class ServerProfileMenuItemViewController: NSViewController {
                 }
             }
         }
-        timer?.activate()
+        if #available(OSX 10.12, *) {
+            timer?.activate()
+        } else {
+            // Fallback on earlier versions
+            timer?.resume()
+        }
     }
 }
