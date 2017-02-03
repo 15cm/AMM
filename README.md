@@ -10,11 +10,19 @@ Aria2 Menubar Monitor, a tool to help with monitoring Aria2 Status on macOS menu
 # Screenshots
 ![Screenshots](./screenshot.png)
 
-# Download
-See [Release](https://github.com/15cm/AMM/releases)
+# Remark
+## About Values in Preferences
+In current version, all value in "AMM Preferences" will not be validated.(Validation will be added in the future)
+It's your responsibility to take care of your settings, especially the refresh intervals, values of which are suggested to be no less than 0.5(s).
+
+## About Preferences Changes
+It happens sometimes(especially when refresh intervals being set too short) that every confirm of a preferences change(when you click "OK" or "Cancel") causes memory leak. Therefore please restart AMM if you make preferences changes several times and find AMM take up too much resources.
 
 # Prerequisite
 OS X 10.10+ or macOS 10.12.x
+
+# Download
+See [Release](https://github.com/15cm/AMM/releases)
 
 # Test and Build Environment
 - macOS Sierra 10.12.3 (16D32)
