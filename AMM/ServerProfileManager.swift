@@ -38,7 +38,6 @@ class ServerProfileManager: NSObject {
             }
         }
         defaults.set(profiles, forKey: "serverProfiles")
-        delegate?.onServerProfilesUpdate(withServerProfiles: servers)
     }
     
     func loadPref() {
@@ -50,6 +49,7 @@ class ServerProfileManager: NSObject {
                 servers.append(server)
             }
         }
+        delegate?.onServerProfilesUpdate(withServerProfiles: servers)
     }
     
 }
