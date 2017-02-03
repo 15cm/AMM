@@ -21,15 +21,13 @@
         </customObject>
         <menu id="39T-G0-PGJ">
             <items>
-                <menuItem title="Preference" id="EAI-Oc-mp5">
-                    <modifierMask key="keyEquivalentModifierMask"/>
+                <menuItem title="Preference" keyEquivalent="," id="EAI-Oc-mp5">
                     <connections>
                         <action selector="preferencesClicked:" target="0OG-Ou-z9N" id="aU5-Hu-Aot"/>
                     </connections>
                 </menuItem>
                 <menuItem isSeparatorItem="YES" id="3vb-16-DSS"/>
-                <menuItem title="Quit" id="RuG-2j-vLq">
-                    <modifierMask key="keyEquivalentModifierMask"/>
+                <menuItem title="Quit" keyEquivalent="q" id="RuG-2j-vLq">
                     <connections>
                         <action selector="quitClicked:" target="0OG-Ou-z9N" id="lHa-HI-hel"/>
                     </connections>
