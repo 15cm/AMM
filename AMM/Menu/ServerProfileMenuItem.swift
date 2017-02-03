@@ -22,11 +22,11 @@ class ServerProfileMenuItem: NSMenuItem {
         
         // Init fixed task array
         submenu = NSMenu(title: "Tasks")
-        submenu?.addItem(TaskMenuItemSeperator(name: "Active Task"))
+        submenu?.addItem(TaskMenuItemSeperator(name: "Active"))
         for _ in 1...server.activeTaskMaxNum { submenu?.addItem(TaskMenuItem()) }
-        submenu?.addItem(TaskMenuItemSeperator(name: "Waiting Task"))
+        submenu?.addItem(TaskMenuItemSeperator(name: "Waiting"))
         for _ in 1...server.waitingTaskMaxNum { submenu?.addItem(TaskMenuItem()) }
-        submenu?.addItem(TaskMenuItemSeperator(name: "Stopped Task"))
+        submenu?.addItem(TaskMenuItemSeperator(name: "Stopped"))
         for _ in 1...server.stoppedTaskMaxNum { submenu?.addItem(TaskMenuItem()) }
         
         // Fetch tasks loop
