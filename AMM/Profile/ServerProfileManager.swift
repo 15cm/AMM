@@ -49,7 +49,7 @@ class ServerProfileManager: NSObject {
                 servers.append(server)
             }
         }
-        delegate?.onServerProfilesUpdate(withServerProfiles: servers)
+        delegate?.onServerProfilesUpdate(withServerProfiles: copyServers())
     }
     
 }

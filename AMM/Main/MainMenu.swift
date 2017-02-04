@@ -25,7 +25,7 @@ class MainMenu: NSObject, ServerProfileManagerDelegate {
             fixMenuItems.append((statusItem.menu?.item(at: i))!)
         }
         profileManager.delegate = self
-        updateMenuItems(withServerProfiles: profileManager.servers)
+        updateMenuItems(withServerProfiles: profileManager.copyServers())
     }
     
     func updateMenuItems(withServerProfiles servers: [ServerProfile]) {
