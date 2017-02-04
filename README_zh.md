@@ -29,6 +29,16 @@ OS X 10.10+ or macOS 10.12.x
 - Swift 3.0.2
 - carthage 0.18.1
 
+# 构建流程
+``` sh
+git clone https://github.com/15cm/AMM.git
+cd AMM
+carthage update --platform mac --no-use-binaries
+open AMM.xcodeproj
+```
+
+然后在 **Xcode** 中按 Cmd-b 构建 **AMM**
+
 # 感谢
 - [aria2](https://github.com/aria2/aria2) 
 - [SwiftyJSON](https://github.com/SwiftyJSON/SwiftyJSON)
