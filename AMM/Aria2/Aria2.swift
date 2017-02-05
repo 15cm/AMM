@@ -188,11 +188,12 @@ extension Aria2: WebSocketDelegate {
                 case .getGlobalStat:
                     callback.exec(Aria2.getStat(fromResponse: res))
                 case .tellActive:
-                    callback.exec(Aria2.getTasks(fromResponse: res))
+                    fallthrough
                 case .tellWaiting:
-                    callback.exec(Aria2.getTasks(fromResponse: res))
+                    fallthrough
                 case .tellStopped:
                     callback.exec(Aria2.getTasks(fromResponse: res))
+                    break
                 }
                 callbacks.removeValue(forKey: id)
             } else {
