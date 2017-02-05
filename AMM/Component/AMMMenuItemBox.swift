@@ -8,7 +8,7 @@
 
 import Cocoa
 
-class MenuItemBox: NSBox {
+class AMMMenuItemBox: NSBox {
 
     override func draw(_ dirtyRect: NSRect) {
 
