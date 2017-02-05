@@ -34,7 +34,7 @@
 		2E644A611E422B1D00C6347C /* ServerProfileArrayController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E644A601E422B1D00C6347C /* ServerProfileArrayController.swift */; };
 		2E644A641E42CDD700C6347C /* ServerProfileMenuItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E644A621E42CDD700C6347C /* ServerProfileMenuItemViewController.swift */; };
 		2E644A671E42DE4200C6347C /* Aria2Stat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E644A661E42DE4200C6347C /* Aria2Stat.swift */; };
-		2E644A6B1E43132B00C6347C /* MenuItemBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E644A6A1E43132B00C6347C /* MenuItemBox.swift */; };
+		2E644A6B1E43132B00C6347C /* AMMMenuItemBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E644A6A1E43132B00C6347C /* AMMMenuItemBox.swift */; };
 		2EA2D1511E4567430044F318 /* AMMTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EA2D1501E4567430044F318 /* AMMTextField.swift */; };
 		2EA2D1571E45CEED0044F318 /* Starscream.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2EA2D1531E45CEDB0044F318 /* Starscream.framework */; };
 		2EA2D1581E45CEED0044F318 /* Starscream.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2EA2D1531E45CEDB0044F318 /* Starscream.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -101,7 +101,7 @@
 		2E644A601E422B1D00C6347C /* ServerProfileArrayController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerProfileArrayController.swift; sourceTree = "<group>"; };
 		2E644A621E42CDD700C6347C /* ServerProfileMenuItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerProfileMenuItemViewController.swift; sourceTree = "<group>"; };
 		2E644A661E42DE4200C6347C /* Aria2Stat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Aria2Stat.swift; sourceTree = "<group>"; };
-		2E644A6A1E43132B00C6347C /* MenuItemBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuItemBox.swift; sourceTree = "<group>"; };
+		2E644A6A1E43132B00C6347C /* AMMMenuItemBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AMMMenuItemBox.swift; sourceTree = "<group>"; };
 		2EA2D1501E4567430044F318 /* AMMTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AMMTextField.swift; sourceTree = "<group>"; };
 		2EA2D1531E45CEDB0044F318 /* Starscream.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Starscream.framework; sourceTree = "<group>"; };
 		2EA2D1541E45CEDB0044F318 /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SwiftyJSON.framework; sourceTree = "<group>"; };
@@ -238,7 +238,7 @@
 			isa = PBXGroup;
 			children = (
 				2EA2D1501E4567430044F318 /* AMMTextField.swift */,
-				2E644A6A1E43132B00C6347C /* MenuItemBox.swift */,
+				2E644A6A1E43132B00C6347C /* AMMMenuItemBox.swift */,
 			);
 			path = Component;
 			sourceTree = "<group>";
@@ -377,7 +377,7 @@
 				2E03C1751E3EE3B100E8BE9E /* TaskMenuItem.swift in Sources */,
 				2E1A64311E4433CA0053F972 /* AboutWindowController.swift in Sources */,
 				2E468A5D1E398482009C6CA3 /* AppDelegate.swift in Sources */,
-				2E644A6B1E43132B00C6347C /* MenuItemBox.swift in Sources */,
+				2E644A6B1E43132B00C6347C /* AMMMenuItemBox.swift in Sources */,
 				2E02C9791E438DF500A6272D /* TaskMenuItemSeperatorViewController.swift in Sources */,
 				2E02C97C1E438F7B00A6272D /* TaskMenuItemSeperator.swift in Sources */,
 				2E644A671E42DE4200C6347C /* Aria2Stat.swift in Sources */,
