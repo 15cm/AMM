@@ -20,9 +20,9 @@ class Aria2: NSObject, NSCopying{
     var socket: WebSocket
     var status: Aria2ConnectionStatus = .disconnected
     // { uuid: callback }
-    var callbacks: [String:Aria2RpcCallback]  = [:]
+    fileprivate var callbacks: [String:Aria2RpcCallback]  = [:]
     
-    class Aria2RpcCallback {
+    fileprivate class Aria2RpcCallback {
         var method: Aria2Methods
         var callbackTasks: (([Aria2Task]) -> Void)? = nil
         var callbackStat: ((Aria2Stat) -> Void)? = nil
@@ -69,7 +69,7 @@ class Aria2: NSObject, NSCopying{
     }
     
     // Call method via rpc and register callback
-    func call(withParams params: [Any]?, callback cb: Aria2RpcCallback) {
+    fileprivate func call(withParams params: [Any]?, callback cb: Aria2RpcCallback) {
         let id = NSUUID()
         let uuidStr = id.uuidString
         objc_sync_enter(self.callbacks)
@@ -78,7 +78,7 @@ class Aria2: NSObject, NSCopying{
         call(forMethod: cb.method, withParams: params, withID: id)
     }
     
-    func call(forMethod method: Aria2Methods, withParams params: [Any]?, withID id: NSUUID) {
+    fileprivate func call(forMethod method: Aria2Methods, withParams params: [Any]?, withID id: NSUUID) {
         let dataObj: [String: Any] = [
             "jsonrpc": "2.0",
             "id": id.uuidString,
