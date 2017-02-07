@@ -16,8 +16,7 @@ class Aria2Task: NSObject{
             self.statusRawValue = self.status.rawValue
         }
     }
-    // Workaround for enum KVO
-    dynamic var statusRawValue: String = "unknown"
+    dynamic var statusRawValue: String = "unknown" // Workaround for enum KVO
     dynamic var title: String = ""
     dynamic var downloadSpeed: Int = 0
     dynamic var uploadSpeed: Int = 0
