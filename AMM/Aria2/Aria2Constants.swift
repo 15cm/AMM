@@ -8,6 +8,13 @@
 
 import Foundation
 
+public enum Aria2Protocols: String {
+    case ws
+    case wss
+    case wssSelfSigned = "wss self-signed"
+    static let allValues = [ws, wss, wssSelfSigned]
+}
+
 public enum Aria2ConnectionStatus: String{
     case connecting
     case connected
