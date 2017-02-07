@@ -11,6 +11,12 @@ import Foundation
 class ServerProfile: NSObject, NSCopying {
     var uuid: String
     var aria2: Aria2?
+    var protocolRawValue: String? {
+        didSet {
+            aria2?.proto = Aria2Protocols(rawValue: protocolRawValue!)!
+        }
+    }
+    // Workaournd for enum KVO binding
     var remark: String
     var globalStatRefreshInterval: Double
     var taskStatRefreshInterval: Double
@@ -21,7 +27,8 @@ class ServerProfile: NSObject, NSCopying {
     
     override init() {
         uuid = NSUUID().uuidString
-        aria2 = Aria2(host: defaultHost, port: defaultPort, path: defaultPath)
+        aria2 = Aria2(protocol: defaultProtocol, host: defaultHost, port: defaultPort, path: defaultPath)
+        protocolRawValue = aria2?.proto.rawValue
         remark = "Untitled"
         globalStatRefreshInterval = defaultGlobalStatRefreshInterval
         taskStatRefreshInterval = defaultTaskStatRefreshInterval
@@ -30,14 +37,16 @@ class ServerProfile: NSObject, NSCopying {
         stoppedTaskMaxNum = defaultStoppedTaskMaxNum
     }
     
-    init(uuid: String, host: String, port: Int,
+    init(uuid: String, protocol proto: Aria2Protocols,
+         host: String, port: Int,
          path: String, secret: String?,
          remark: String, globalStatRefreshInterval gsri: Double,
          taskStatRefreshInterval tsri: Double, activeTaskMaxNum atMaxNum: Int,
          waitingTaskMaxNum wtMaxNum: Int, stoppedTaskMaxNum stMaxNum: Int
         ) {
         self.uuid = uuid
-        self.aria2 = Aria2(host: host, port: port, path: path, secret: secret)
+        self.aria2 = Aria2(protocol: proto, host: host, port: port, path: path, secret: secret)
+        self.protocolRawValue = aria2?.proto.rawValue
         self.remark = remark
         self.globalStatRefreshInterval = gsri
         self.taskStatRefreshInterval = tsri
@@ -53,6 +62,7 @@ class ServerProfile: NSObject, NSCopying {
         ) {
         self.uuid = uuid
         self.aria2 = aria2
+        self.protocolRawValue = aria2.proto.rawValue
         self.remark = remark
         self.globalStatRefreshInterval = gsri
         self.taskStatRefreshInterval = tsri
@@ -109,6 +119,7 @@ class ServerProfile: NSObject, NSCopying {
     func toDictionary() -> [String:AnyObject] {
         var d = [String:AnyObject]()
         d["id"] = uuid as AnyObject?
+        d["protocol"] = aria2?.proto.rawValue as AnyObject?
         d["host"] = aria2?.host as AnyObject?
         d["port"] = aria2?.port as AnyObject?
         d["path"] = aria2?.path as AnyObject?
@@ -124,6 +135,13 @@ class ServerProfile: NSObject, NSCopying {
     
     static func fromDictionary(_ data: [String:Any?]) -> ServerProfile {
         let id = data["id"] as! String
+        // Compatable for versions before v0.13
+        var proto: Aria2Protocols
+        if let protocolObj = data["protocol"] {
+            proto = Aria2Protocols(rawValue: protocolObj as! String)!
+        } else {
+            proto = defaultProtocol
+        }
         let host = data["host"] as! String
         let port = data["port"] as! Int
         let path = data["path"] as! String
@@ -134,7 +152,7 @@ class ServerProfile: NSObject, NSCopying {
         let activeTaskMaxNum = data["activeTaskMaxNum"] as! Int
         let waitingTaskMaxNum = data["waitingTaskMaxNum"] as! Int
         let stoppedTaskMaxNum = data["stoppedTaskMaxNum"] as! Int
-        return ServerProfile(uuid: id, host: host, port: port, path: path, secret: secret, remark: remark, globalStatRefreshInterval: gsri, taskStatRefreshInterval: tsri, activeTaskMaxNum: activeTaskMaxNum, waitingTaskMaxNum: waitingTaskMaxNum, stoppedTaskMaxNum: stoppedTaskMaxNum)
+        return ServerProfile(uuid: id, protocol: proto, host: host, port: port, path: path, secret: secret, remark: remark, globalStatRefreshInterval: gsri, taskStatRefreshInterval: tsri, activeTaskMaxNum: activeTaskMaxNum, waitingTaskMaxNum: waitingTaskMaxNum, stoppedTaskMaxNum: stoppedTaskMaxNum)
     }
     
     func isValid() -> Bool {
