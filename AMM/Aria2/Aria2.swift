@@ -12,6 +12,7 @@ import Starscream
 
 
 class Aria2: NSObject, NSCopying{
+    var proto: Aria2Protocols
     var host: String
     var port: Int
     var path: String
@@ -50,14 +51,27 @@ class Aria2: NSObject, NSCopying{
         }
     }
     
-    init?(host: String, port: Int, path: String, secret: String? = nil) {
+    init?(protocol proto: Aria2Protocols,host: String, port: Int, path: String, secret: String? = nil) {
+        self.proto = proto
         self.host = host
         self.port = port
         self.path = path
-        guard let rpc = URL(string: "ws://\(host):\(port)\(path)") else {
+        var rpcProtocol: String
+        switch proto {
+        case .ws:
+            rpcProtocol = "ws"
+        case .wss:
+            rpcProtocol = "wss"
+        case .wssSelfSigned:
+            rpcProtocol = "wss"
+        }
+        guard let rpc = URL(string: "\(rpcProtocol)://\(host):\(port)\(path)") else {
             return nil
         }
         self.socket = WebSocket(url: rpc)
+        if proto == .wssSelfSigned {
+            self.socket.disableSSLCertValidation = true
+        }
         self.rpc = rpc
         self.secret = secret ?? ""
         super.init()
@@ -65,7 +79,7 @@ class Aria2: NSObject, NSCopying{
     }
     
     func copy(with zone: NSZone? = nil) -> Any {
-        return Aria2(host: host, port: port, path: path, secret: secret) as Any
+        return Aria2(protocol: proto, host: host, port: port, path: path, secret: secret) as Any
     }
     
     // Call method via rpc and register callback

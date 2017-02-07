@@ -9,6 +9,7 @@
 
 import Foundation
 
+let defaultProtocol = Aria2Protocols.ws
 let defaultHost = "localhost"
 let defaultPort = 6800
 let defaultPath = "/jsonrpc"
