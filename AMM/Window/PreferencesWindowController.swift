@@ -25,9 +25,12 @@ class PreferencesWindowController: NSWindowController, NSWindowDelegate {
 
         // Implement this method to handle any initialization after your window controller's window has been loaded from its nib file.
         serverTableScrollView.borderType = .noBorder
+        // Init NSPopUpButton of protocols
         protocolPopUpButton.addItems(withTitles: Aria2Protocols.allValues.map({$0.rawValue}))
-        let protocolOfSelection = (arrayController.selection as AnyObject).value(forKey: "protocolRawValue") as! String?
-        protocolPopUpButton.selectItem(withTitle: protocolOfSelection!)
+        if !profileManager.servers.isEmpty {
+            let protocolOfSelection = (arrayController.selection as AnyObject).value(forKey: "protocolRawValue") as! String?
+            protocolPopUpButton.selectItem(withTitle: protocolOfSelection!)
+        }
     }
 
     func reloadProfiles() {
