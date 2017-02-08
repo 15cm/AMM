@@ -15,11 +15,13 @@ class MainMenu: NSObject, ServerProfileManagerDelegate {
     var preferencesWindowController: PreferencesWindowController? = nil
     var aboutWindowController: AboutWindowController? = nil
     var profileManager = ServerProfileManager.instance
-    
+
     @IBOutlet weak var menu: NSMenu!
-    
+
     override func awakeFromNib() {
-        statusItem.image = #imageLiteral(resourceName: "menu-icon")
+        let icon = NSImage(named: "menu-icon")
+        icon?.isTemplate = true
+        statusItem.image = icon
         statusItem.menu = menu
         for i in ((statusItem.menu?.numberOfItems)! - 5) ..< (statusItem.menu?.numberOfItems)! {
             fixMenuItems.append((statusItem.menu?.item(at: i))!)
@@ -27,7 +29,7 @@ class MainMenu: NSObject, ServerProfileManagerDelegate {
         profileManager.delegate = self
         updateMenuItems(withServerProfiles: profileManager.copyServers())
     }
-    
+
     func updateMenuItems(withServerProfiles servers: [ServerProfile]) {
         self.servers = servers
         statusItem.menu?.removeAllItems()
@@ -38,15 +40,15 @@ class MainMenu: NSObject, ServerProfileManagerDelegate {
             statusItem.menu?.addItem(item)
         }
     }
-    
+
     func onServerProfilesUpdate(withServerProfiles servers: [ServerProfile]) {
         updateMenuItems(withServerProfiles: servers)
     }
-    
+
     @IBAction func quitClicked(_ sender: NSMenuItem) {
         NSApplication.shared().terminate(self)
     }
-    
+
     @IBAction func preferencesClicked(_ sender: NSMenuItem) {
         if preferencesWindowController != nil {
             preferencesWindowController?.close()
@@ -58,7 +60,7 @@ class MainMenu: NSObject, ServerProfileManagerDelegate {
         ctrl.window?.center()
         ctrl.window?.makeKeyAndOrderFront(self)
     }
-    
+
     @IBAction func aboutClicked(_ sender: Any) {
         if aboutWindowController != nil {
             aboutWindowController?.close()
