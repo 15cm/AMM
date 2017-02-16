@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
+        <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11762"/>
         <capability name="box content view" minToolsVersion="7.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -9,6 +10,7 @@
         <customObject id="-2" userLabel="File's Owner" customClass="PreferencesWindowController" customModule="AMM" customModuleProvider="target">
             <connections>
                 <outlet property="arrayController" destination="LY7-q9-JJh" id="Fzq-o0-CIM"/>
+                <outlet property="profileTableView" destination="YD8-rG-XCw" id="GV9-cC-H1k"/>
                 <outlet property="protocolPopUpButton" destination="Arg-P0-pZ8" id="Ldo-Cb-YNE"/>
                 <outlet property="serverTableScrollView" destination="2Ex-xu-Fhc" id="5gO-IC-vCh"/>
                 <outlet property="window" destination="F0z-JX-Cv5" id="gIp-Ho-8D9"/>
@@ -459,7 +461,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="169" height="320"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <subviews>
-                                            <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" headerView="n0k-JQ-amS" viewBased="YES" id="YD8-rG-XCw">
+                                            <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" emptySelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" headerView="n0k-JQ-amS" viewBased="YES" id="YD8-rG-XCw">
                                                 <rect key="frame" x="0.0" y="0.0" width="169" height="297"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <size key="intercellSpacing" width="3" height="2"/>
@@ -486,7 +488,7 @@
                                                                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p1o-9C-m6n">
                                                                         <rect key="frame" x="0.0" y="0.0" width="166" height="17"/>
                                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                                                        <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" title="Server" id="Bf2-4p-K7k">
+                                                                        <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" title="Server" usesSingleLineMode="YES" id="Bf2-4p-K7k">
                                                                             <font key="font" metaFont="system"/>
                                                                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
