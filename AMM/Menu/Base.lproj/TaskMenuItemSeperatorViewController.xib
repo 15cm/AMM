@@ -17,13 +17,18 @@
             <rect key="frame" x="0.0" y="0.0" width="684" height="30"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
-                <box fixedFrame="YES" boxType="custom" borderType="bezel" title="Box" translatesAutoresizingMaskIntoConstraints="NO" id="1be-oZ-aVb">
+                <box fixedFrame="YES" boxType="custom" borderType="bezel" title="Box" translatesAutoresizingMaskIntoConstraints="NO" id="1be-oZ-aVb" customClass="AMMMenuItemBox" customModule="AMM" customModuleProvider="target">
                     <rect key="frame" x="0.0" y="0.0" width="684" height="30"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <view key="contentView" ambiguous="YES" id="ZFk-Px-t54">
                         <rect key="frame" x="1" y="1" width="682" height="28"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Fei-GS-TbF">
+                                <rect key="frame" x="0.0" y="0.0" width="682" height="28"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="ftI-Ew-2Ie"/>
+                            </imageView>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bKi-1R-SWf">
                                 <rect key="frame" x="18" y="4" width="240" height="20"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -39,6 +44,7 @@
                         </subviews>
                     </view>
                     <color key="borderColor" white="0.90000000000000002" alpha="0.5" colorSpace="calibratedWhite"/>
+                    <color key="fillColor" white="0.90000000000000002" alpha="0.5" colorSpace="calibratedWhite"/>
                 </box>
             </subviews>
         </customView>
