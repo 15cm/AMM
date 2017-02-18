@@ -8,7 +8,8 @@
 
 import Cocoa
 
-class AMMMenuItemBox: NSBox {
+class AMMMenuItemBox: NSBox, AMMHighlightable {
+    var normalBackgroundColor: NSColor? = nil
 
     override func draw(_ dirtyRect: NSRect) {
 
@@ -22,15 +23,19 @@ class AMMMenuItemBox: NSBox {
         } else {
             noHighlight()
         }
-        NSRectFill(dirtyRect)
         super.draw(dirtyRect)
     }
     
+    override func awakeFromNib() {
+        normalBackgroundColor = self.fillColor
+        self.borderWidth = 0.5
+    }
+    
     func highlight() {
-        NSColor(calibratedRed: 0, green: 128, blue: 255, alpha: 0.1).setFill()
+        self.fillColor = AMMHighLightColors.background.color()
     }
     
     func noHighlight() {
-         NSColor(calibratedRed: 0, green: 0, blue: 0, alpha: 0).setFill()
+        self.fillColor = normalBackgroundColor!
     }
 }

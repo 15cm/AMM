@@ -8,12 +8,26 @@
 
 import Cocoa
 
-class AMMTextField: NSTextField {
+class AMMTextField: NSTextField, AMMHighlightable {
+    var normalTextColor:NSColor?
     
     override func draw(_ dirtyRect: NSRect) {
+        if let isHighlighted = enclosingMenuItem?.isHighlighted {
+            if isHighlighted {
+                highlight()
+            } else {
+                noHighlight()
+            }
+        } else {
+            noHighlight()
+        }
         super.draw(dirtyRect)
 
         // Drawing code here.
+    }
+    
+    override func awakeFromNib() {
+        normalTextColor = self.textColor
     }
     
     override var acceptsFirstResponder: Bool {
@@ -57,4 +71,11 @@ class AMMTextField: NSTextField {
         return super.performKeyEquivalent(with: event)
     }
     
+    func highlight() {
+        textColor = AMMHighLightColors.text.color()
+    }
+    
+    func noHighlight() {
+        textColor = normalTextColor
+    }
 }
