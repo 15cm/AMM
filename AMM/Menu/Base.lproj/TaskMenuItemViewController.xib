@@ -24,7 +24,12 @@
                         <rect key="frame" x="1" y="1" width="682" height="28"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JZ8-4N-lxO">
+                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hTY-y2-CNK">
+                                <rect key="frame" x="0.0" y="0.0" width="682" height="28"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="Dse-mI-16H"/>
+                            </imageView>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JZ8-4N-lxO" customClass="AMMTextField" customModule="AMM" customModuleProvider="target">
                                 <rect key="frame" x="37" y="4" width="240" height="20"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="236" id="TGG-cQ-05A"/>
@@ -33,14 +38,14 @@
                                 </constraints>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Label" id="jQu-Sg-ieW">
                                     <font key="font" metaFont="system"/>
-                                    <color key="textColor" white="0.25" alpha="0.80000000000000004" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                                    <color key="backgroundColor" white="1" alpha="0.0" colorSpace="deviceWhite"/>
+                                    <color key="textColor" white="0.5" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                                 <connections>
                                     <binding destination="-2" name="value" keyPath="self.task.title" id="Kfh-nJ-D8b"/>
                                 </connections>
                             </textField>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9fK-pZ-8cu">
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9fK-pZ-8cu" customClass="AMMTextField" customModule="AMM" customModuleProvider="target">
                                 <rect key="frame" x="285" y="4" width="64" height="20"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="60" id="bZm-Fm-ioi"/>
@@ -48,7 +53,7 @@
                                 </constraints>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Label" id="BF5-h3-sE9">
                                     <font key="font" size="13" name="Monaco"/>
-                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="textColor" white="0.25" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                                 <connections>
@@ -65,28 +70,28 @@
                                     <binding destination="-2" name="value" keyPath="self.task.percentage" id="qYI-di-3g4"/>
                                 </connections>
                             </progressIndicator>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jOh-uR-c8h">
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jOh-uR-c8h" customClass="AMMTextField" customModule="AMM" customModuleProvider="target">
                                 <rect key="frame" x="483" y="6" width="80" height="17"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="76" id="cLm-Vw-5RU"/>
                                 </constraints>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Label" id="b8r-a2-kgj">
                                     <font key="font" size="13" name="Monaco"/>
-                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="textColor" white="0.25" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                                 <connections>
                                     <binding destination="-2" name="value" keyPath="self.task.downloadSpeedReadable" id="gYp-Q3-hyx"/>
                                 </connections>
                             </textField>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yge-N1-NaA">
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yge-N1-NaA" customClass="AMMTextField" customModule="AMM" customModuleProvider="target">
                                 <rect key="frame" x="591" y="6" width="84" height="17"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="80" id="3VS-yo-U1O"/>
                                 </constraints>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Label" id="sKO-40-PLl">
                                     <font key="font" size="13" name="Monaco"/>
-                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="textColor" white="0.25" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                                 <connections>
@@ -141,7 +146,8 @@
                             <constraint firstItem="jOh-uR-c8h" firstAttribute="centerY" secondItem="mhY-vE-YZT" secondAttribute="centerY" constant="1" id="yE0-1g-aMs"/>
                         </constraints>
                     </view>
-                    <color key="borderColor" white="0.90000000000000002" alpha="0.5" colorSpace="calibratedWhite"/>
+                    <color key="borderColor" white="0.93999999999999995" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="fillColor" white="0.97999999999999998" alpha="1" colorSpace="calibratedWhite"/>
                 </box>
             </subviews>
             <point key="canvasLocation" x="186" y="35"/>

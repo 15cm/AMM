@@ -32,7 +32,7 @@
                                 </constraints>
                                 <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="fa-arrow-circle-up" id="uVt-pM-Za2"/>
                             </imageView>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VqR-Js-Lm9">
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VqR-Js-Lm9" customClass="AMMTextField" customModule="AMM" customModuleProvider="target">
                                 <rect key="frame" x="206" y="4" width="80" height="20"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="76" id="dfb-Z1-ahx"/>
@@ -40,14 +40,14 @@
                                 </constraints>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="DLSpeed" id="Egx-LR-SK7">
                                     <font key="font" size="13" name="Monaco"/>
-                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="textColor" white="0.25" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                                 <connections>
                                     <binding destination="-2" name="value" keyPath="self.downloadSpeed" id="e0v-rh-tNJ"/>
                                 </connections>
                             </textField>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xLo-h1-obt">
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xLo-h1-obt" customClass="AMMTextField" customModule="AMM" customModuleProvider="target">
                                 <rect key="frame" x="314" y="4" width="80" height="20"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="20" id="PRV-iI-nIg"/>
@@ -55,14 +55,14 @@
                                 </constraints>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="ULSpeed" id="ig6-AX-XYQ">
                                     <font key="font" size="13" name="Monaco"/>
-                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="textColor" white="0.25" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                                 <connections>
                                     <binding destination="-2" name="value" keyPath="self.uploadSpeed" id="S1E-6I-inn"/>
                                 </connections>
                             </textField>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="afl-iO-RX4">
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="afl-iO-RX4" customClass="AMMTextField" customModule="AMM" customModuleProvider="target">
                                 <rect key="frame" x="114" y="4" width="64" height="20"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="20" id="b02-3O-L1P"/>
@@ -71,7 +71,7 @@
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Status" id="sbm-ai-m6S">
                                     <font key="font" metaFont="cellTitle"/>
                                     <color key="textColor" white="0.5" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" white="0.5" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                 </textFieldCell>
                                 <connections>
                                     <binding destination="-2" name="value" keyPath="self.status" id="Vep-lW-ng6"/>
@@ -85,7 +85,7 @@
                                 </constraints>
                                 <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="fa-arrow-circle-down" id="qB9-pz-fgr"/>
                             </imageView>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qnQ-ZK-ZWq">
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qnQ-ZK-ZWq" customClass="AMMTextField" customModule="AMM" customModuleProvider="target">
                                 <rect key="frame" x="18" y="4" width="94" height="20"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="20" id="dr5-Hh-qRQ"/>
@@ -94,12 +94,17 @@
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Remark" id="8jm-n5-nSX">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" white="0.25" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" white="1" alpha="0.0" colorSpace="deviceWhite"/>
                                 </textFieldCell>
                                 <connections>
                                     <binding destination="-2" name="value" keyPath="self.server.remark" id="iZo-Vn-drx"/>
                                 </connections>
                             </textField>
+                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3Tb-xP-WXG">
+                                <rect key="frame" x="0.0" y="0.0" width="407" height="28"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="cPq-tn-eKD"/>
+                            </imageView>
                         </subviews>
                         <constraints>
                             <constraint firstItem="VqR-Js-Lm9" firstAttribute="centerY" secondItem="qnQ-ZK-ZWq" secondAttribute="centerY" id="IXM-9X-XXx"/>
@@ -116,7 +121,8 @@
                             <constraint firstItem="j5f-mE-cUN" firstAttribute="centerY" secondItem="2gM-Ao-Vyh" secondAttribute="centerY" id="zdT-25-eQ5"/>
                         </constraints>
                     </view>
-                    <color key="borderColor" white="0.90000000000000002" alpha="0.5" colorSpace="calibratedWhite"/>
+                    <color key="borderColor" white="0.93999999999999995" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="fillColor" white="0.97999999999999998" alpha="1" colorSpace="calibratedWhite"/>
                 </box>
             </subviews>
             <point key="canvasLocation" x="103.5" y="144"/>
