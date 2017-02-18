@@ -2,12 +2,12 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "iconmoon-cross_256x256.png",
+      "filename" : "icomoon-cross_256x256.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "iconmoon-cross_512x512@2x.png",
+      "filename" : "icomoon-cross_256x256@2x.png",
       "scale" : "2x"
     },
     {
