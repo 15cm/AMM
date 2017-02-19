@@ -132,45 +132,6 @@ class ServerProfile: NSObject, NSCopying, NSCoding {
         self.aria2?.tellStopped(offset: -1, num: self.stoppedTaskMaxNum, callback: cb)
     }
     
-//    func toDictionary() -> [String:AnyObject] {
-//        var d = [String:AnyObject]()
-//        d["id"] = uuid as AnyObject?
-//        d["protocol"] = aria2?.proto.rawValue as AnyObject?
-//        d["host"] = aria2?.host as AnyObject?
-//        d["port"] = aria2?.port as AnyObject?
-//        d["path"] = aria2?.path as AnyObject?
-//        d["secret"] = aria2?.secret as AnyObject?
-//        d["remark"] = remark as AnyObject?
-//        d["globalStatRefreshInterval"] = NSNumber(value: globalStatRefreshInterval)
-//        d["taskStatRefreshInterval"] = NSNumber(value: taskStatRefreshInterval)
-//        d["activeTaskMaxNum"] = NSNumber(value: activeTaskMaxNum)
-//        d["waitingTaskMaxNum"] = NSNumber(value: waitingTaskMaxNum)
-//        d["stoppedTaskMaxNum"] = NSNumber(value: stoppedTaskMaxNum)
-//        return d
-//    }
-//    
-//    static func fromDictionary(_ data: [String:Any?]) -> ServerProfile {
-//        let id = data["id"] as! String
-//        // Compatable for versions before v0.13
-//        var proto: Aria2Protocols
-//        if let protocolObj = data["protocol"] {
-//            proto = Aria2Protocols(rawValue: protocolObj as! String)!
-//        } else {
-//            proto = defaultProtocol
-//        }
-//        let host = data["host"] as! String
-//        let port = data["port"] as! Int
-//        let path = data["path"] as! String
-//        let secret = data["secret"] as! String
-//        let remark = data["remark"] as! String
-//        let gsri = data["globalStatRefreshInterval"] as! Double
-//        let tsri = data["taskStatRefreshInterval"] as! Double
-//        let activeTaskMaxNum = data["activeTaskMaxNum"] as! Int
-//        let waitingTaskMaxNum = data["waitingTaskMaxNum"] as! Int
-//        let stoppedTaskMaxNum = data["stoppedTaskMaxNum"] as! Int
-//        return ServerProfile(uuid: id, protocol: proto, host: host, port: port, path: path, secret: secret, remark: remark, globalStatRefreshInterval: gsri, taskStatRefreshInterval: tsri, activeTaskMaxNum: activeTaskMaxNum, waitingTaskMaxNum: waitingTaskMaxNum, stoppedTaskMaxNum: stoppedTaskMaxNum)
-//    }
-    
     func isValid() -> Bool {
         return true
     }
