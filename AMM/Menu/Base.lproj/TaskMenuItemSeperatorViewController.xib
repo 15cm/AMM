@@ -9,6 +9,7 @@
         <customObject id="-2" userLabel="File's Owner" customClass="TaskMenuItemSeperatorViewController" customModule="AMM" customModuleProvider="target">
             <connections>
                 <outlet property="view" destination="Hz6-mo-xeY" id="0bl-1N-x8E"/>
+                <outlet property="viewDark" destination="yrQ-Aa-ZmX" id="Yhf-AS-HZI"/>
             </connections>
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
@@ -35,7 +36,7 @@
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Label" id="s7O-ZI-TJo">
                                     <font key="font" metaFont="systemBold" size="14"/>
                                     <color key="textColor" red="0.19517251244651257" green="0.54749003234694849" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" white="0.5" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                 </textFieldCell>
                                 <connections>
                                     <binding destination="-2" name="value" keyPath="self.name" id="lSb-7e-Ats"/>
@@ -47,6 +48,43 @@
                     <color key="fillColor" white="0.90000000000000002" alpha="0.5" colorSpace="calibratedWhite"/>
                 </box>
             </subviews>
+            <point key="canvasLocation" x="-117" y="-37"/>
+        </customView>
+        <customView id="yrQ-Aa-ZmX" userLabel="View Dark">
+            <rect key="frame" x="0.0" y="0.0" width="684" height="30"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <subviews>
+                <box fixedFrame="YES" boxType="custom" borderType="bezel" title="Box" translatesAutoresizingMaskIntoConstraints="NO" id="xHh-Kr-wBJ" customClass="AMMMenuItemBox" customModule="AMM" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="0.0" width="684" height="30"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <view key="contentView" ambiguous="YES" id="ylc-Rf-7CW">
+                        <rect key="frame" x="1" y="1" width="682" height="28"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gd9-iv-7ox">
+                                <rect key="frame" x="0.0" y="0.0" width="682" height="28"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="wk4-Wb-7bE"/>
+                            </imageView>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0oh-sU-jzW">
+                                <rect key="frame" x="18" y="4" width="240" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Label" id="iJw-Fe-Rdb">
+                                    <font key="font" metaFont="systemBold" size="14"/>
+                                    <color key="textColor" red="0.5490893971825721" green="0.79616952633449301" blue="0.95867703045685282" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                                <connections>
+                                    <binding destination="-2" name="value" keyPath="self.name" id="1hg-hd-ZZ0"/>
+                                </connections>
+                            </textField>
+                        </subviews>
+                    </view>
+                    <color key="borderColor" white="0.050000000000000003" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="fillColor" white="0.10000000000000001" alpha="1" colorSpace="calibratedWhite"/>
+                </box>
+            </subviews>
+            <point key="canvasLocation" x="-117" y="44"/>
         </customView>
         <userDefaultsController representsSharedInstance="YES" id="dwu-M8-NaT"/>
     </objects>

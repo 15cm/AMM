@@ -11,7 +11,12 @@ import Cocoa
 class TaskMenuItemSeperatorViewController: NSViewController {
     var name: String? = nil
 
+    @IBOutlet var viewDark: NSView!
+    
     override func viewDidLoad() {
+        if AMMPreferences.instance.darkModeEnabled {
+            self.view = viewDark
+        }
         super.viewDidLoad()
         // Do view setup here.
     }
