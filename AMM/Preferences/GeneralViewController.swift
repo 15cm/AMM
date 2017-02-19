@@ -9,6 +9,7 @@
 import Cocoa
 
 class GeneralViewController: NSViewController {
+    let preferences = AMMPreferences.instance
 
     override func viewDidLoad() {
         super.viewDidLoad()
