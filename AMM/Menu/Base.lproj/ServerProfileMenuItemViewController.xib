@@ -9,10 +9,12 @@
         <customObject id="-2" userLabel="File's Owner" customClass="ServerProfileMenuItemViewController" customModule="AMM" customModuleProvider="target">
             <connections>
                 <outlet property="view" destination="Hz6-mo-xeY" id="0bl-1N-x8E"/>
+                <outlet property="viewDark" destination="tTO-ij-b8a" id="J5l-iH-Av4"/>
             </connections>
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <userDefaultsController representsSharedInstance="YES" id="rB3-SB-bci"/>
         <customView id="Hz6-mo-xeY">
             <rect key="frame" x="0.0" y="0.0" width="409" height="30"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -127,7 +129,120 @@
             </subviews>
             <point key="canvasLocation" x="103.5" y="144"/>
         </customView>
-        <userDefaultsController representsSharedInstance="YES" id="rB3-SB-bci"/>
+        <customView id="tTO-ij-b8a" userLabel="View Dark">
+            <rect key="frame" x="0.0" y="0.0" width="409" height="30"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <subviews>
+                <box fixedFrame="YES" boxType="custom" title="Box" translatesAutoresizingMaskIntoConstraints="NO" id="NOn-kC-yKd" customClass="AMMMenuItemBox" customModule="AMM" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="0.0" width="409" height="30"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <view key="contentView" ambiguous="YES" id="dnw-6J-Y0D">
+                        <rect key="frame" x="1" y="1" width="407" height="28"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="TbL-EX-Dc4">
+                                <rect key="frame" x="290" y="5" width="20" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="20" id="JtE-GP-fam"/>
+                                    <constraint firstAttribute="width" constant="20" id="Nk6-zi-QJl"/>
+                                </constraints>
+                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="fa-arrow-circle-up" id="oU1-Us-cZv"/>
+                            </imageView>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qjb-TQ-ipz" customClass="AMMTextField" customModule="AMM" customModuleProvider="target">
+                                <rect key="frame" x="206" y="4" width="80" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="20" id="8ar-si-bS3"/>
+                                    <constraint firstAttribute="width" constant="76" id="w8e-a5-IQn"/>
+                                </constraints>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="DLSpeed" id="SNr-qf-9GJ">
+                                    <font key="font" size="13" name="Monaco"/>
+                                    <color key="textColor" white="0.75" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                                <connections>
+                                    <binding destination="-2" name="value" keyPath="self.downloadSpeed" id="LER-cP-yp6"/>
+                                </connections>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gxe-gh-rte" customClass="AMMTextField" customModule="AMM" customModuleProvider="target">
+                                <rect key="frame" x="314" y="4" width="80" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="20" id="8Tc-Kp-A82"/>
+                                    <constraint firstAttribute="width" constant="76" id="KtF-ID-rPX"/>
+                                </constraints>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="ULSpeed" id="fSj-2b-6r2">
+                                    <font key="font" size="13" name="Monaco"/>
+                                    <color key="textColor" white="0.75" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                                <connections>
+                                    <binding destination="-2" name="value" keyPath="self.uploadSpeed" id="4Qh-VX-qvy"/>
+                                </connections>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aog-9b-vSX" customClass="AMMTextField" customModule="AMM" customModuleProvider="target">
+                                <rect key="frame" x="114" y="4" width="64" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="60" id="IGs-Ik-8TW"/>
+                                    <constraint firstAttribute="height" constant="20" id="y8A-uE-lUa"/>
+                                </constraints>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Status" id="O5Z-7r-8Wy">
+                                    <font key="font" metaFont="cellTitle"/>
+                                    <color key="textColor" white="0.5" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                    <color key="backgroundColor" white="0.5" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                </textFieldCell>
+                                <connections>
+                                    <binding destination="-2" name="value" keyPath="self.status" id="O48-Qc-81m"/>
+                                </connections>
+                            </textField>
+                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Dc1-Zv-XhA">
+                                <rect key="frame" x="182" y="5" width="20" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="20" id="9e7-hr-giF"/>
+                                    <constraint firstAttribute="height" constant="20" id="ajh-7I-K50"/>
+                                </constraints>
+                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="fa-arrow-circle-down" id="sjI-hs-R2r"/>
+                            </imageView>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tzE-5l-Wsp" customClass="AMMTextField" customModule="AMM" customModuleProvider="target">
+                                <rect key="frame" x="18" y="4" width="94" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="90" id="NAY-KR-N91"/>
+                                    <constraint firstAttribute="height" constant="20" id="qLD-01-Bp5"/>
+                                </constraints>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Remark" id="ifs-qz-SpZ">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" white="0.75" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="backgroundColor" white="1" alpha="0.0" colorSpace="deviceWhite"/>
+                                </textFieldCell>
+                                <connections>
+                                    <binding destination="-2" name="value" keyPath="self.server.remark" id="X12-ps-p00"/>
+                                </connections>
+                            </textField>
+                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7r6-As-pf5">
+                                <rect key="frame" x="0.0" y="0.0" width="407" height="28"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="3pE-qA-zvU"/>
+                            </imageView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="gxe-gh-rte" firstAttribute="centerY" secondItem="tzE-5l-Wsp" secondAttribute="centerY" id="07a-8V-z8N"/>
+                            <constraint firstItem="TbL-EX-Dc4" firstAttribute="centerY" secondItem="Dc1-Zv-XhA" secondAttribute="centerY" id="9HP-Zs-0Kd"/>
+                            <constraint firstItem="Dc1-Zv-XhA" firstAttribute="leading" secondItem="aog-9b-vSX" secondAttribute="trailing" constant="6" id="HXu-pm-3Al"/>
+                            <constraint firstItem="qjb-TQ-ipz" firstAttribute="leading" secondItem="Dc1-Zv-XhA" secondAttribute="trailing" constant="6" id="Kpy-my-SJa"/>
+                            <constraint firstItem="qjb-TQ-ipz" firstAttribute="centerY" secondItem="tzE-5l-Wsp" secondAttribute="centerY" id="Ofm-MN-vtf"/>
+                            <constraint firstItem="Dc1-Zv-XhA" firstAttribute="centerY" secondItem="tzE-5l-Wsp" secondAttribute="centerY" constant="-1" id="Vcm-U6-j3F"/>
+                            <constraint firstItem="TbL-EX-Dc4" firstAttribute="leading" secondItem="qjb-TQ-ipz" secondAttribute="trailing" constant="6" id="Y7w-rX-eQa"/>
+                            <constraint firstItem="gxe-gh-rte" firstAttribute="leading" secondItem="TbL-EX-Dc4" secondAttribute="trailing" constant="6" id="Yhk-Ah-fAe"/>
+                            <constraint firstItem="tzE-5l-Wsp" firstAttribute="leading" secondItem="dnw-6J-Y0D" secondAttribute="leading" constant="20" id="oEU-HT-aNm"/>
+                            <constraint firstItem="aog-9b-vSX" firstAttribute="centerY" secondItem="tzE-5l-Wsp" secondAttribute="centerY" id="qoN-3y-3Qr"/>
+                            <constraint firstItem="aog-9b-vSX" firstAttribute="leading" secondItem="tzE-5l-Wsp" secondAttribute="trailing" constant="6" id="z13-Ds-PzR"/>
+                            <constraint firstAttribute="bottom" secondItem="tzE-5l-Wsp" secondAttribute="bottom" constant="4" id="zSI-4I-cBz"/>
+                        </constraints>
+                    </view>
+                    <color key="borderColor" white="0.050000000000000003" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="fillColor" white="0.20000000000000001" alpha="1" colorSpace="calibratedWhite"/>
+                </box>
+            </subviews>
+            <point key="canvasLocation" x="104" y="236"/>
+        </customView>
     </objects>
     <resources>
         <image name="fa-arrow-circle-down" width="256" height="256"/>

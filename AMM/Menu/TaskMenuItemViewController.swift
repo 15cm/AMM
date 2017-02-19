@@ -9,8 +9,9 @@
 import Cocoa
 
 class TaskMenuItemViewController: NSViewController {
-
     var task: Aria2Task = Aria2Task()
+    
+    @IBOutlet var viewDark: NSView!
     
     init() {
         super.init(nibName: "TaskMenuItemViewController", bundle: nil)!
@@ -26,6 +27,9 @@ class TaskMenuItemViewController: NSViewController {
     }
     
     override func viewDidLoad() {
+        if AMMPreferences.instance.darkModeEnabled {
+            self.view = viewDark
+        }
         super.viewDidLoad()
         // Do view setup here.
     }
@@ -63,14 +67,14 @@ extension Aria2Task {
     }
     
     dynamic var downloadSpeedReadable: String {
-       return Aria2.getReadable(length: downloadSpeed) + "/s"
+        return Aria2.getReadable(length: downloadSpeed) + "/s"
     }
     dynamic class func keyPathsForValuesAffectingDownloadSpeedReadable() -> Set<String> {
         return Set(["downloadSpeed"])
     }
     
     dynamic var uploadSpeedReadable: String {
-       return Aria2.getReadable(length: uploadSpeed) + "/s"
+        return Aria2.getReadable(length: uploadSpeed) + "/s"
     }
     dynamic class func keyPathsForValuesAffectingUploadSpeedReadable() -> Set<String> {
         return Set(["uploadSpeed"])
