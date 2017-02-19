@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
-        <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11762"/>
     </dependencies>
     <objects>
@@ -27,13 +26,6 @@
                     </connections>
                 </menuItem>
                 <menuItem isSeparatorItem="YES" id="3vb-16-DSS"/>
-                <menuItem title="About" id="9It-74-ocR">
-                    <modifierMask key="keyEquivalentModifierMask"/>
-                    <connections>
-                        <action selector="aboutClicked:" target="0OG-Ou-z9N" id="lmv-Az-Mhc"/>
-                    </connections>
-                </menuItem>
-                <menuItem isSeparatorItem="YES" id="I00-CT-12o"/>
                 <menuItem title="Quit" keyEquivalent="q" id="RuG-2j-vLq">
                     <connections>
                         <action selector="quitClicked:" target="0OG-Ou-z9N" id="lHa-HI-hel"/>

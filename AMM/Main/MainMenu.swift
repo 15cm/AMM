@@ -12,7 +12,7 @@ class MainMenu: NSObject, ServerProfileManagerDelegate {
     var statusItem = NSStatusBar.system().statusItem(withLength: NSSquareStatusItemLength)
     var servers: [ServerProfile] = []
     var fixMenuItems: [NSMenuItem] = []
-    var preferencesWindowController: PreferencesWindowController? = nil
+    var preferencesWindowController: NSWindowController!
     var aboutWindowController: AboutWindowController? = nil
     var profileManager = ServerProfileManager.instance
 
@@ -23,7 +23,7 @@ class MainMenu: NSObject, ServerProfileManagerDelegate {
         icon?.isTemplate = true
         statusItem.image = icon
         statusItem.menu = menu
-        for i in ((statusItem.menu?.numberOfItems)! - 5) ..< (statusItem.menu?.numberOfItems)! {
+        for i in ((statusItem.menu?.numberOfItems)! - 3) ..< (statusItem.menu?.numberOfItems)! {
             fixMenuItems.append((statusItem.menu?.item(at: i))!)
         }
         profileManager.delegate = self
@@ -50,26 +50,13 @@ class MainMenu: NSObject, ServerProfileManagerDelegate {
     }
 
     @IBAction func preferencesClicked(_ sender: NSMenuItem) {
-        if preferencesWindowController != nil {
-            preferencesWindowController?.close()
+        let storyboard = NSStoryboard(name: "Preferences", bundle: nil)
+        if let ctrl = storyboard.instantiateInitialController() {
+            preferencesWindowController = ctrl as! NSWindowController
+            NSApp.activate(ignoringOtherApps: true)
+            preferencesWindowController.window?.center()
+            preferencesWindowController.window?.makeKeyAndOrderFront(self)
         }
-        let ctrl = PreferencesWindowController(windowNibName: "PreferenceWindowController")
-        preferencesWindowController = ctrl
-        ctrl.showWindow(self)
-        NSApp.activate(ignoringOtherApps: true)
-        ctrl.window?.center()
-        ctrl.window?.makeKeyAndOrderFront(self)
-    }
-
-    @IBAction func aboutClicked(_ sender: Any) {
-        if aboutWindowController != nil {
-            aboutWindowController?.close()
-        }
-        let ctrl = AboutWindowController(windowNibName: "AboutWindowController")
-        aboutWindowController = ctrl
-        NSApp.activate(ignoringOtherApps: true)
-        ctrl.window?.center()
-        ctrl.window?.makeKeyAndOrderFront(self)
     }
 }
 
