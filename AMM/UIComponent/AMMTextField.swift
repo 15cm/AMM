@@ -50,7 +50,6 @@ class AMMTextField: NSTextField, AMMHighlightable {
                 switch event.charactersIgnoringModifiers! {
                 case "a":
                     NSApp.sendAction(#selector(NSText.selectAll(_:)), to: nil, from: self)
-                    Swift.print("A")
                     return true
                 case "c":
                     NSApp.sendAction(#selector(NSText.copy(_:)), to: nil, from: self)

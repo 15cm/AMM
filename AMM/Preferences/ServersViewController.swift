@@ -9,7 +9,7 @@
 import Cocoa
 
 class ServersViewController: NSViewController, NSTableViewDataSource {
-    let profManager = ServerProfileManager.instance
+    let preferences = AMMPreferences.instance
     let tableViewDragType = "amm.serverprofile"
 
     @IBOutlet var arrayController: ServerProfileArrayController!
@@ -27,7 +27,7 @@ class ServersViewController: NSViewController, NSTableViewDataSource {
     @IBOutlet weak var protocolPopUpBtn: NSPopUpButton! {
         didSet {
             protocolPopUpBtn.addItems(withTitles: Aria2Protocols.allValues.map({$0.rawValue}))
-            if !profManager.servers.isEmpty {
+            if !preferences.servers.isEmpty {
                 let protocolOfSelection = (arrayController.selection as AnyObject).value(forKey: "protocolRawValue") as! String?
                 protocolPopUpBtn.selectItem(withTitle: protocolOfSelection!)
             }
@@ -60,7 +60,7 @@ class ServersViewController: NSViewController, NSTableViewDataSource {
             var profilesToMove:[ServerProfile] = []
             var offset = 0
             for index in oldIndexes {
-                profilesToMove.append(profManager.servers[index])
+                profilesToMove.append(preferences.servers[index])
                 if index < row {
                     offset -= 1
                 }
