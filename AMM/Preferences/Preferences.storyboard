@@ -30,11 +30,11 @@
         <!--Tab View Controller-->
         <scene sceneID="54y-BY-790">
             <objects>
-                <tabViewController selectedTabViewItemIndex="1" id="4dW-CE-LqW" sceneMemberID="viewController">
+                <tabViewController selectedTabViewItemIndex="1" tabStyle="toolbar" id="4dW-CE-LqW" sceneMemberID="viewController">
                     <tabViewItems>
-                        <tabViewItem id="Rem-Tk-U5o"/>
-                        <tabViewItem id="JAU-Gf-kz5"/>
-                        <tabViewItem id="5JO-9M-6aU"/>
+                        <tabViewItem image="NSPreferencesGeneral" id="Rem-Tk-U5o"/>
+                        <tabViewItem image="fa-cloud-download" id="Byp-6K-5An"/>
+                        <tabViewItem image="preferences-about-icon" id="5JO-9M-6aU"/>
                     </tabViewItems>
                     <tabView key="tabView" type="noTabsNoBorder" id="4n6-0H-57k">
                         <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
@@ -44,7 +44,7 @@
                     </tabView>
                     <connections>
                         <segue destination="98S-dM-h5l" kind="relationship" relationship="tabItems" id="Gb4-wX-tWr"/>
-                        <segue destination="5Mc-kP-cqg" kind="relationship" relationship="tabItems" id="fVj-RK-RdM"/>
+                        <segue destination="5Mc-kP-cqg" kind="relationship" relationship="tabItems" id="Jcu-kR-avo"/>
                         <segue destination="aKH-5z-zwy" kind="relationship" relationship="tabItems" id="Kal-EK-RKx"/>
                     </connections>
                 </tabViewController>
@@ -145,16 +145,43 @@
                     <view key="view" id="ZME-ix-6NR">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="400"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <box verticalHuggingPriority="750" fixedFrame="YES" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="4eC-7o-C18">
+                                <rect key="frame" x="50" y="197" width="500" height="5"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            </box>
+                            <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JSX-rl-Iwd">
+                                <rect key="frame" x="136" y="326" width="118" height="18"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="check" title="Use dark theme" bezelStyle="regularSquare" imagePosition="left" inset="2" id="fDA-V6-hnr">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <binding destination="98S-dM-h5l" name="value" keyPath="self.preferences.darkModeEnabled" id="1cU-DA-ZAn"/>
+                                </connections>
+                            </button>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RKc-pu-66f">
+                                <rect key="frame" x="48" y="327" width="84" height="18"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Dark Mode:" id="Sfk-T5-ojL">
+                                    <font key="font" metaFont="systemBold" size="14"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                        </subviews>
                     </view>
                 </viewController>
                 <customObject id="HbZ-r4-eWF" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+                <userDefaultsController representsSharedInstance="YES" id="UcF-R3-j7a"/>
             </objects>
             <point key="canvasLocation" x="1802" y="-123"/>
         </scene>
-        <!--Servers-->
+        <!--Aria2 Servers-->
         <scene sceneID="fuq-Zz-fWD">
             <objects>
-                <viewController title="Servers" id="5Mc-kP-cqg" userLabel="Servers" customClass="ServersViewController" customModule="AMM" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Aria2 Servers" id="5Mc-kP-cqg" userLabel="Aria2 Servers" customClass="ServersViewController" customModule="AMM" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" wantsLayer="YES" id="gv5-AI-R5Q">
                         <rect key="frame" x="0.0" y="0.0" width="550" height="400"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -710,7 +737,10 @@
     </scenes>
     <resources>
         <image name="NSAddTemplate" width="11" height="11"/>
+        <image name="NSPreferencesGeneral" width="32" height="32"/>
         <image name="NSRemoveTemplate" width="11" height="11"/>
         <image name="about-icon" width="128" height="128"/>
+        <image name="fa-cloud-download" width="256" height="256"/>
+        <image name="preferences-about-icon" width="256" height="256"/>
     </resources>
 </document>
