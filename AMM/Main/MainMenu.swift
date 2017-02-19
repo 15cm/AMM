@@ -8,13 +8,12 @@
 
 import Cocoa
 
-class MainMenu: NSObject, ServerProfileManagerDelegate {
+class MainMenu: NSObject, AMMPreferencesDelegate {
     var statusItem = NSStatusBar.system().statusItem(withLength: NSSquareStatusItemLength)
     var servers: [ServerProfile] = []
     var fixMenuItems: [NSMenuItem] = []
-    var preferencesWindowController: NSWindowController!
-    var aboutWindowController: AboutWindowController? = nil
-    var profileManager = ServerProfileManager.instance
+    var preferencesWindowController: PreferencesWindowController!
+    var preferences = AMMPreferences.instance
 
     @IBOutlet weak var menu: NSMenu!
 
@@ -26,8 +25,8 @@ class MainMenu: NSObject, ServerProfileManagerDelegate {
         for i in ((statusItem.menu?.numberOfItems)! - 3) ..< (statusItem.menu?.numberOfItems)! {
             fixMenuItems.append((statusItem.menu?.item(at: i))!)
         }
-        profileManager.delegate = self
-        updateMenuItems(withServerProfiles: profileManager.copyServers())
+        preferences.delegate = self
+        updateMenuItems(withServerProfiles: preferences.copyServers())
     }
 
     func updateMenuItems(withServerProfiles servers: [ServerProfile]) {
@@ -52,7 +51,7 @@ class MainMenu: NSObject, ServerProfileManagerDelegate {
     @IBAction func preferencesClicked(_ sender: NSMenuItem) {
         let storyboard = NSStoryboard(name: "Preferences", bundle: nil)
         if let ctrl = storyboard.instantiateInitialController() {
-            preferencesWindowController = ctrl as! NSWindowController
+            preferencesWindowController = ctrl as! PreferencesWindowController
             NSApp.activate(ignoringOtherApps: true)
             preferencesWindowController.window?.center()
             preferencesWindowController.window?.makeKeyAndOrderFront(self)

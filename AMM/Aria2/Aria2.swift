@@ -11,7 +11,7 @@ import SwiftyJSON
 import Starscream
 
 
-class Aria2: NSObject, NSCopying{
+class Aria2: NSObject, NSCopying, NSCoding {
     var proto: Aria2Protocols
     var host: String
     var port: Int
@@ -76,6 +76,32 @@ class Aria2: NSObject, NSCopying{
         self.secret = secret ?? ""
         super.init()
         self.socket.delegate = self
+    }
+    
+    convenience override init() {
+        self.init(protocol: defaultProtocol, host: defaultHost, port: defaultPort, path: defaultPath, secret: nil)!
+    }
+    
+    required convenience init?(coder aDecoder: NSCoder) {
+        let proto: Aria2Protocols
+        if let protoObj = aDecoder.decodeObject(forKey: "protocol") {
+            proto = Aria2Protocols(rawValue: protoObj as! String)!
+        } else {
+            proto = defaultProtocol
+        }
+        let host = aDecoder.decodeObject(forKey: "host") as! String
+        let port = Int(aDecoder.decodeInt64(forKey: "port"))
+        let path = aDecoder.decodeObject(forKey: "path") as! String
+        let secret = aDecoder.decodeObject(forKey: "secret") as! String
+        self.init(protocol: proto, host: host, port: port, path: path, secret: secret)
+    }
+    
+    func encode(with aCoder: NSCoder) {
+        aCoder.encode(proto.rawValue, forKey: "protocol")
+        aCoder.encode(host, forKey: "host")
+        aCoder.encode(port, forKey: "port")
+        aCoder.encode(path, forKey: "path")
+        aCoder.encode(secret, forKey: "secret")
     }
     
     func copy(with zone: NSZone? = nil) -> Any {
