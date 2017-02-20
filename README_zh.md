@@ -4,9 +4,15 @@ Aria2 Menubar Monitor,  在 macOS 菜单栏上监控 Aria2 的工具。
 # 功能
 - 通过 Aria2 RPC 接口获取 Aria2 状态，显示在 menubar 中（走 websocket）
 - 多服务器支持，可配置各个服务器状态和任务的刷新时间间隔
+- ws/wss(包括自签证书)支持
+- 暗色主题
 
 # 截图
-![Screenshots](./screenshot.png)
+## 亮色主题
+![Screenshot Light](./screenshots/screenshot.png)
+
+## 暗色主题
+![Screenshot Dark](./screenshots/screenshot-dark.png)
 
 # 运行环境
 OS X 10.10+ or macOS 10.12.x
@@ -43,6 +49,7 @@ open AMM.xcodeproj
 - [aria2](https://github.com/aria2/aria2) 
 - [SwiftyJSON](https://github.com/SwiftyJSON/SwiftyJSON)
 - [Starscream](https://github.com/daltoniam/Starscream)
+- [SwiftyUserDefaults](https://github.com/radex/SwiftyUserDefaults)
 - [Maria](https://github.com/ShinCurry/Maria) （部分实现思路参考）
 
 # 许可证书
