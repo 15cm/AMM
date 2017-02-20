@@ -4,11 +4,17 @@ Aria2 Menubar Monitor, a tool to help with monitoring Aria2 Status on macOS menu
 [中文说明](./README_zh.md)
 
 # Features
-- Fetch status of Arai2 Server using Aria2 RPC(via websocket) and display it.
+- Fetch status of Aria2 Server using Aria2 RPC(via websocket) and display it.
 - Multiple Aria2 servers support. Refresh interval of global status and tasks can be configured for each server.
+- ws/wss(self-signed certificate included) support
+- Dark Mode
 
 # Screenshots
-![Screenshots](./screenshot.png)
+## Light Mode
+![Screenshot Light](./screenshots/screenshot.png)
+
+## Dark Mode
+![Screenshot Dark](./screenshots/screenshot-dark.png)
 
 # Prerequisite
 OS X 10.10+ or macOS 10.12.x
@@ -44,6 +50,7 @@ Then press Cmd-b in **Xcode** to build **AMM**
 - [aria2](https://github.com/aria2/aria2) 
 - [SwiftyJSON](https://github.com/SwiftyJSON/SwiftyJSON)
 - [Starscream](https://github.com/daltoniam/Starscream)
+- [SwiftyUserDefaults](https://github.com/radex/SwiftyUserDefaults)
 - [Maria](https://github.com/ShinCurry/Maria) (Implementation partial reference)
 
 # License
