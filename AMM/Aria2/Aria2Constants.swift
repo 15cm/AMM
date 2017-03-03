@@ -27,6 +27,7 @@ public enum Aria2Methods: String{
     case tellActive
     case tellWaiting
     case tellStopped
+    case tellStatus
 }
 
 public enum Aria2TaskStatus: String {
@@ -37,4 +38,21 @@ public enum Aria2TaskStatus: String {
     case complete
     case stopped
     case error
+}
+
+public enum Aria2Notifications: String {
+    case onDownloadStart = "aria2.onDownloadStart"
+    case onDownloadPause = "aria2.onDownloadPause"
+    case onDownloadComplete = "aria2.onDownloadComplete"
+    
+    func toString() -> String {
+        switch self {
+        case .onDownloadStart:
+            return "started"
+        case .onDownloadPause:
+            return "paused"
+        case .onDownloadComplete:
+            return "completed"
+        }
+    }
 }

@@ -111,25 +111,28 @@ class ServerProfile: NSObject, NSCopying, NSCoding {
             connectTimer?.resume()
         }
     }
-    
-    // get global status
     func getGlobalStat(callback cb: @escaping (Aria2Stat) -> Void) {
         self.aria2?.getGlobalStat(callback: cb)
     }
     
-    // get active tasks
     func tellActive(callback cb: @escaping ([Aria2Task]) -> Void) {
         self.aria2?.tellActive(callback: cb)
     }
     
-    // get waiting tasks
     func tellWaiting(callback cb: @escaping ([Aria2Task]) -> Void) {
         self.aria2?.tellWaiting(offset: -1, num: self.waitingTaskMaxNum, callback: cb)
     }
     
-    // get stopped tasks
     func tellStopped(callback cb: @escaping ([Aria2Task]) -> Void) {
         self.aria2?.tellStopped(offset: -1, num: self.stoppedTaskMaxNum, callback: cb)
+    }
+    
+    func tellStatus(gid: String, callback cb: @escaping (Aria2Task) -> Void) {
+        self.aria2?.tellStatus(gid: gid, callback: cb)
+    }
+    
+    func registerNofificationDelegate(delegate: Aria2NotificationDelegate) {
+        self.aria2?.notificationDelegate = delegate
     }
     
     func isValid() -> Bool {
