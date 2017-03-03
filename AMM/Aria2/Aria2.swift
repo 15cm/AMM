@@ -258,11 +258,9 @@ extension Aria2: WebSocketDelegate {
                 case .tellWaiting:
                     fallthrough
                 case .tellStopped:
-                    fallthrough
+                    callback.exec(Aria2.getTasks(fromResponse: res))
+                    break
                 case .tellStatus:
-//                    if (callback.method == .tellStatus) {
-//                        print(res.rawString())
-//                    }
                     callback.exec(Aria2.getTask(fromResponse: res))
                     break
                 }
