@@ -23,12 +23,17 @@ class ServerProfile: NSObject, NSCopying, NSCoding {
     var activeTaskMaxNum: Int
     var waitingTaskMaxNum: Int
     var stoppedTaskMaxNum: Int
+    var notiOnTaskStartEnabled: Bool
+    var notiOnTaskPauseEnabled: Bool
+    var notiOnTaskCompleteEnabled: Bool
     var connectTimer: DispatchSourceTimer?
     
     init(uuid: String, aria2: Aria2,
          remark: String, globalStatRefreshInterval gsri: Double,
          taskStatRefreshInterval tsri: Double, activeTaskMaxNum atMaxNum: Int,
-         waitingTaskMaxNum wtMaxNum: Int, stoppedTaskMaxNum stMaxNum: Int
+         waitingTaskMaxNum wtMaxNum: Int, stoppedTaskMaxNum stMaxNum: Int,
+         notiOnTaskStartEnabled notiStart: Bool, notiOnTaskPauseEnabled nofiPause: Bool,
+         notiOnTaskCompleteEnabled notiComplete: Bool
         ) {
         self.uuid = uuid
         self.aria2 = aria2
@@ -39,13 +44,17 @@ class ServerProfile: NSObject, NSCopying, NSCoding {
         self.activeTaskMaxNum = atMaxNum
         self.waitingTaskMaxNum = wtMaxNum
         self.stoppedTaskMaxNum = stMaxNum
+        self.notiOnTaskStartEnabled = notiStart
+        self.notiOnTaskPauseEnabled = notiStart
+        self.notiOnTaskCompleteEnabled = notiComplete
     }
     
     convenience override init() {
         self.init(uuid: NSUUID().uuidString, aria2: Aria2(),
                   remark: defaultRemark, globalStatRefreshInterval: defaultGlobalStatRefreshInterval,
                   taskStatRefreshInterval: defaultTaskStatRefreshInterval, activeTaskMaxNum: defaultActiveTaskMaxNum,
-                  waitingTaskMaxNum: defaultWaitingTaskMaxNum, stoppedTaskMaxNum: defaultStoppedTaskMaxNum)
+                  waitingTaskMaxNum: defaultWaitingTaskMaxNum, stoppedTaskMaxNum: defaultStoppedTaskMaxNum,
+                  notiOnTaskStartEnabled: false, notiOnTaskPauseEnabled: false, notiOnTaskCompleteEnabled: false)
     }
     
     convenience init?(uuid: String, protocol proto: Aria2Protocols,
@@ -53,13 +62,16 @@ class ServerProfile: NSObject, NSCopying, NSCoding {
          path: String, secret: String?,
          remark: String, globalStatRefreshInterval gsri: Double,
          taskStatRefreshInterval tsri: Double, activeTaskMaxNum atMaxNum: Int,
-         waitingTaskMaxNum wtMaxNum: Int, stoppedTaskMaxNum stMaxNum: Int
+         waitingTaskMaxNum wtMaxNum: Int, stoppedTaskMaxNum stMaxNum: Int,
+         notiOnTaskStartEnabled notiStart: Bool, notiOnTaskPauseEnabled notiPause: Bool,
+         notiOnTaskCompleteEnabled notiComplete: Bool
         ) {
         if let aria2 = Aria2(protocol: proto, host: host, port: port, path: path, secret: secret) {
             self.init(uuid: uuid, aria2: aria2,
                 remark: remark, globalStatRefreshInterval: gsri,
                 taskStatRefreshInterval: tsri, activeTaskMaxNum: atMaxNum,
-                waitingTaskMaxNum: wtMaxNum, stoppedTaskMaxNum: stMaxNum)
+                waitingTaskMaxNum: wtMaxNum, stoppedTaskMaxNum: stMaxNum,
+                notiOnTaskStartEnabled: notiStart, notiOnTaskPauseEnabled: notiPause, notiOnTaskCompleteEnabled: notiComplete)
         } else {
             return nil
         }
@@ -75,6 +87,9 @@ class ServerProfile: NSObject, NSCopying, NSCoding {
         activeTaskMaxNum = Int(aDecoder.decodeInt64(forKey: "activeTaskMaxNum"))
         waitingTaskMaxNum = Int(aDecoder.decodeInt64(forKey: "waitingTaskMaxNum"))
         stoppedTaskMaxNum = Int(aDecoder.decodeInt64(forKey: "stoppedTaskMaxNum"))
+        notiOnTaskStartEnabled = aDecoder.containsValue(forKey: "notiOnTaskStartEnabled") ? aDecoder.decodeBool(forKey: "notiOnTaskStartEnabled") : false
+        notiOnTaskPauseEnabled = aDecoder.containsValue(forKey: "notiOnTaskPauseEnabled") ? aDecoder.decodeBool(forKey: "notiOnTaskPauseEnabled") : false
+        notiOnTaskCompleteEnabled = aDecoder.containsValue(forKey: "notiOnTaskCompleteEnabled") ? aDecoder.decodeBool(forKey: "notiOnTaskCompleteEnabled") : false
     }
     
     func encode(with aCoder: NSCoder) {
@@ -86,10 +101,16 @@ class ServerProfile: NSObject, NSCopying, NSCoding {
         aCoder.encode(activeTaskMaxNum, forKey: "activeTaskMaxNum")
         aCoder.encode(waitingTaskMaxNum, forKey: "waitingTaskMaxNum")
         aCoder.encode(stoppedTaskMaxNum, forKey: "stoppedTaskMaxNum")
+        aCoder.encode(notiOnTaskStartEnabled, forKey: "notiOnTaskStartEnabled")
+        aCoder.encode(notiOnTaskPauseEnabled, forKey: "notiOnTaskPauseEnabled")
+        aCoder.encode(notiOnTaskCompleteEnabled, forKey: "notiOnTaskCompleteEnabled")
     }
     
     func copy(with zone: NSZone? = nil) -> Any {
-        return ServerProfile(uuid: uuid, aria2: aria2?.copy() as! Aria2, remark: remark, globalStatRefreshInterval: globalStatRefreshInterval, taskStatRefreshInterval: taskStatRefreshInterval, activeTaskMaxNum: activeTaskMaxNum, waitingTaskMaxNum: waitingTaskMaxNum, stoppedTaskMaxNum: stoppedTaskMaxNum) as Any
+        return ServerProfile(uuid: uuid, aria2: aria2?.copy() as! Aria2, remark: remark,
+                             globalStatRefreshInterval: globalStatRefreshInterval, taskStatRefreshInterval: taskStatRefreshInterval,
+                             activeTaskMaxNum: activeTaskMaxNum, waitingTaskMaxNum: waitingTaskMaxNum, stoppedTaskMaxNum: stoppedTaskMaxNum,
+                             notiOnTaskStartEnabled: notiOnTaskStartEnabled, notiOnTaskPauseEnabled: notiOnTaskPauseEnabled, notiOnTaskCompleteEnabled: notiOnTaskCompleteEnabled) as Any
     }
     
     func startConnectTimer() {
