@@ -25,8 +25,6 @@ class ServerProfileTests: XCTestCase {
     func testExample() {
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
-//        assert(ServerProfile.fromDictionary(server.toDictionary()).uuid == server.uuid)
-//        assert((server.copy() as! ServerProfile).uuid == server.uuid)
     }
 
     func testPerformanceExample() {

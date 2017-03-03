@@ -26,8 +26,11 @@ class AMMPreferencesTests: XCTestCase {
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
         let servers: [ServerProfile] = [
-            ServerProfile(uuid: NSUUID().uuidString, protocol: defaultProtocol, host: "host1", port: 1111, path: "/jsonrpc", secret: "a", remark: "test", globalStatRefreshInterval: 1, taskStatRefreshInterval: 1, activeTaskMaxNum: 1, waitingTaskMaxNum: 1, stoppedTaskMaxNum: 1)!,
-            ServerProfile(uuid: NSUUID().uuidString, protocol: defaultProtocol, host: "host2", port: 1111, path: "/jsonrpc", secret: "a", remark: "test", globalStatRefreshInterval: 1, taskStatRefreshInterval: 1, activeTaskMaxNum: 1, waitingTaskMaxNum: 1, stoppedTaskMaxNum: 1)!
+            ServerProfile(uuid: NSUUID().uuidString, protocol: defaultProtocol, host: "host1", port: 1111, path: "/jsonrpc", secret: "a", remark: "test", globalStatRefreshInterval: 1, taskStatRefreshInterval: 1, activeTaskMaxNum: 1, waitingTaskMaxNum: 1, stoppedTaskMaxNum: 1,
+                          notiOnTaskStartEnabled: false, notiOnTaskPauseEnabled: false, notiOnTaskCompleteEnabled: false
+                          )!,
+            ServerProfile(uuid: NSUUID().uuidString, protocol: defaultProtocol, host: "host2", port: 1111, path: "/jsonrpc", secret: "a", remark: "test", globalStatRefreshInterval: 1, taskStatRefreshInterval: 1, activeTaskMaxNum: 1, waitingTaskMaxNum: 1, stoppedTaskMaxNum: 1,
+                  notiOnTaskStartEnabled: false, notiOnTaskPauseEnabled: false, notiOnTaskCompleteEnabled: false)!
         ]
         preferences.reset()
         assert(preferences.servers.count == 0)
