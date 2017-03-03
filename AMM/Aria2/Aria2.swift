@@ -10,6 +10,9 @@ import Foundation
 import SwiftyJSON
 import Starscream
 
+protocol Aria2NotificationDelegate: class{
+    func onNotificationReceived(notificationType type: Aria2Notifications?, gids: [String])
+}
 
 class Aria2: NSObject, NSCopying, NSCoding {
     var proto: Aria2Protocols
@@ -20,17 +23,23 @@ class Aria2: NSObject, NSCopying, NSCoding {
     var secret: String
     var socket: WebSocket
     var status: Aria2ConnectionStatus = .disconnected
-    // { uuid: callback }
-    fileprivate var callbacks: [String:Aria2RpcCallback]  = [:]
+    fileprivate var callbacks: [String:Aria2RpcCallback]  = [:] // { uuid: callback }
+    weak var notificationDelegate: Aria2NotificationDelegate?
     
     fileprivate class Aria2RpcCallback {
         var method: Aria2Methods
-        var callbackTasks: (([Aria2Task]) -> Void)? = nil
-        var callbackStat: ((Aria2Stat) -> Void)? = nil
+        var callbackTasks: (([Aria2Task]) -> Void)?
+        var callbackTask: ((Aria2Task) -> Void)?
+        var callbackStat: ((Aria2Stat) -> Void)?
         
         init(forMethod method: Aria2Methods, callback cb: @escaping ([Aria2Task]) -> Void) {
             self.method = method
             self.callbackTasks = cb
+        }
+        
+        init(forMethod method: Aria2Methods, callback cb: @escaping (Aria2Task) -> Void) {
+            self.method = method
+            self.callbackTask = cb
         }
         
         init(forMethod method: Aria2Methods, callback cb: @escaping (Aria2Stat) -> Void) {
@@ -41,6 +50,12 @@ class Aria2: NSObject, NSCopying, NSCoding {
         func exec(_ arg: [Aria2Task]?) -> Void {
             if (arg != nil) {
                 self.callbackTasks?(arg!)
+            }
+        }
+        
+        func exec(_ arg: Aria2Task?) -> Void {
+            if (arg != nil) {
+                self.callbackTask?(arg!)
             }
         }
         
@@ -161,6 +176,11 @@ class Aria2: NSObject, NSCopying, NSCoding {
         call(withParams: [offset ?? -1, num], callback: Aria2RpcCallback(forMethod: .tellStopped, callback: cb))
     }
     
+    // get a task specified by gid
+    func tellStatus(gid: String, callback cb: @escaping(Aria2Task) -> Void) {
+        call(withParams: [gid], callback: Aria2RpcCallback(forMethod: .tellStatus, callback: cb))
+    }
+    
     deinit {
         disconnect()
     }
@@ -176,6 +196,10 @@ extension Aria2 {
         } else {
             return nil
         }
+    }
+    
+    static func getTask(fromResponse res: JSON) -> Aria2Task? {
+        return Aria2Task(json: res["result"])
     }
     
     static func getStat(fromResponse res: JSON) -> Aria2Stat? {
@@ -219,8 +243,10 @@ extension Aria2: WebSocketDelegate {
     
     public func websocketDidReceiveMessage(socket: WebSocket, text: String) {
         let res = JSON(data: text.data(using: .utf8)!)
-        if let method = res["method"].string {
+        if let method = res["method"].string, let params = res["params"].array {
            // Notification
+            let gids = params.flatMap({param in return param["gid"].string})
+            self.notificationDelegate?.onNotificationReceived(notificationType: Aria2Notifications(rawValue: method), gids: gids)
         } else {
             let id = res["id"].stringValue
             if let callback = callbacks[id] {
@@ -232,7 +258,12 @@ extension Aria2: WebSocketDelegate {
                 case .tellWaiting:
                     fallthrough
                 case .tellStopped:
-                    callback.exec(Aria2.getTasks(fromResponse: res))
+                    fallthrough
+                case .tellStatus:
+//                    if (callback.method == .tellStatus) {
+//                        print(res.rawString())
+//                    }
+                    callback.exec(Aria2.getTask(fromResponse: res))
                     break
                 }
                 callbacks.removeValue(forKey: id)
