@@ -29,6 +29,7 @@
 		2E468AA51E398B86009C6CA3 /* MainMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E468AA41E398B86009C6CA3 /* MainMenu.swift */; };
 		2E468AAC1E39B123009C6CA3 /* Aria2Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E468AAB1E39B123009C6CA3 /* Aria2Task.swift */; };
 		2E468AAE1E39BA45009C6CA3 /* Aria2Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E468AAD1E39BA45009C6CA3 /* Aria2Constants.swift */; };
+		2E5DC59C1E69879600184E0B /* ResizableTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E5DC59B1E69879600184E0B /* ResizableTabViewController.swift */; };
 		2E644A551E41B24D00C6347C /* ServerProfileTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E644A541E41B24D00C6347C /* ServerProfileTests.swift */; };
 		2E644A611E422B1D00C6347C /* ServerProfileArrayController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E644A601E422B1D00C6347C /* ServerProfileArrayController.swift */; };
 		2E644A641E42CDD700C6347C /* ServerProfileMenuItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E644A621E42CDD700C6347C /* ServerProfileMenuItemViewController.swift */; };
@@ -100,6 +101,7 @@
 		2E468AA41E398B86009C6CA3 /* MainMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainMenu.swift; sourceTree = "<group>"; };
 		2E468AAB1E39B123009C6CA3 /* Aria2Task.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Aria2Task.swift; sourceTree = "<group>"; };
 		2E468AAD1E39BA45009C6CA3 /* Aria2Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Aria2Constants.swift; sourceTree = "<group>"; };
+		2E5DC59B1E69879600184E0B /* ResizableTabViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResizableTabViewController.swift; sourceTree = "<group>"; };
 		2E644A541E41B24D00C6347C /* ServerProfileTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerProfileTests.swift; sourceTree = "<group>"; };
 		2E644A601E422B1D00C6347C /* ServerProfileArrayController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerProfileArrayController.swift; sourceTree = "<group>"; };
 		2E644A621E42CDD700C6347C /* ServerProfileMenuItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerProfileMenuItemViewController.swift; sourceTree = "<group>"; };
@@ -180,6 +182,7 @@
 				2E644A601E422B1D00C6347C /* ServerProfileArrayController.swift */,
 				2EE7F5681E5954F600724D3F /* ServersViewController.swift */,
 				2E1A64331E4447C60053F972 /* Source.rtf */,
+				2E5DC59B1E69879600184E0B /* ResizableTabViewController.swift */,
 			);
 			path = Preferences;
 			sourceTree = "<group>";
@@ -392,6 +395,7 @@
 				2E468AA01E398B61009C6CA3 /* AMMPreferences.swift in Sources */,
 				2EE7F5671E5954D700724D3F /* GeneralViewController.swift in Sources */,
 				2EB004DB1E59E16E004B0197 /* TaskMenuItemViewController.swift in Sources */,
+				2E5DC59C1E69879600184E0B /* ResizableTabViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

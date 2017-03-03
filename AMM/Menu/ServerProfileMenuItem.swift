@@ -8,9 +8,10 @@
 
 import Cocoa
 
-class ServerProfileMenuItem: NSMenuItem {
+class ServerProfileMenuItem: NSMenuItem, Aria2NotificationDelegate {
     var server: ServerProfile
     var viewController: ServerProfileMenuItemViewController?
+    var notificationsShouldHandle = Set<Aria2Notifications>()
     var timer: DispatchSourceTimer?
     init(_ profile: ServerProfile) {
         server = profile
@@ -19,6 +20,12 @@ class ServerProfileMenuItem: NSMenuItem {
         viewController?.server = server
         super.init(title: server.remark, action: nil, keyEquivalent: "")
         self.view = viewController?.view
+        
+        // Listen for aria2 notification
+        if server.notiOnTaskStartEnabled { notificationsShouldHandle.insert(.onDownloadStart) }
+        if server.notiOnTaskPauseEnabled { notificationsShouldHandle.insert(.onDownloadPause) }
+        if server.notiOnTaskCompleteEnabled { notificationsShouldHandle.insert(.onDownloadComplete) }
+        server.registerNofificationDelegate(delegate: self)
         
         // Init fixed task array
         submenu = NSMenu(title: "Tasks")
@@ -77,6 +84,19 @@ class ServerProfileMenuItem: NSMenuItem {
         } else {
             // Fallback on earlier versions
             timer?.resume()
+        }
+    }
+    
+    func onNotificationReceived(notificationType type: Aria2Notifications?, gids: [String]) {
+        if let _type = type, notificationsShouldHandle.contains(_type) {
+            for gid in gids {
+                let noti = NSUserNotification()
+                noti.title = server.remark
+                server.tellStatus(gid: gid, callback: {task in
+                    noti.informativeText = "\(task.title) \(_type.toString())."
+                    NSUserNotificationCenter.default.deliver(noti)
+                })
+            }
         }
     }
     
