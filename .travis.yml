@@ -28,3 +28,4 @@ deploy:
   skip_cleanup: true
   on:
     repo: 15cm/AMM
+    tags: true
