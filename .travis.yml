@@ -1,7 +1,7 @@
 language: objective-c
 osx_image: xcode8.2
-before install:
-  - brew update && brew upgrade
+before_install:
+  - brew update && brew upgrade carthage
 install:
   - carthage update --platform mac --no-use-binaries
 script:
