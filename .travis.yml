@@ -1,0 +1,30 @@
+language: objective-c
+osx_image: xcode8.2
+branches:
+  only:
+  - master
+install:
+- brew install carthage
+- carthage update --platform mac --no-use-binaries
+script:
+- xcodebuild clean build -project AMM.xcodeproj -target AMM
+- xcodebuild test -project AMM.xcodeproj -scheme AMM
+before_deploy:
+# package release into dmg
+- release_dir=build/Release
+- release_name=AMM_$TRAVIS_TAG
+- dmg_path=$release_dir/$release_name/$release_name.dmg
+- mkdir $release_dir/$release_name && mv $release_dir/AMM.app $_ && ln -s /Applications $_/
+- hdiutil create $dmg_path -volname release_name -srcfolder $release_dir/$release_name
+# Get release note
+- release_note=$(git log -1 --pretty=format:"%s" $TRAVIS_TAG)
+deploy:
+  provider: Github
+  releases: AMM $TRAVIS_TAG
+  description: $release_note
+  api_key:
+    secure: CA2K/z6uIGg76OlE6VfyhUq6/KkkCSQQz1J+7x6mDyeheEX6h7FMG2pU3XzcENby3WAPA0PDIJJ6QIfeAfOzX/i+FClbckzL8mdSEcqZhQBPNNVwvHQsDHUsHramctOVgtGAtHftpwuaJX8g/JKT1f7sGvrr3hZNlB9MgzNU5ZvXjrxHbTLzQgcISFM+5Awl4ITFgg5ghQRi7AbDMKPa/F9pGNdwHSI6Eq3JIQdenwgVJVJnXlg3FnvqAR1TLspyfk/Ic+0TatS7V0nXldo9wXJHvojrUPp12g8ISXwT8QPdny/dDfG4xHUWsk3BctQKjYd4UOL4egvawrkkpa3muDuTiWk4Nls2GC7rtmp/jnCfrTfVGxUgEfDJpcFGFZMAySj9MtZGALa9htD8+/aLBc+7SeHUWFimFl+6YlyWKY8O4liDKcK5ZPsLc8g/oCN4oM/KqJdAo2hyZwMeuu1GFSOlbgwE1Br30Qv4Mu0GcTiP9r+rylci407+wAF4dy+jatH4TR1nCUVxtXRZfadqFrMGopuJAOUqedE0h9fAKI5z39JD93PemdIFBpR3REDPpAWwr5Zg8I07nFRM9vdmQPHi81T+q2n2QziHE3wNQPRl4VYe57vfKb0Vy7tbYXM3chwFNQFTZTIgu/SR5IFGXTluPeHePscWDVGQ6yjckNI=
+  file: $dmg_path
+  skip_cleanup: true
+  on:
+    repo: 15cm/AMM
