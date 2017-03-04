@@ -3,8 +3,9 @@ osx_image: xcode8.2
 branches:
   only:
   - master
+before install:
+- brew update && brew upgrade
 install:
-- brew install carthage
 - carthage update --platform mac --no-use-binaries
 script:
 - xcodebuild clean build -project AMM.xcodeproj -target AMM
