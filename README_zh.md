@@ -33,7 +33,7 @@ OS X 10.10+ or macOS 10.12.x
 - macOS Sierra 10.12.3 (16D32)
 - Xcode 8.2.1 (8C1002)
 - Swift 3.0.2
-- carthage 0.18.1
+- carthage 0.20.0
 
 # 构建流程
 ``` sh
