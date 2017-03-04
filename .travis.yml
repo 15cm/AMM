@@ -10,19 +10,14 @@ script:
 before_deploy:
   # package release into dmg
   - release_dir=build/Release
-  - release_name=AMM_$TRAVIS_TAG
-  - dmg_path=$release_dir/$release_name/$release_name.dmg
-  - mkdir $release_dir/$release_name && mv $release_dir/AMM.app $_ && ln -s /Applications $_/
-  - hdiutil create $dmg_path -volname release_name -srcfolder $release_dir/$release_name
-  # Get release note
-  - release_note=$(git log -1 --pretty=format:"%s" $TRAVIS_TAG)
-  - echo $release_note
+  - release_name=AMM_${TRAVIS_TAG}
+  - dmg_path=${release_dir}/${release_name}/${release_name}.dmg
+  - mkdir ${release_dir}/${release_name} && mv ${release_dir}/AMM.app $_ && ln -s /Applications $_/
+  - hdiutil create ${dmg_path} -volname release_name -srcfolder ${release_dir}/${release_name}
 deploy:
   provider: releases
-  releases: AMM $TRAVIS_TAG
-  description: $release_note
   api_key:
-    secure: CA2K/z6uIGg76OlE6VfyhUq6/KkkCSQQz1J+7x6mDyeheEX6h7FMG2pU3XzcENby3WAPA0PDIJJ6QIfeAfOzX/i+FClbckzL8mdSEcqZhQBPNNVwvHQsDHUsHramctOVgtGAtHftpwuaJX8g/JKT1f7sGvrr3hZNlB9MgzNU5ZvXjrxHbTLzQgcISFM+5Awl4ITFgg5ghQRi7AbDMKPa/F9pGNdwHSI6Eq3JIQdenwgVJVJnXlg3FnvqAR1TLspyfk/Ic+0TatS7V0nXldo9wXJHvojrUPp12g8ISXwT8QPdny/dDfG4xHUWsk3BctQKjYd4UOL4egvawrkkpa3muDuTiWk4Nls2GC7rtmp/jnCfrTfVGxUgEfDJpcFGFZMAySj9MtZGALa9htD8+/aLBc+7SeHUWFimFl+6YlyWKY8O4liDKcK5ZPsLc8g/oCN4oM/KqJdAo2hyZwMeuu1GFSOlbgwE1Br30Qv4Mu0GcTiP9r+rylci407+wAF4dy+jatH4TR1nCUVxtXRZfadqFrMGopuJAOUqedE0h9fAKI5z39JD93PemdIFBpR3REDPpAWwr5Zg8I07nFRM9vdmQPHi81T+q2n2QziHE3wNQPRl4VYe57vfKb0Vy7tbYXM3chwFNQFTZTIgu/SR5IFGXTluPeHePscWDVGQ6yjckNI=
+    secure: "OBX7vxxgpc9Hns1KaOrmD1BBQ4ML05kjPgBC9B0XSd3owblG+NICVXq5zyllbKCoY6wyqMf3zdBRtueSdp9sNNIGWZeAUW6pOdg87D9Fj+FhsT+U4N1rhYbv4vo3Olt5b+5BKygM+oxEbXQuo2WmqWyaHpiUdFxlFIsFbeNFiZYlo4JKZaPw3z6M8gY3LCIdPhBLuy6Yz74DwVPwhJrcfa7cOjGDV3YEgsH96EV/garlVFoupB4bXUdS4fztNQp+dqWVegUBwOTtXP3E8e7PB4O4PSAB0vBO+QF0vCRhYFINT8xRJ79+HwsXIb47Glkv77DAfYllAWcV++Ldn/eSUjh+hjUIrP4zyhBPr18VZ0vGaZN5cVOqZFwU/lZdZ+jWA0GUs+HY+RmDwHpDtxhQ5n1/XePl62Ek/rUhSBgjcUg8/YmC21U4D3OIblZDRZuVVsMmu+vVmIWQdJGMDa2qlTzF0HFCW/dtJS5JR8jwnp5//+ivbYsZ3x8y6N2jm+UA9PmQk99mTW31pjGspF2o6Lnkt4Lb3+9YtW1wY16xNc3C30ftcQ9y5CNfQXSjLGkIgQNIJYA9hmy/imz0v0fwW0TQ6L21Zzwk3xi9fkgNeOOGYK3zHtvbTz3uwAHKCfGFaTbsouEJ7bw0cjL1L7bDaQ1xuvzoH+IKUdE4KxarCpk="
   file: $dmg_path
   skip_cleanup: true
   on:
