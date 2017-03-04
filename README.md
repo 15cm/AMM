@@ -34,7 +34,7 @@ See [Release](https://github.com/15cm/AMM/releases)
 - macOS Sierra 10.12.3 (16D32)
 - Xcode 8.2.1 (8C1002)
 - Swift 3.0.2
-- carthage 0.18.1
+- carthage 0.20.0
 
 # How to build
 ``` sh
