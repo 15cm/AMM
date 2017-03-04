@@ -1,4 +1,4 @@
-# AMM
+# AMM ![Travis CI](https://travis-ci.org/15cm/AMM.svg?branch=master)
 Aria2 Menubar Monitor,  在 macOS 菜单栏上监控 Aria2 的工具。
 
 # 功能
