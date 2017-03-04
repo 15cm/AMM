@@ -9,6 +9,7 @@ install:
 - carthage update --platform mac --no-use-binaries
 script:
 - xcodebuild clean build -project AMM.xcodeproj -target AMM
+- xcodebuild test -project AMM.xcodeproj -scheme AMM
 before_deploy:
 # package release into dmg
 - release_dir=build/Release
