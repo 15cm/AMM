@@ -153,9 +153,9 @@ class ServerProfile: NSObject, NSCopying, NSCoding {
         self.aria2?.tellStatus(gid: gid, callback: cb)
     }
     
-    func addUri(urls: [String]?, callback cb: @escaping (JSON) -> Void) {
-        if let urls = urls {
-            self.aria2?.addUri(urls: urls, callback: cb)
+    func addUri(url: [String]?, callback cb: @escaping (JSON) -> Void) {
+        if let url = url {
+            self.aria2?.addUri(url: url, callback: cb)
         }
     }
     
