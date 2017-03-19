@@ -28,6 +28,7 @@ public enum Aria2Methods: String{
     case tellWaiting
     case tellStopped
     case tellStatus
+    case addUri
 }
 
 public enum Aria2TaskStatus: String {
