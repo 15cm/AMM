@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import SwiftyJSON
 
 class ServerProfile: NSObject, NSCopying, NSCoding {
     var uuid: String
@@ -150,6 +151,12 @@ class ServerProfile: NSObject, NSCopying, NSCoding {
     
     func tellStatus(gid: String, callback cb: @escaping (Aria2Task) -> Void) {
         self.aria2?.tellStatus(gid: gid, callback: cb)
+    }
+    
+    func addUri(urls: [String]?, callback cb: @escaping (JSON) -> Void) {
+        if let urls = urls {
+            self.aria2?.addUri(urls: urls, callback: cb)
+        }
     }
     
     func registerNofificationDelegate(delegate: Aria2NotificationDelegate) {

@@ -31,6 +31,7 @@ class Aria2: NSObject, NSCopying, NSCoding {
         var callbackTasks: (([Aria2Task]) -> Void)?
         var callbackTask: ((Aria2Task) -> Void)?
         var callbackStat: ((Aria2Stat) -> Void)?
+        var callbackRaw: ((JSON) -> Void)?
         
         init(forMethod method: Aria2Methods, callback cb: @escaping ([Aria2Task]) -> Void) {
             self.method = method
@@ -47,21 +48,33 @@ class Aria2: NSObject, NSCopying, NSCoding {
             self.callbackStat = cb
         }
         
-        func exec(_ arg: [Aria2Task]?) -> Void {
+        init(forMethod method: Aria2Methods, callback cb: @escaping (JSON) -> Void) {
+            self.method = method
+            self.callbackRaw = cb
+        }
+        
+        
+        func exec(_ arg: [Aria2Task]?) {
             if (arg != nil) {
                 self.callbackTasks?(arg!)
             }
         }
         
-        func exec(_ arg: Aria2Task?) -> Void {
+        func exec(_ arg: Aria2Task?) {
             if (arg != nil) {
                 self.callbackTask?(arg!)
             }
         }
         
-        func exec(_ arg: Aria2Stat?) -> Void {
+        func exec(_ arg: Aria2Stat?) {
             if (arg != nil) {
                 self.callbackStat?(arg!)
+            }
+        }
+        
+        func exec(_ arg: JSON?) {
+            if(arg != nil) {
+                self.callbackRaw?(arg!)
             }
         }
     }
@@ -181,6 +194,11 @@ class Aria2: NSObject, NSCopying, NSCoding {
         call(withParams: [gid], callback: Aria2RpcCallback(forMethod: .tellStatus, callback: cb))
     }
     
+    // Create download tasks by urls
+    func addUri(urls: [String], callback cb: @escaping(JSON) -> Void) {
+        call(withParams: [urls], callback: Aria2RpcCallback(forMethod: .addUri, callback: cb))
+    }
+    
     deinit {
         disconnect()
     }
@@ -263,6 +281,8 @@ extension Aria2: WebSocketDelegate {
                 case .tellStatus:
                     callback.exec(Aria2.getTask(fromResponse: res))
                     break
+                case .addUri:
+                    callback.exec(res)
                 }
                 callbacks.removeValue(forKey: id)
             } else {
