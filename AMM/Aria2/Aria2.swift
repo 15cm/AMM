@@ -195,8 +195,8 @@ class Aria2: NSObject, NSCopying, NSCoding {
     }
     
     // Create download tasks by urls
-    func addUri(urls: [String], callback cb: @escaping(JSON) -> Void) {
-        call(withParams: [urls], callback: Aria2RpcCallback(forMethod: .addUri, callback: cb))
+    func addUri(url: [String], callback cb: @escaping(JSON) -> Void) {
+        call(withParams: [url], callback: Aria2RpcCallback(forMethod: .addUri, callback: cb))
     }
     
     deinit {
