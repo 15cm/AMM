@@ -18,6 +18,7 @@ class AMMPreferences: NSObject {
     weak var delegate: AMMPreferencesDelegate? = nil
     var servers: [ServerProfile] = []
     var darkModeEnabled: Bool = false
+    var controlModeEnabled: Bool = false
     
     fileprivate override init() {
         super.init()
@@ -31,14 +32,16 @@ class AMMPreferences: NSObject {
     }
     
     func save() {
-        Defaults[.servers] = self.servers
-        Defaults[.darkModeEnabled] = self.darkModeEnabled
+        Defaults[.servers] = servers
+        Defaults[.darkModeEnabled] = darkModeEnabled
+        Defaults[.controlModeEnabled] = controlModeEnabled
         Defaults.synchronize()
     }
     
     func load() {
         servers = Defaults[.servers]
         darkModeEnabled = Defaults[.darkModeEnabled]
+        controlModeEnabled = Defaults[.controlModeEnabled]
         delegate?.onServerProfilesUpdate(withServerProfiles: copyServers())
     }
     
@@ -51,6 +54,7 @@ class AMMPreferences: NSObject {
 extension DefaultsKeys {
     static let servers = DefaultsKey<[ServerProfile]>("servers")
     static let darkModeEnabled = DefaultsKey<Bool>("darkModeEnabled")
+    static let controlModeEnabled = DefaultsKey<Bool>("controlModeEnabled")
 }
 
 extension UserDefaults {
