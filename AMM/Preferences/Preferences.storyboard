@@ -144,11 +144,11 @@
             <objects>
                 <viewController title="General" id="98S-dM-h5l" customClass="GeneralViewController" customModule="AMM" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" wantsLayer="YES" id="ZME-ix-6NR">
-                        <rect key="frame" x="0.0" y="0.0" width="550" height="58"/>
+                        <rect key="frame" x="0.0" y="0.0" width="550" height="93"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <button translatesAutoresizingMaskIntoConstraints="NO" id="JSX-rl-Iwd">
-                                <rect key="frame" x="126" y="19" width="118" height="18"/>
+                                <rect key="frame" x="146" y="54" width="118" height="18"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="14" id="1UI-Rq-JmN"/>
                                     <constraint firstAttribute="width" constant="114" id="pbl-sT-QeL"/>
@@ -162,7 +162,7 @@
                                 </connections>
                             </button>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RKc-pu-66f">
-                                <rect key="frame" x="38" y="20" width="84" height="18"/>
+                                <rect key="frame" x="58" y="55" width="84" height="18"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="18" id="2jb-Jn-THm"/>
                                     <constraint firstAttribute="width" constant="80" id="8Fz-FX-XgS"/>
@@ -173,19 +173,45 @@
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tla-qR-gLE">
+                                <rect key="frame" x="36" y="27" width="106" height="18"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="18" id="ibF-mX-bOv"/>
+                                    <constraint firstAttribute="width" constant="102" id="isM-si-ajc"/>
+                                </constraints>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Control Mode:" id="B6S-YM-IQT">
+                                    <font key="font" metaFont="systemBold" size="14"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <button translatesAutoresizingMaskIntoConstraints="NO" id="a9C-RQ-HBb">
+                                <rect key="frame" x="146" y="26" width="260" height="18"/>
+                                <buttonCell key="cell" type="check" title="Enable menu items for controlling Aria2" bezelStyle="regularSquare" imagePosition="left" inset="2" id="xaq-5c-7QJ">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <binding destination="98S-dM-h5l" name="value" keyPath="self.preferences.controlModeEnabled" id="iGS-sA-Mci"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <constraints>
+                            <constraint firstItem="a9C-RQ-HBb" firstAttribute="leading" secondItem="JSX-rl-Iwd" secondAttribute="leading" id="CA7-f2-c7i"/>
                             <constraint firstItem="JSX-rl-Iwd" firstAttribute="leading" secondItem="RKc-pu-66f" secondAttribute="trailing" constant="8" id="GFG-KR-uoN"/>
+                            <constraint firstItem="Tla-qR-gLE" firstAttribute="top" secondItem="RKc-pu-66f" secondAttribute="bottom" constant="10" id="Kap-Zz-L06"/>
                             <constraint firstItem="RKc-pu-66f" firstAttribute="top" secondItem="ZME-ix-6NR" secondAttribute="top" constant="20" id="NaU-KM-M7y"/>
                             <constraint firstItem="JSX-rl-Iwd" firstAttribute="baseline" secondItem="RKc-pu-66f" secondAttribute="baseline" id="Q1R-YE-Rbi"/>
-                            <constraint firstAttribute="bottom" secondItem="RKc-pu-66f" secondAttribute="bottom" constant="20" id="baK-Gv-Hh4"/>
-                            <constraint firstItem="RKc-pu-66f" firstAttribute="leading" secondItem="ZME-ix-6NR" secondAttribute="leading" constant="40" id="nD9-k7-XIZ"/>
+                            <constraint firstItem="a9C-RQ-HBb" firstAttribute="baseline" secondItem="Tla-qR-gLE" secondAttribute="baseline" id="gb6-xb-Yzb"/>
+                            <constraint firstItem="RKc-pu-66f" firstAttribute="leading" secondItem="ZME-ix-6NR" secondAttribute="leading" constant="60" id="nD9-k7-XIZ"/>
+                            <constraint firstItem="RKc-pu-66f" firstAttribute="trailing" secondItem="Tla-qR-gLE" secondAttribute="trailing" id="xeD-De-cO8"/>
                         </constraints>
                     </view>
                 </viewController>
                 <customObject id="HbZ-r4-eWF" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+                <userDefaultsController representsSharedInstance="YES" id="puI-kL-fhm"/>
             </objects>
-            <point key="canvasLocation" x="1820" y="-193"/>
+            <point key="canvasLocation" x="1820" y="-175.5"/>
         </scene>
         <!--Aria2 Servers-->
         <scene sceneID="fuq-Zz-fWD">
@@ -810,7 +836,6 @@
                                                 </subviews>
                                                 <constraints>
                                                     <constraint firstItem="0F5-ON-lJ6" firstAttribute="top" secondItem="ito-NW-FGF" secondAttribute="bottom" constant="4" id="2au-xH-rAD"/>
-                                                    <constraint firstItem="lK8-6z-cco" firstAttribute="trailing" secondItem="Rdj-XF-1PP" secondAttribute="trailing" id="5UC-oW-PxX"/>
                                                     <constraint firstAttribute="trailing" secondItem="0F5-ON-lJ6" secondAttribute="trailing" constant="10" id="FXR-FF-VjJ"/>
                                                     <constraint firstItem="0F5-ON-lJ6" firstAttribute="leading" secondItem="ito-NW-FGF" secondAttribute="leading" id="GWD-AA-AqR"/>
                                                     <constraint firstItem="RsO-U1-hm6" firstAttribute="top" secondItem="Uy5-Kw-RBH" secondAttribute="bottom" constant="8" id="JOX-u0-R2Z"/>
@@ -822,8 +847,9 @@
                                                     <constraint firstItem="QeJ-gb-6Ht" firstAttribute="baseline" secondItem="lK8-6z-cco" secondAttribute="baseline" id="auE-V4-GQg"/>
                                                     <constraint firstItem="QeJ-gb-6Ht" firstAttribute="leading" secondItem="Uy5-Kw-RBH" secondAttribute="leading" id="dO6-2L-UqN"/>
                                                     <constraint firstItem="Uy5-Kw-RBH" firstAttribute="leading" secondItem="Rdj-XF-1PP" secondAttribute="trailing" constant="2" id="dyC-iV-gfs"/>
+                                                    <constraint firstItem="lK8-6z-cco" firstAttribute="trailing" secondItem="Rdj-XF-1PP" secondAttribute="trailing" id="gmE-Yn-ydT"/>
                                                     <constraint firstItem="ito-NW-FGF" firstAttribute="leading" secondItem="VPE-fh-MuX" secondAttribute="leading" constant="10" id="hwm-HA-xib"/>
-                                                    <constraint firstItem="uL0-HA-ZgU" firstAttribute="trailing" secondItem="Rdj-XF-1PP" secondAttribute="trailing" id="pr6-6a-D8s"/>
+                                                    <constraint firstItem="uL0-HA-ZgU" firstAttribute="trailing" secondItem="Rdj-XF-1PP" secondAttribute="trailing" id="o1m-H1-KJT"/>
                                                     <constraint firstItem="Uy5-Kw-RBH" firstAttribute="baseline" secondItem="Rdj-XF-1PP" secondAttribute="baseline" id="qz0-1J-nTG"/>
                                                     <constraint firstItem="ito-NW-FGF" firstAttribute="top" secondItem="VPE-fh-MuX" secondAttribute="top" constant="10" id="uma-er-Cev"/>
                                                 </constraints>
