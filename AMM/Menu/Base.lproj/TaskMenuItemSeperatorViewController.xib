@@ -45,7 +45,7 @@
                         </subviews>
                     </view>
                     <color key="borderColor" white="0.90000000000000002" alpha="0.5" colorSpace="calibratedWhite"/>
-                    <color key="fillColor" white="0.90000000000000002" alpha="0.5" colorSpace="calibratedWhite"/>
+                    <color key="fillColor" white="0.84999999999999998" alpha="0.5" colorSpace="calibratedWhite"/>
                 </box>
             </subviews>
             <point key="canvasLocation" x="-117" y="-37"/>

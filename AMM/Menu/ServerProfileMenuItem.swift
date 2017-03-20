@@ -9,15 +9,18 @@
 import Cocoa
 
 class ServerProfileMenuItem: NSMenuItem, Aria2NotificationDelegate {
+    let pref = AMMPreferences.instance
     var server: ServerProfile
     var viewController: ServerProfileMenuItemViewController?
     var notificationsShouldHandle = Set<Aria2Notifications>()
     var timer: DispatchSourceTimer?
+    var startIndexOfActive: Int
     init(_ profile: ServerProfile) {
         server = profile
         server.startConnectTimer()
         viewController = ServerProfileMenuItemViewController(nibName: "ServerProfileMenuItemViewController", bundle: nil)
         viewController?.server = server
+        startIndexOfActive = pref.controlModeEnabled ? 2 : 1 // Set beginning offset of task menu items
         super.init(title: server.remark, action: nil, keyEquivalent: "")
         self.view = viewController?.view
         
@@ -27,8 +30,18 @@ class ServerProfileMenuItem: NSMenuItem, Aria2NotificationDelegate {
         if server.notiOnTaskCompleteEnabled { notificationsShouldHandle.insert(.onDownloadComplete) }
         server.registerNofificationDelegate(delegate: self)
         
-        // Init fixed task array
         submenu = NSMenu(title: "Tasks")
+        // Init control menu
+        if pref.controlModeEnabled {
+            let controlMenuItem = NSMenuItem(title: "Control", action: nil, keyEquivalent: "")
+            controlMenuItem.submenu = NSMenu(title: "Control")
+            let addUriMenuItem = NSMenuItem(title: "Add urls from clipboard(Each url on a seperate line)", action: #selector(ServerProfileMenuItem.addUriFromClipboard), keyEquivalent: "")
+            addUriMenuItem.target = self
+            controlMenuItem.submenu?.addItem(addUriMenuItem)
+            submenu?.addItem(controlMenuItem)
+        }
+        
+        // Init fixed task menu items
         submenu?.addItem(TaskMenuItemSeperator(name: "Active"))
         for _ in 1...server.activeTaskMaxNum { submenu?.addItem(TaskMenuItem()) }
         submenu?.addItem(TaskMenuItemSeperator(name: "Waiting"))
@@ -52,10 +65,8 @@ class ServerProfileMenuItem: NSMenuItem, Aria2NotificationDelegate {
             [weak self] in
             if let strongSelf = self {
                 if strongSelf.server.aria2?.status == .connected {
-                    let startIndexOfActive = 1
-                    let startIndexOfWaiting = startIndexOfActive + strongSelf.server.activeTaskMaxNum + 1
+                    let startIndexOfWaiting = (self?.startIndexOfActive)! + strongSelf.server.activeTaskMaxNum + 1
                     let startIndexOfStopped = startIndexOfWaiting + strongSelf.server.waitingTaskMaxNum + 1
-                    
                     func updateTasksMenuItems(menuItem: ServerProfileMenuItem, tasks: [Aria2Task], startIndexInMenu: Int, maxNum: Int) {
                         for i in 0 ..< maxNum {
                             let indexInMenu = i + startIndexInMenu
@@ -68,7 +79,7 @@ class ServerProfileMenuItem: NSMenuItem, Aria2NotificationDelegate {
                     }
                     
                     strongSelf.server.tellActive(callback: {tasks in
-                        updateTasksMenuItems(menuItem: strongSelf, tasks: tasks, startIndexInMenu: startIndexOfActive, maxNum: strongSelf.server.activeTaskMaxNum)
+                        updateTasksMenuItems(menuItem: strongSelf, tasks: tasks, startIndexInMenu: (self?.startIndexOfActive)!, maxNum: strongSelf.server.activeTaskMaxNum)
                     })
                     strongSelf.server.tellWaiting(callback: {tasks in
                         updateTasksMenuItems(menuItem: strongSelf, tasks: tasks, startIndexInMenu: startIndexOfWaiting, maxNum: strongSelf.server.waitingTaskMaxNum)
@@ -92,9 +103,28 @@ class ServerProfileMenuItem: NSMenuItem, Aria2NotificationDelegate {
             for gid in gids {
                 let noti = NSUserNotification()
                 noti.title = server.remark
-                server.tellStatus(gid: gid, callback: {task in
-                    noti.informativeText = "\(task.title) \(_type.toString())."
-                    NSUserNotificationCenter.default.deliver(noti)
+                if _type == .onDownloadStart {
+                    server.tellStatus(gid: gid, callback: {task in
+                        noti.informativeText = "\(!task.title.isEmpty ? task.title : task.gid) \(_type.toString())."
+                        NSUserNotificationCenter.default.deliver(noti)
+                    })
+                }
+            }
+        }
+    }
+    
+    func addUriFromClipboard() {
+        let urlText = NSPasteboard.general().string(forType: NSPasteboardTypeString)
+        let urls = urlText?.components(separatedBy: "\n").filter({!$0.isEmpty}).map({$0.trimmingCharacters(in: [" "])})
+        if let urls = urls {
+            for url in urls {
+                server.addUri(url: [url], callback: {res in
+                    if let errorMsg = res["error"]["message"].string {
+                        let noti = NSUserNotification()
+                        noti.title = self.server.remark
+                        noti.informativeText = "Error: \(errorMsg)"
+                        NSUserNotificationCenter.default.deliver(noti)
+                    }
                 })
             }
         }
