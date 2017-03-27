@@ -109,6 +109,9 @@
                                     <constraint firstAttribute="height" constant="16" id="kEY-CJ-sMk"/>
                                 </constraints>
                                 <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="0WB-EE-AvJ"/>
+                                <connections>
+                                    <binding destination="-2" name="value" keyPath="self.task.statusIcon" id="49L-MJ-fI6"/>
+                                </connections>
                             </imageView>
                             <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="0uL-gc-kkN">
                                 <rect key="frame" x="459" y="6" width="20" height="20"/>
@@ -244,6 +247,9 @@
                                     <constraint firstAttribute="height" constant="16" id="FC5-tf-Kgq"/>
                                 </constraints>
                                 <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="Kpq-x5-lly"/>
+                                <connections>
+                                    <binding destination="-2" name="value" keyPath="self.task.statusIcon" id="6dZ-Bk-fJ2"/>
+                                </connections>
                             </imageView>
                             <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="xLm-mV-XJW">
                                 <rect key="frame" x="459" y="6" width="20" height="20"/>
