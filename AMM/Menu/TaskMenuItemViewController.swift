@@ -55,7 +55,7 @@ extension Aria2Task {
             return #imageLiteral(resourceName: "fa-question")
         }
     }
-    dynamic class func keyPathsForValuesAffectingTaskStatusIcon() -> Set<String> {
+    dynamic class func keyPathsForValuesAffectingStatusIcon() -> Set<String> {
         return Set(["statusRawValue"])
     }
     
