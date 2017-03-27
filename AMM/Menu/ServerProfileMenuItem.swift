@@ -41,11 +41,29 @@ class ServerProfileMenuItem: NSMenuItem, Aria2NotificationDelegate {
         
         // Init fixed task menu items
         submenu?.addItem(TaskMenuItemSeperator(name: "Active"))
-        for _ in 1...server.activeTaskMaxNum { submenu?.addItem(ActiveTaskMenuItem(server: server)) }
+        for _ in 1...server.activeTaskMaxNum {
+            if(pref.controlModeEnabled) {
+                submenu?.addItem(ActiveTaskMenuItem(server: server))
+            } else {
+                submenu?.addItem(TaskMenuItem(server: server))
+            }
+        }
         submenu?.addItem(TaskMenuItemSeperator(name: "Waiting"))
-        for _ in 1...server.waitingTaskMaxNum { submenu?.addItem(WaitingTaskMenuItem(server: server)) }
+        for _ in 1...server.waitingTaskMaxNum {
+            if(pref.controlModeEnabled) {
+                submenu?.addItem(WaitingTaskMenuItem(server: server))
+            } else {
+                submenu?.addItem(TaskMenuItem(server: server))
+            }
+        }
         submenu?.addItem(TaskMenuItemSeperator(name: "Stopped"))
-        for _ in 1...server.stoppedTaskMaxNum { submenu?.addItem(StoppedTaskMenuItem(server: server)) }
+        for _ in 1...server.stoppedTaskMaxNum {
+            if(pref.controlModeEnabled) {
+                submenu?.addItem(StoppedTaskMenuItem(server: server))
+            } else {
+                submenu?.addItem(TaskMenuItem(server: server))
+            }
+        }
         
         // Fetch tasks loop
         startTimer()
