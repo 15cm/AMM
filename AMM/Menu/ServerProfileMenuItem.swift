@@ -35,19 +35,17 @@ class ServerProfileMenuItem: NSMenuItem, Aria2NotificationDelegate {
         if pref.controlModeEnabled {
             let controlMenuItem = NSMenuItem(title: "Control", action: nil, keyEquivalent: "")
             controlMenuItem.submenu = NSMenu(title: "Control")
-            let addUriMenuItem = NSMenuItem(title: "Add urls from clipboard(Each url on a seperate line)", action: #selector(ServerProfileMenuItem.addUriFromClipboard), keyEquivalent: "")
-            addUriMenuItem.target = self
-            controlMenuItem.submenu?.addItem(addUriMenuItem)
+            controlMenuItem.submenu?.addItem(ActionMenuItem(title: "Add urls from clipboard(Each url on a seperate line)", action: #selector(ServerProfileMenuItem.addUriFromClipboard), keyEquivalent: "", target: self))
             submenu?.addItem(controlMenuItem)
         }
         
         // Init fixed task menu items
         submenu?.addItem(TaskMenuItemSeperator(name: "Active"))
-        for _ in 1...server.activeTaskMaxNum { submenu?.addItem(TaskMenuItem()) }
+        for _ in 1...server.activeTaskMaxNum { submenu?.addItem(ActiveTaskMenuItem(server: server)) }
         submenu?.addItem(TaskMenuItemSeperator(name: "Waiting"))
-        for _ in 1...server.waitingTaskMaxNum { submenu?.addItem(TaskMenuItem()) }
+        for _ in 1...server.waitingTaskMaxNum { submenu?.addItem(WaitingTaskMenuItem(server: server)) }
         submenu?.addItem(TaskMenuItemSeperator(name: "Stopped"))
-        for _ in 1...server.stoppedTaskMaxNum { submenu?.addItem(TaskMenuItem()) }
+        for _ in 1...server.stoppedTaskMaxNum { submenu?.addItem(StoppedTaskMenuItem(server: server)) }
         
         // Fetch tasks loop
         startTimer()
