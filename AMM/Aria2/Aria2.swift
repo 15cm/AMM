@@ -33,6 +33,10 @@ class Aria2: NSObject, NSCopying, NSCoding {
         var callbackStat: ((Aria2Stat) -> Void)?
         var callbackRaw: ((JSON) -> Void)?
         
+        init(forMethod method: Aria2Methods) {
+            self.method = method
+        }
+        
         init(forMethod method: Aria2Methods, callback cb: @escaping ([Aria2Task]) -> Void) {
             self.method = method
             self.callbackTasks = cb
@@ -199,6 +203,23 @@ class Aria2: NSObject, NSCopying, NSCoding {
         call(withParams: [url], callback: Aria2RpcCallback(forMethod: .addUri, callback: cb))
     }
     
+    // Control tasks
+    func pause(gid: String) {
+        call(withParams: [gid], callback: Aria2RpcCallback(forMethod: .pause))
+    }
+    
+    func unpause(gid: String) {
+        call(withParams: [gid], callback: Aria2RpcCallback(forMethod: .unpause))
+    }
+    
+    func stop(gid: String) {
+        call(withParams: [gid], callback: Aria2RpcCallback(forMethod: .remove))
+    }
+    
+    func remove(gid: String) {
+        call(withParams: [gid], callback: Aria2RpcCallback(forMethod: .removeDownloadResult))
+    }
+    
     deinit {
         disconnect()
     }
@@ -283,6 +304,8 @@ extension Aria2: WebSocketDelegate {
                     break
                 case .addUri:
                     callback.exec(res)
+                default:
+                    break
                 }
                 callbacks.removeValue(forKey: id)
             } else {

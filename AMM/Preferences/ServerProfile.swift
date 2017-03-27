@@ -33,7 +33,7 @@ class ServerProfile: NSObject, NSCopying, NSCoding {
          remark: String, globalStatRefreshInterval gsri: Double,
          taskStatRefreshInterval tsri: Double, activeTaskMaxNum atMaxNum: Int,
          waitingTaskMaxNum wtMaxNum: Int, stoppedTaskMaxNum stMaxNum: Int,
-         notiOnTaskStartEnabled notiStart: Bool, notiOnTaskPauseEnabled nofiPause: Bool,
+         notiOnTaskStartEnabled notiStart: Bool, notiOnTaskPauseEnabled notiPause: Bool,
          notiOnTaskCompleteEnabled notiComplete: Bool
         ) {
         self.uuid = uuid
@@ -46,7 +46,7 @@ class ServerProfile: NSObject, NSCopying, NSCoding {
         self.waitingTaskMaxNum = wtMaxNum
         self.stoppedTaskMaxNum = stMaxNum
         self.notiOnTaskStartEnabled = notiStart
-        self.notiOnTaskPauseEnabled = notiStart
+        self.notiOnTaskPauseEnabled = notiPause
         self.notiOnTaskCompleteEnabled = notiComplete
     }
     
@@ -134,29 +134,45 @@ class ServerProfile: NSObject, NSCopying, NSCoding {
         }
     }
     func getGlobalStat(callback cb: @escaping (Aria2Stat) -> Void) {
-        self.aria2?.getGlobalStat(callback: cb)
+        aria2?.getGlobalStat(callback: cb)
     }
     
     func tellActive(callback cb: @escaping ([Aria2Task]) -> Void) {
-        self.aria2?.tellActive(callback: cb)
+        aria2?.tellActive(callback: cb)
     }
     
     func tellWaiting(callback cb: @escaping ([Aria2Task]) -> Void) {
-        self.aria2?.tellWaiting(offset: -1, num: self.waitingTaskMaxNum, callback: cb)
+        aria2?.tellWaiting(offset: -1, num: self.waitingTaskMaxNum, callback: cb)
     }
     
     func tellStopped(callback cb: @escaping ([Aria2Task]) -> Void) {
-        self.aria2?.tellStopped(offset: -1, num: self.stoppedTaskMaxNum, callback: cb)
+        aria2?.tellStopped(offset: -1, num: self.stoppedTaskMaxNum, callback: cb)
     }
     
     func tellStatus(gid: String, callback cb: @escaping (Aria2Task) -> Void) {
-        self.aria2?.tellStatus(gid: gid, callback: cb)
+        aria2?.tellStatus(gid: gid, callback: cb)
     }
     
     func addUri(url: [String]?, callback cb: @escaping (JSON) -> Void) {
         if let url = url {
-            self.aria2?.addUri(url: url, callback: cb)
+            aria2?.addUri(url: url, callback: cb)
         }
+    }
+    
+    func pause(gid: String) {
+        aria2?.pause(gid: gid)
+    }
+    
+    func unpause(gid: String) {
+        aria2?.unpause(gid: gid)
+    }
+    
+    func stop(gid: String) {
+        aria2?.stop(gid: gid)
+    }
+    
+    func remove(gid: String) {
+        aria2?.remove(gid: gid)
     }
     
     func registerNofificationDelegate(delegate: Aria2NotificationDelegate) {

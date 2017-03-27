@@ -29,6 +29,10 @@ public enum Aria2Methods: String{
     case tellStopped
     case tellStatus
     case addUri
+    case pause
+    case unpause
+    case remove
+    case removeDownloadResult
 }
 
 public enum Aria2TaskStatus: String {
@@ -37,7 +41,7 @@ public enum Aria2TaskStatus: String {
     case paused
     case waiting
     case complete
-    case stopped
+    case stopped = "removed"
     case error
 }
 
