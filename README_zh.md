@@ -30,10 +30,10 @@ OS X 10.10+ or macOS 10.12.x
 见 [Release](https://github.com/15cm/AMM/releases)
 
 # 测试、构建环境
-- macOS Sierra 10.12.3 (16D32)
-- Xcode 8.2.1 (8C1002)
-- Swift 3.0.2
-- carthage 0.20.0
+- macOS Sierra 10.12.4
+- Xcode 8.3 (8E162)
+- Swift 3.1
+- carthage 0.20.1
 
 # 构建流程
 ``` sh
