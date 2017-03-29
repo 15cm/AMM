@@ -31,10 +31,10 @@ It happens sometimes(especially when refresh intervals being set too short) that
 See [Release](https://github.com/15cm/AMM/releases)
 
 # Test and Build Environment
-- macOS Sierra 10.12.3 (16D32)
-- Xcode 8.2.1 (8C1002)
-- Swift 3.0.2
-- carthage 0.20.0
+- macOS Sierra 10.12.4
+- Xcode 8.3 (8E162)
+- Swift 3.1
+- carthage 0.20.1
 
 # How to build
 ``` sh
