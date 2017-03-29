@@ -274,7 +274,7 @@ extension Aria2: WebSocketDelegate {
     
     public func websocketDidDisconnect(socket: WebSocket, error: NSError?) {
         status =  .disconnected
-        print("Aria2 at \(rpc) disconnected: \(error)")
+        print("Aria2 at \(rpc) disconnected: \(String(describing: error))")
     }
     
     public func websocketDidReceiveData(socket: WebSocket, data: Data) {
