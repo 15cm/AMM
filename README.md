@@ -8,6 +8,7 @@ Aria2 Menubar Monitor, a tool to help with monitoring Aria2 Status on macOS menu
 - Multiple Aria2 servers support. Refresh interval of global status and tasks can be configured for each server.
 - ws/wss(self-signed certificate included) support
 - Dark Mode
+- Control Mode for controlling Aria2
 
 # Screenshots
 ## Light Mode
