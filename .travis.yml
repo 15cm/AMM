@@ -1,5 +1,8 @@
 language: objective-c
 osx_image: xcode8.2
+branches:
+  only:
+  - master
 before_install:
   - brew update && brew upgrade carthage
 install:
