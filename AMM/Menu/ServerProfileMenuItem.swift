@@ -74,40 +74,34 @@ class ServerProfileMenuItem: NSMenuItem, Aria2NotificationDelegate {
     }
     
     func startTimer()  {
-        timer?.cancel()
         let queue = DispatchQueue.global()
         timer = DispatchSource.makeTimerSource(flags: .strict, queue: queue)
         timer?.scheduleRepeating(deadline: .now(), interval: self.server.taskStatRefreshInterval)
         timer?.setEventHandler {
+            [unowned self] in
             DispatchQueue.main.async {
-                [weak self] in
-                let date = Date()
-                print("Timer of \(self?.server.remark) run at \(date)")
-                if let strongSelf = self {
-                    if strongSelf.server.aria2?.status == .connected {
-                        let startIndexOfWaiting = (self?.startIndexOfActive)! + strongSelf.server.activeTaskMaxNum + 1
-                        let startIndexOfStopped = startIndexOfWaiting + strongSelf.server.waitingTaskMaxNum + 1
-                        func updateTasksMenuItems(menuItem: ServerProfileMenuItem, tasks: [Aria2Task], startIndexInMenu: Int, maxNum: Int) {
-                            for i in 0 ..< maxNum {
-                                let indexInMenu = i + startIndexInMenu
-                                if i >= tasks.count {
-                                    (menuItem.submenu?.item(at: indexInMenu) as! TaskMenuItem).isDisplayed = false
-                                } else {
-                                    (menuItem.submenu?.item(at: indexInMenu) as! TaskMenuItem).updateView(withTask: tasks[i])
-                                }
+                if self.server.aria2?.status == .connected {
+                    func updateTasksMenuItems(menuItem: ServerProfileMenuItem, tasks: [Aria2Task], startIndexInMenu: Int, maxNum: Int) {
+                        for i in 0 ..< maxNum {
+                            let indexInMenu = i + startIndexInMenu
+                            if i >= tasks.count {
+                                (menuItem.submenu?.item(at: indexInMenu) as! TaskMenuItem).isDisplayed = false
+                            } else {
+                                (menuItem.submenu?.item(at: indexInMenu) as! TaskMenuItem).updateView(withTask: tasks[i])
                             }
                         }
-                        
-                        strongSelf.server.tellActive(callback: {tasks in
-                            updateTasksMenuItems(menuItem: strongSelf, tasks: tasks, startIndexInMenu: (self?.startIndexOfActive)!, maxNum: strongSelf.server.activeTaskMaxNum)
-                        })
-                        strongSelf.server.tellWaiting(callback: {tasks in
-                            updateTasksMenuItems(menuItem: strongSelf, tasks: tasks, startIndexInMenu: startIndexOfWaiting, maxNum: strongSelf.server.waitingTaskMaxNum)
-                        })
-                        strongSelf.server.tellStopped(callback: {tasks in
-                            updateTasksMenuItems(menuItem: strongSelf, tasks: tasks, startIndexInMenu: startIndexOfStopped, maxNum: strongSelf.server.stoppedTaskMaxNum)
-                        })
                     }
+                    let startIndexOfWaiting = self.startIndexOfActive + self.server.activeTaskMaxNum + 1
+                    let startIndexOfStopped = startIndexOfWaiting + self.server.waitingTaskMaxNum + 1
+                    self.server.tellActive(callback: {[unowned self] tasks in
+                        updateTasksMenuItems(menuItem: self, tasks: tasks, startIndexInMenu: self.startIndexOfActive, maxNum: self.server.activeTaskMaxNum)
+                    })
+                    self.server.tellWaiting(callback: {[unowned self] tasks in
+                        updateTasksMenuItems(menuItem: self, tasks: tasks, startIndexInMenu: startIndexOfWaiting, maxNum: self.server.waitingTaskMaxNum)
+                    })
+                    self.server.tellStopped(callback: {[unowned self] tasks in
+                        updateTasksMenuItems(menuItem: self, tasks: tasks, startIndexInMenu: startIndexOfStopped, maxNum: self.server.stoppedTaskMaxNum)
+                    })
                 }
             }
         }
@@ -149,9 +143,5 @@ class ServerProfileMenuItem: NSMenuItem, Aria2NotificationDelegate {
                 })
             }
         }
-    }
-    
-    deinit {
-        timer?.cancel()
     }
 }
