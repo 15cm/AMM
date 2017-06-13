@@ -28,17 +28,20 @@ class ServerProfileMenuItemViewController: NSViewController {
     
     func startTimer(){
         timer?.cancel()
-        timer = DispatchSource.makeTimerSource()
+        let queue = DispatchQueue.global()
+        timer = DispatchSource.makeTimerSource(flags: .strict, queue: queue)
         timer?.scheduleRepeating(deadline: .now(), interval: (self.server?.globalStatRefreshInterval)!)
         timer?.setEventHandler {
-            [weak self] in
-            if let strongSelf = self {
-                strongSelf.status = strongSelf.server?.aria2?.status.rawValue
-                if strongSelf.server?.aria2?.status == .connected {
-                    strongSelf.server?.getGlobalStat(callback: {stat in
-                        strongSelf.downloadSpeed = Aria2.getReadable(length: stat.downloadSpeed) + "/s"
-                        strongSelf.uploadSpeed = Aria2.getReadable(length: stat.uploadSpeed) + "/s"
-                    })
+            DispatchQueue.main.async {
+                [weak self] in
+                if let strongSelf = self {
+                    strongSelf.status = strongSelf.server?.aria2?.status.rawValue
+                    if strongSelf.server?.aria2?.status == .connected {
+                        strongSelf.server?.getGlobalStat(callback: {stat in
+                            strongSelf.downloadSpeed = Aria2.getReadable(length: stat.downloadSpeed) + "/s"
+                            strongSelf.uploadSpeed = Aria2.getReadable(length: stat.uploadSpeed) + "/s"
+                        })
+                    }
                 }
             }
         }
