@@ -118,13 +118,11 @@ class ServerProfile: NSObject, NSCopying, NSCoding {
         connectTimer?.cancel()
         let queue = DispatchQueue.global()
         connectTimer = DispatchSource.makeTimerSource(flags: .strict, queue: queue)
-        connectTimer?.scheduleRepeating(deadline: .now(), interval: 5)
+        connectTimer?.scheduleRepeating(deadline: .now(), interval: defaultConnectionCheckInterval)
         connectTimer?.setEventHandler {
-            [weak self] in
-            if let strongSelf = self {
-                if strongSelf.aria2?.status != .connected {
-                    strongSelf.aria2?.connect()
-                }
+            [unowned self] in
+            if self.aria2?.status != .connected {
+                self.aria2?.connect()
             }
         }
         if #available(OSX 10.12, *) {

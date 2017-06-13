@@ -19,6 +19,7 @@ let defaultTaskStatRefreshInterval: Double = 1
 let defaultActiveTaskMaxNum = 5
 let defaultWaitingTaskMaxNum = 5
 let defaultStoppedTaskMaxNum = 5
+let defaultConnectionCheckInterval: Double = 5
 
 enum AMMHighLightColors {
     case text, background
