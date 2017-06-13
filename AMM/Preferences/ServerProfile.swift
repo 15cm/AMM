@@ -116,7 +116,8 @@ class ServerProfile: NSObject, NSCopying, NSCoding {
     
     func startConnectTimer() {
         connectTimer?.cancel()
-        connectTimer = DispatchSource.makeTimerSource()
+        let queue = DispatchQueue.global()
+        connectTimer = DispatchSource.makeTimerSource(flags: .strict, queue: queue)
         connectTimer?.scheduleRepeating(deadline: .now(), interval: 5)
         connectTimer?.setEventHandler {
             [weak self] in
