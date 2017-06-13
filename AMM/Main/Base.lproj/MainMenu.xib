@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11762"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="12121"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="NSApplication">
@@ -10,25 +10,24 @@
             </connections>
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
-        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
-        <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="AMM" customModuleProvider="target"/>
-        <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
-        <customObject id="0OG-Ou-z9N" customClass="MainMenu" customModule="AMM" customModuleProvider="target">
+        <customObject id="-3" userLabel="Application" customClass="NSMenu"/>
+        <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="AMM" customModuleProvider="target">
             <connections>
-                <outlet property="menu" destination="39T-G0-PGJ" id="yGR-Fn-6d8"/>
+                <outlet property="menu" destination="39T-G0-PGJ" id="eqb-0j-40R"/>
             </connections>
         </customObject>
+        <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
         <menu id="39T-G0-PGJ">
             <items>
                 <menuItem title="Preference" keyEquivalent="," id="EAI-Oc-mp5">
                     <connections>
-                        <action selector="preferencesClicked:" target="0OG-Ou-z9N" id="aU5-Hu-Aot"/>
+                        <action selector="preferenceClicked:" target="Voe-Tx-rLC" id="OY9-su-GBL"/>
                     </connections>
                 </menuItem>
                 <menuItem isSeparatorItem="YES" id="3vb-16-DSS"/>
                 <menuItem title="Quit" keyEquivalent="q" id="RuG-2j-vLq">
                     <connections>
-                        <action selector="quitClicked:" target="0OG-Ou-z9N" id="lHa-HI-hel"/>
+                        <action selector="quickClicked:" target="Voe-Tx-rLC" id="ObF-cq-EVe"/>
                     </connections>
                 </menuItem>
             </items>
