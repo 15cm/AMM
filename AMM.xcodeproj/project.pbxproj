@@ -28,7 +28,6 @@
 		2E468A621E398482009C6CA3 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2E468A601E398482009C6CA3 /* MainMenu.xib */; };
 		2E468AA01E398B61009C6CA3 /* AMMPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E468A9C1E398B61009C6CA3 /* AMMPreferences.swift */; };
 		2E468AA31E398B61009C6CA3 /* Aria2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E468A9F1E398B61009C6CA3 /* Aria2.swift */; };
-		2E468AA51E398B86009C6CA3 /* MainMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E468AA41E398B86009C6CA3 /* MainMenu.swift */; };
 		2E468AAC1E39B123009C6CA3 /* Aria2Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E468AAB1E39B123009C6CA3 /* Aria2Task.swift */; };
 		2E468AAE1E39BA45009C6CA3 /* Aria2Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E468AAD1E39BA45009C6CA3 /* Aria2Constants.swift */; };
 		2E5DC59C1E69879600184E0B /* ResizableTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E5DC59B1E69879600184E0B /* ResizableTabViewController.swift */; };
@@ -102,7 +101,6 @@
 		2E468A6E1E398482009C6CA3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2E468A9C1E398B61009C6CA3 /* AMMPreferences.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AMMPreferences.swift; sourceTree = "<group>"; };
 		2E468A9F1E398B61009C6CA3 /* Aria2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Aria2.swift; sourceTree = "<group>"; };
-		2E468AA41E398B86009C6CA3 /* MainMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainMenu.swift; sourceTree = "<group>"; };
 		2E468AAB1E39B123009C6CA3 /* Aria2Task.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Aria2Task.swift; sourceTree = "<group>"; };
 		2E468AAD1E39BA45009C6CA3 /* Aria2Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Aria2Constants.swift; sourceTree = "<group>"; };
 		2E5DC59B1E69879600184E0B /* ResizableTabViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResizableTabViewController.swift; sourceTree = "<group>"; };
@@ -151,7 +149,6 @@
 			children = (
 				2E468A5C1E398482009C6CA3 /* AppDelegate.swift */,
 				2E02C97D1E4392C100A6272D /* Constants.swift */,
-				2E468AA41E398B86009C6CA3 /* MainMenu.swift */,
 				2E468A601E398482009C6CA3 /* MainMenu.xib */,
 			);
 			path = Main;
@@ -379,7 +376,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				2EE7F5651E594B2B00724D3F /* AboutViewController.swift in Sources */,
-				2E468AA51E398B86009C6CA3 /* MainMenu.swift in Sources */,
 				2EA2D1511E4567430044F318 /* AMMTextField.swift in Sources */,
 				2E9E31D81E59C6DA00316B9E /* PreferencesWindowController.swift in Sources */,
 				2E02C97E1E4392C100A6272D /* Constants.swift in Sources */,
