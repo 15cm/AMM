@@ -1,11 +1,11 @@
 # AMM ![Travis CI](https://travis-ci.org/15cm/AMM.svg?branch=master)
-Aria2 Menubar Monitor, a tool to help with monitoring Aria2 Status on macOS menubar.
+Aria2 Menubar Monitor, a tool to help with monitoring Aria2 Status on the macOS menubar.
 
 [中文说明](./README_zh.md)
 
 # Features
-- Fetch status of Aria2 Server using Aria2 RPC(via websocket) and display it.
-- Multiple Aria2 servers support. Refresh interval of global status and tasks can be configured for each server.
+- Fetch status of Aria2 server using Aria2 RPC (via websocket) and display it.
+- Multiple Aria2 server support. Refresh interval of global status and tasks can be configured for each server.
 - ws/wss(self-signed certificate included) support
 - Dark Mode
 - Control Mode for task management
@@ -17,11 +17,11 @@ Aria2 Menubar Monitor, a tool to help with monitoring Aria2 Status on macOS menu
 ## Dark Mode
 ![Screenshot Dark](./screenshots/screenshot-dark.png)
 
-# Prerequisite
+# Prerequisites
 OS X 10.10+ or macOS 10.12.x
 
 # Download
-See [Release](https://github.com/15cm/AMM/releases)
+See [Releases](https://github.com/15cm/AMM/releases)
 
 # Test and Build Environment
 - macOS Sierra 10.12.5
