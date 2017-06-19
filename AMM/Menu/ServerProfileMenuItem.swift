@@ -17,7 +17,7 @@ class ServerProfileMenuItem: NSMenuItem, Aria2NotificationDelegate {
     var startIndexOfActive: Int
     init(_ profile: ServerProfile) {
         server = profile
-        server.startConnectTimer()
+        server.runTimer()
         viewController = ServerProfileMenuItemViewController(nibName: "ServerProfileMenuItemViewController", bundle: nil)
         viewController?.server = server
         startIndexOfActive = pref.controlModeEnabled ? 2 : 1 // Set beginning offset of task menu items
@@ -25,10 +25,10 @@ class ServerProfileMenuItem: NSMenuItem, Aria2NotificationDelegate {
         self.view = viewController?.view
         
         // Listen for aria2 notification
-        if server.notiOnTaskStartEnabled { notificationsShouldHandle.insert(.onDownloadStart) }
-        if server.notiOnTaskPauseEnabled { notificationsShouldHandle.insert(.onDownloadPause) }
-        if server.notiOnTaskCompleteEnabled { notificationsShouldHandle.insert(.onDownloadComplete) }
-        server.registerNofificationDelegate(delegate: self)
+        if server.taskStartNotiEnabled { notificationsShouldHandle.insert(.onDownloadStart) }
+        if server.taskPauseNotiEnabled { notificationsShouldHandle.insert(.onDownloadPause) }
+        if server.taskCompleteNotiEnabled { notificationsShouldHandle.insert(.onDownloadComplete) }
+        server.registerNotificationDelegate(delegate: self)
         
         submenu = NSMenu(title: "Tasks")
         // Init control menu
@@ -41,7 +41,7 @@ class ServerProfileMenuItem: NSMenuItem, Aria2NotificationDelegate {
         
         // Init fixed task menu items
         submenu?.addItem(TaskMenuItemSeperator(name: "Active"))
-        for _ in 1...server.activeTaskMaxNum {
+        for _ in 1...server.activeTaskTotal {
             if(pref.controlModeEnabled) {
                 submenu?.addItem(ActiveTaskMenuItem(server: server))
             } else {
@@ -49,7 +49,7 @@ class ServerProfileMenuItem: NSMenuItem, Aria2NotificationDelegate {
             }
         }
         submenu?.addItem(TaskMenuItemSeperator(name: "Waiting"))
-        for _ in 1...server.waitingTaskMaxNum {
+        for _ in 1...server.waitingTaskTotal {
             if(pref.controlModeEnabled) {
                 submenu?.addItem(WaitingTaskMenuItem(server: server))
             } else {
@@ -57,7 +57,7 @@ class ServerProfileMenuItem: NSMenuItem, Aria2NotificationDelegate {
             }
         }
         submenu?.addItem(TaskMenuItemSeperator(name: "Stopped"))
-        for _ in 1...server.stoppedTaskMaxNum {
+        for _ in 1...server.stoppedTaskTotal {
             if(pref.controlModeEnabled) {
                 submenu?.addItem(StoppedTaskMenuItem(server: server))
             } else {

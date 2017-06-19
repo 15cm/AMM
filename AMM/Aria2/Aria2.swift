@@ -15,7 +15,7 @@ protocol Aria2NotificationDelegate: class{
 }
 
 class Aria2: NSObject, NSCopying, NSCoding {
-    var proto: Aria2Protocols
+    var ptcl: Aria2Protocols
     var host: String
     var port: Int
     var path: String
@@ -83,25 +83,25 @@ class Aria2: NSObject, NSCopying, NSCoding {
         }
     }
     
-    init?(protocol proto: Aria2Protocols,host: String, port: Int, path: String, secret: String? = nil) {
-        self.proto = proto
+    init?(ptcl: Aria2Protocols,host: String, port: Int, path: String, secret: String? = nil) {
+        self.ptcl = ptcl
         self.host = host
         self.port = port
         self.path = path
-        var rpcProtocol: String
-        switch proto {
+        var rpcPtcl: String
+        switch ptcl {
         case .ws:
-            rpcProtocol = "ws"
+            rpcPtcl = "ws"
         case .wss:
-            rpcProtocol = "wss"
+            rpcPtcl = "wss"
         case .wssSelfSigned:
-            rpcProtocol = "wss"
+            rpcPtcl = "wss"
         }
-        guard let rpc = URL(string: "\(rpcProtocol)://\(host):\(port)\(path)") else {
+        guard let rpc = URL(string: "\(rpcPtcl)://\(host):\(port)\(path)") else {
             return nil
         }
         self.socket = WebSocket(url: rpc)
-        if proto == .wssSelfSigned {
+        if ptcl == .wssSelfSigned {
             self.socket.disableSSLCertValidation = true
         }
         self.rpc = rpc
@@ -110,26 +110,22 @@ class Aria2: NSObject, NSCopying, NSCoding {
         self.socket.delegate = self
     }
     
-    convenience override init() {
-        self.init(protocol: defaultProtocol, host: defaultHost, port: defaultPort, path: defaultPath, secret: nil)!
-    }
-    
     required convenience init?(coder aDecoder: NSCoder) {
-        let proto: Aria2Protocols
-        if let protoObj = aDecoder.decodeObject(forKey: "protocol") {
-            proto = Aria2Protocols(rawValue: protoObj as! String)!
+        var ptcl:Aria2Protocols
+        if let ptclObj = aDecoder.decodeObject(forKey: "protocol") {
+            ptcl = Aria2Protocols(rawValue: ptclObj as! String)!
         } else {
-            proto = defaultProtocol
+            ptcl = AMMDefault.ptcl
         }
         let host = aDecoder.decodeObject(forKey: "host") as! String
         let port = Int(aDecoder.decodeInt64(forKey: "port"))
         let path = aDecoder.decodeObject(forKey: "path") as! String
         let secret = aDecoder.decodeObject(forKey: "secret") as! String
-        self.init(protocol: proto, host: host, port: port, path: path, secret: secret)
+        self.init(ptcl: ptcl, host: host, port: port, path: path, secret: secret)
     }
     
     func encode(with aCoder: NSCoder) {
-        aCoder.encode(proto.rawValue, forKey: "protocol")
+        aCoder.encode(ptcl.rawValue, forKey: "protocol")
         aCoder.encode(host, forKey: "host")
         aCoder.encode(port, forKey: "port")
         aCoder.encode(path, forKey: "path")
@@ -137,7 +133,7 @@ class Aria2: NSObject, NSCopying, NSCoding {
     }
     
     func copy(with zone: NSZone? = nil) -> Any {
-        return Aria2(protocol: proto, host: host, port: port, path: path, secret: secret) as Any
+        return Aria2(ptcl: ptcl, host: host, port: port, path: path, secret: secret) as Any
     }
     
     // Call method via rpc and register callback

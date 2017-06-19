@@ -26,11 +26,8 @@ class AMMPreferencesTests: XCTestCase {
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
         let servers: [ServerProfile] = [
-            ServerProfile(uuid: NSUUID().uuidString, protocol: defaultProtocol, host: "host1", port: 1111, path: "/jsonrpc", secret: "a", remark: "test", globalStatRefreshInterval: 1, taskStatRefreshInterval: 1, activeTaskMaxNum: 1, waitingTaskMaxNum: 1, stoppedTaskMaxNum: 1,
-                          notiOnTaskStartEnabled: false, notiOnTaskPauseEnabled: false, notiOnTaskCompleteEnabled: false
-                          )!,
-            ServerProfile(uuid: NSUUID().uuidString, protocol: defaultProtocol, host: "host2", port: 1111, path: "/jsonrpc", secret: "a", remark: "test", globalStatRefreshInterval: 1, taskStatRefreshInterval: 1, activeTaskMaxNum: 1, waitingTaskMaxNum: 1, stoppedTaskMaxNum: 1,
-                  notiOnTaskStartEnabled: false, notiOnTaskPauseEnabled: false, notiOnTaskCompleteEnabled: false)!
+            ServerProfile(uuid: NSUUID().uuidString, aria2: Aria2(ptcl: .ws, host: "host1", port: 1111, path: "/jsonrpc")!, remark: "test1", globalStatRefreshInterval: 1, taskStatRefreshInterval: 1, activeTaskTotal: 5, waitingTaskTotal: 5, stoppedTaskTotal: 5, taskStartNotiEnabled: false, taskPauseNotiEnabled: false, taskCompleteNotiEnabled: false)!,
+            ServerProfile(uuid: NSUUID().uuidString, aria2: Aria2(ptcl: .ws, host: "host2", port: 1111, path: "/jsonrpc")!, remark: "test2", globalStatRefreshInterval: 1, taskStatRefreshInterval: 1, activeTaskTotal: 5, waitingTaskTotal: 5, stoppedTaskTotal: 5, taskStartNotiEnabled: false, taskPauseNotiEnabled: false, taskCompleteNotiEnabled: false)!
         ]
         preferences.reset()
         assert(preferences.servers.count == 0)
@@ -38,8 +35,8 @@ class AMMPreferencesTests: XCTestCase {
         preferences.save()
         preferences.load()
         assert(preferences.servers.count == 2)
-        assert(preferences.servers[0].aria2?.host == "host1" &&
-            preferences.servers[1].aria2?.host == "host2"
+        assert(preferences.servers[0].aria2.host == "host1" &&
+            preferences.servers[1].aria2.host == "host2"
         )
     }
 
