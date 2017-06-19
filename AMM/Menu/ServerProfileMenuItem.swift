@@ -35,7 +35,7 @@ class ServerProfileMenuItem: NSMenuItem, Aria2NotificationDelegate {
         if pref.controlModeEnabled {
             let controlMenuItem = NSMenuItem(title: "Control", action: nil, keyEquivalent: "")
             controlMenuItem.submenu = NSMenu(title: "Control")
-            controlMenuItem.submenu?.addItem(ActionMenuItem(title: "Add urls from clipboard(Each url on a seperate line)", action: #selector(ServerProfileMenuItem.addUriFromClipboard), keyEquivalent: "", target: self))
+            controlMenuItem.submenu?.addItem(ActionMenuItem(title: "Add URLs from Clipboard (Each URL on a seperate line)", action: #selector(ServerProfileMenuItem.addUriFromClipboard), keyEquivalent: "", target: self))
             submenu?.addItem(controlMenuItem)
         }
         

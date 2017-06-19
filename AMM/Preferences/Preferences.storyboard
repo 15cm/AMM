@@ -800,7 +800,7 @@
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="14" id="Lbo-br-Evp"/>
                                                         </constraints>
-                                                        <buttonCell key="cell" type="check" title="Nofity when tasks started" bezelStyle="regularSquare" imagePosition="left" inset="2" id="8Gh-0w-DQq">
+                                                        <buttonCell key="cell" type="check" title="Notify when tasks are started" bezelStyle="regularSquare" imagePosition="left" inset="2" id="8Gh-0w-DQq">
                                                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                             <font key="font" metaFont="system"/>
                                                         </buttonCell>
@@ -813,7 +813,7 @@
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="14" id="8QN-vj-mEM"/>
                                                         </constraints>
-                                                        <buttonCell key="cell" type="check" title="Nofity when tasks paused" bezelStyle="regularSquare" imagePosition="left" inset="2" id="8O7-pb-6rM">
+                                                        <buttonCell key="cell" type="check" title="Notify when tasks are paused" bezelStyle="regularSquare" imagePosition="left" inset="2" id="8O7-pb-6rM">
                                                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                             <font key="font" metaFont="system"/>
                                                         </buttonCell>
@@ -826,7 +826,7 @@
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="14" id="adK-Po-cBs"/>
                                                         </constraints>
-                                                        <buttonCell key="cell" type="check" title="Nofity when tasks completed" bezelStyle="regularSquare" imagePosition="left" inset="2" id="0Yg-0y-XIv">
+                                                        <buttonCell key="cell" type="check" title="Notify when tasks are completed" bezelStyle="regularSquare" imagePosition="left" inset="2" id="0Yg-0y-XIv">
                                                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                             <font key="font" metaFont="system"/>
                                                         </buttonCell>
