@@ -78,30 +78,35 @@ class ServerProfileMenuItem: NSMenuItem, Aria2NotificationDelegate {
         timer = DispatchSource.makeTimerSource(flags: .strict, queue: queue)
         timer?.scheduleRepeating(deadline: .now(), interval: self.server.taskStatRefreshInterval)
         timer?.setEventHandler {
-            [unowned self] in
-            DispatchQueue.main.async {
-                if self.server.aria2?.status == .connected {
-                    func updateTasksMenuItems(menuItem: ServerProfileMenuItem, tasks: [Aria2Task], startIndexInMenu: Int, maxNum: Int) {
-                        for i in 0 ..< maxNum {
-                            let indexInMenu = i + startIndexInMenu
-                            if i >= tasks.count {
-                                (menuItem.submenu?.item(at: indexInMenu) as! TaskMenuItem).isDisplayed = false
-                            } else {
-                                (menuItem.submenu?.item(at: indexInMenu) as! TaskMenuItem).updateView(withTask: tasks[i])
+            [weak self] in
+            if let strongSelf = self {
+                DispatchQueue.main.async {
+                    if strongSelf.server.aria2.status == .connected {
+                        func updateTasksMenuItems(menuItem: ServerProfileMenuItem, tasks: [Aria2Task], startIndexInMenu: Int, maxNum: Int) {
+                            for i in 0 ..< maxNum {
+                                let indexInMenu = i + startIndexInMenu
+                                if i >= tasks.count {
+                                    (menuItem.submenu?.item(at: indexInMenu) as! TaskMenuItem).isDisplayed = false
+                                } else {
+                                    (menuItem.submenu?.item(at: indexInMenu) as! TaskMenuItem).updateView(withTask: tasks[i])
+                                }
                             }
                         }
+                        let startIndexOfWaiting = strongSelf.startIndexOfActive + strongSelf.server.activeTaskTotal + 1
+                        let startIndexOfStopped = startIndexOfWaiting + strongSelf.server.waitingTaskTotal + 1
+                        strongSelf.server.tellActive(callback: {
+                            tasks in
+                            updateTasksMenuItems(menuItem: strongSelf, tasks: tasks, startIndexInMenu: strongSelf.startIndexOfActive, maxNum: strongSelf.server.activeTaskTotal)
+                        })
+                        strongSelf.server.tellWaiting(callback: {
+                            tasks in
+                            updateTasksMenuItems(menuItem: strongSelf, tasks: tasks, startIndexInMenu: startIndexOfWaiting, maxNum: strongSelf.server.waitingTaskTotal)
+                        })
+                        strongSelf.server.tellStopped(callback: {
+                            tasks in
+                            updateTasksMenuItems(menuItem: strongSelf, tasks: tasks, startIndexInMenu: startIndexOfStopped, maxNum: strongSelf.server.stoppedTaskTotal)
+                        })
                     }
-                    let startIndexOfWaiting = self.startIndexOfActive + self.server.activeTaskMaxNum + 1
-                    let startIndexOfStopped = startIndexOfWaiting + self.server.waitingTaskMaxNum + 1
-                    self.server.tellActive(callback: {[unowned self] tasks in
-                        updateTasksMenuItems(menuItem: self, tasks: tasks, startIndexInMenu: self.startIndexOfActive, maxNum: self.server.activeTaskMaxNum)
-                    })
-                    self.server.tellWaiting(callback: {[unowned self] tasks in
-                        updateTasksMenuItems(menuItem: self, tasks: tasks, startIndexInMenu: startIndexOfWaiting, maxNum: self.server.waitingTaskMaxNum)
-                    })
-                    self.server.tellStopped(callback: {[unowned self] tasks in
-                        updateTasksMenuItems(menuItem: self, tasks: tasks, startIndexInMenu: startIndexOfStopped, maxNum: self.server.stoppedTaskMaxNum)
-                    })
                 }
             }
         }
