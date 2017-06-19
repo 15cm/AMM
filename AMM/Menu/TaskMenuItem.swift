@@ -11,7 +11,6 @@ import Cocoa
 class TaskMenuItem: NSMenuItem {
     var viewController: TaskMenuItemViewController? = nil
     var task: Aria2Task = Aria2Task()
-    var server: ServerProfile?
     var isDisplayed: Bool = false{
         didSet {
             if isDisplayed {
@@ -32,31 +31,10 @@ class TaskMenuItem: NSMenuItem {
         self.view = nil
     }
     
-    convenience init(server: ServerProfile) {
-        self.init()
-        self.server = server
-    }
-    
     func updateView(withTask task: Aria2Task) {
         task.replace(fromTask: task)
         viewController?.task.replace(fromTask: task)
         isDisplayed = true
-    }
-    
-    func pauseTask() {
-        server?.pause(gid: task.gid)
-    }
-    
-    func unpauseTask() {
-        server?.unpause(gid: task.gid)
-    }
-    
-    func stopTask() {
-        server?.stop(gid: task.gid)
-    }
-    
-    func removeTask() {
-        server?.remove(gid: task.gid)
     }
     
     required init(coder decoder: NSCoder) {
