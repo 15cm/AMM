@@ -45,7 +45,7 @@ class ServerProfileMenuItem: NSMenuItem, Aria2NotificationDelegate {
             if(pref.controlModeEnabled) {
                 submenu?.addItem(ActiveTaskMenuItem(server: server))
             } else {
-                submenu?.addItem(TaskMenuItem(server: server))
+                submenu?.addItem(TaskMenuItem())
             }
         }
         submenu?.addItem(TaskMenuItemSeperator(name: "Waiting"))
@@ -53,7 +53,7 @@ class ServerProfileMenuItem: NSMenuItem, Aria2NotificationDelegate {
             if(pref.controlModeEnabled) {
                 submenu?.addItem(WaitingTaskMenuItem(server: server))
             } else {
-                submenu?.addItem(TaskMenuItem(server: server))
+                submenu?.addItem(TaskMenuItem())
             }
         }
         submenu?.addItem(TaskMenuItemSeperator(name: "Stopped"))
@@ -61,7 +61,7 @@ class ServerProfileMenuItem: NSMenuItem, Aria2NotificationDelegate {
             if(pref.controlModeEnabled) {
                 submenu?.addItem(StoppedTaskMenuItem(server: server))
             } else {
-                submenu?.addItem(TaskMenuItem(server: server))
+                submenu?.addItem(TaskMenuItem())
             }
         }
         

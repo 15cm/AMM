@@ -25,11 +25,11 @@ class Aria2Task: NSObject{
     var files: [Aria2File] = []
     
     struct Aria2File {
-        var title: String
+        var path: String
         var size: Int
         
-        init(title: String, size: Int) {
-            self.title = title
+        init(path: String, size: Int) {
+            self.path = path
             self.size = size
         }
     }
@@ -54,7 +54,7 @@ class Aria2Task: NSObject{
         totalLength = Int(json["totalLength"].stringValue) ?? 0
         completedLength = Int(json["completedLength"].stringValue) ?? 0
         for (_, fileJSON) in json["files"] {
-            files.append(Aria2File(title: fileJSON["path"].stringValue, size: Int(fileJSON["length"].stringValue) ?? 0))
+            files.append(Aria2File(path: fileJSON["path"].stringValue, size: Int(fileJSON["length"].stringValue) ?? 0))
         }
     }
     
