@@ -1,10 +1,10 @@
 language: objective-c
-osx_image: xcode8.2
+osx_image: xcode8.3
 branches:
-  only:
-  - master
+  except:
+    - /^dev-(.*)$/
 before_install:
-  - brew update && brew upgrade carthage
+  - brew update && (brew upgrade carthage || true)
 install:
   - carthage update --platform mac --no-use-binaries
 script:
