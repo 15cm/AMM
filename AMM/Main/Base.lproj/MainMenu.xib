@@ -19,9 +19,9 @@
         <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
         <menu id="39T-G0-PGJ">
             <items>
-                <menuItem title="Preference" keyEquivalent="," id="EAI-Oc-mp5">
+                <menuItem title="Preferences" keyEquivalent="," id="EAI-Oc-mp5">
                     <connections>
-                        <action selector="preferenceClicked:" target="Voe-Tx-rLC" id="OY9-su-GBL"/>
+                        <action selector="preferencesClicked:" target="Voe-Tx-rLC" id="OY9-su-GBL"/>
                     </connections>
                 </menuItem>
                 <menuItem isSeparatorItem="YES" id="3vb-16-DSS"/>

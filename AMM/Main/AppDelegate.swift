@@ -22,7 +22,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, AMMPreferencesDelegate {
         NSApplication.shared().terminate(self)
     }
     
-    @IBAction func preferenceClicked(_ sender: NSMenuItem) {
+    @IBAction func preferencesClicked(_ sender: NSMenuItem) {
         let storyboard = NSStoryboard(name: "Preferences", bundle: nil)
         if let ctrl = storyboard.instantiateInitialController() {
             preferencesWindowController = ctrl as! PreferencesWindowController
