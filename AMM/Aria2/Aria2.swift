@@ -176,22 +176,22 @@ class Aria2: NSObject, NSCopying, NSCoding {
     
     // get active tasks
     func tellActive(callback cb: @escaping ([Aria2Task]) -> Void) {
-        call(withParams: nil, callback: Aria2RpcCallback(forMethod: .tellActive, callback: cb))
+        call(withParams: [AMMDefault.aria2TaskSpecificKeys], callback: Aria2RpcCallback(forMethod: .tellActive, callback: cb))
     }
     
     // get waiting tasks
     func tellWaiting(offset: Int?, num: Int, callback cb: @escaping ([Aria2Task]) -> Void) {
-        call(withParams: [offset ?? -1, num], callback: Aria2RpcCallback(forMethod: .tellWaiting, callback: cb))
+        call(withParams: [offset ?? -1, num, AMMDefault.aria2TaskSpecificKeys], callback: Aria2RpcCallback(forMethod: .tellWaiting, callback: cb))
     }
     
     // get stopped tasks
     func tellStopped(offset: Int?, num: Int, callback cb: @escaping ([Aria2Task]) -> Void) {
-        call(withParams: [offset ?? -1, num], callback: Aria2RpcCallback(forMethod: .tellStopped, callback: cb))
+        call(withParams: [offset ?? -1, num, AMMDefault.aria2TaskSpecificKeys], callback: Aria2RpcCallback(forMethod: .tellStopped, callback: cb))
     }
     
     // get a task specified by gid
     func tellStatus(gid: String, callback cb: @escaping(Aria2Task) -> Void) {
-        call(withParams: [gid], callback: Aria2RpcCallback(forMethod: .tellStatus, callback: cb))
+        call(withParams: [gid, AMMDefault.aria2TaskSpecificKeys], callback: Aria2RpcCallback(forMethod: .tellStatus, callback: cb))
     }
     
     // Create download tasks by urls
