@@ -28,7 +28,7 @@ class ServersViewController: NSViewController, NSTableViewDataSource {
         didSet {
             protocolPopUpBtn.addItems(withTitles: Aria2Protocols.allValues.map({$0.rawValue}))
             if !preferences.servers.isEmpty {
-                let protocolOfSelection = (arrayController.selection as AnyObject).value(forKey: "protocolRawValue") as! String?
+                let protocolOfSelection = (arrayController.selection as AnyObject).value(forKey: "ptclRawValue") as! String?
                 protocolPopUpBtn.selectItem(withTitle: protocolOfSelection!)
             }
         }
