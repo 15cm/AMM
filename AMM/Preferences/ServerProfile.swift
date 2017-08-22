@@ -117,27 +117,27 @@ class ServerProfile: NSObject, NSCopying, NSCoding {
         }
     }
     
-    func getGlobalStat(callback cb: @escaping (Aria2Stat) -> Void) {
+    func getGlobalStat(callback cb: ((Aria2Stat) -> Void)?) {
         aria2.getGlobalStat(callback: cb)
     }
     
-    func tellActive(callback cb: @escaping ([Aria2Task]) -> Void) {
+    func tellActive(callback cb: (([Aria2Task]) -> Void)?) {
         aria2.tellActive(callback: cb)
     }
     
-    func tellWaiting(callback cb: @escaping ([Aria2Task]) -> Void) {
+    func tellWaiting(callback cb: (([Aria2Task]) -> Void)?) {
         aria2.tellWaiting(offset: -1, num: self.waitingTaskTotal, callback: cb)
     }
     
-    func tellStopped(callback cb: @escaping ([Aria2Task]) -> Void) {
+    func tellStopped(callback cb: (([Aria2Task]) -> Void)?) {
         aria2.tellStopped(offset: -1, num: self.stoppedTaskTotal, callback: cb)
     }
     
-    func tellStatus(gid: String, callback cb: @escaping (Aria2Task) -> Void) {
+    func tellStatus(gid: String, callback cb: ((Aria2Task) -> Void)?) {
         aria2.tellStatus(gid: gid, callback: cb)
     }
     
-    func addUri(url: [String]?, callback cb: @escaping (JSON) -> Void) {
+    func addUri(url: [String]?, callback cb: ((JSON) -> Void)?) {
         if let url = url {
             aria2.addUri(url: url, callback: cb)
         }
