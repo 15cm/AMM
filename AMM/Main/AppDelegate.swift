@@ -23,23 +23,29 @@ class AppDelegate: NSObject, NSApplicationDelegate, AMMPreferencesDelegate {
     // https://stackoverflow.com/questions/49510/how-do-you-set-your-cocoa-application-as-the-default-web-browser
     func handleUrl(_ event: NSAppleEventDescriptor, with replyEvent: NSAppleEventDescriptor) {
         if let url = event.paramDescriptor(forKeyword: keyDirectObject)?.stringValue {
-            selectServerWinCtrl = SelectServerWindowController(urlToHandle: url, servers)
-            selectServerWinCtrl.onServerSelected = { server in
-                print(url)
-                server?.addUri(url: [url], callback: {res in
+            let addUriToServer = { (server: ServerProfile?) in
+                server?.addUri(url: [url], callback: { res in
                     if let errorMsg = res["error"]["message"].string {
                         showNotification(server?.remark, "Error: \(errorMsg)")
                     }
                 })
             }
-            selectServerWinCtrl.window?.center()
-            selectServerWinCtrl.window?.makeKeyAndOrderFront(self)
+            if let server = selectedServer {
+                addUriToServer(server)
+            } else {
+                selectServerWinCtrl = SelectServerWindowController(urlToHandle: url, servers)
+                selectServerWinCtrl.onServerSelected = { server in
+                    addUriToServer(server)
+                }
+                selectServerWinCtrl.window?.center()
+                selectServerWinCtrl.window?.makeKeyAndOrderFront(self)
+            }
         } else {
             showAlert("Error", "Failed to open with unrecognized URL.")
         }
     }
     
-    @IBAction func quickClicked(_ sender: NSMenuItem) {
+    @IBAction func quitClicked(_ sender: NSMenuItem) {
         NSApplication.shared().terminate(self)
     }
     
@@ -88,6 +94,13 @@ class AppDelegate: NSObject, NSApplicationDelegate, AMMPreferencesDelegate {
     
     func onServerProfilesUpdate(withServerProfiles servers: [ServerProfile]) {
         updateMenuItems(withServerProfiles: servers)
+        selectedServer = nil
+        for server in servers {
+            if(server.isDefaultServer) {
+                selectedServer = server
+                break
+            }
+        }
     }
 }
 

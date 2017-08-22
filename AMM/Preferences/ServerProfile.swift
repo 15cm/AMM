@@ -27,6 +27,7 @@ class ServerProfile: NSObject, NSCopying, NSCoding {
     var taskStartNotiEnabled: Bool
     var taskPauseNotiEnabled: Bool
     var taskCompleteNotiEnabled: Bool
+    dynamic var isDefaultServer: Bool
     var timer: DispatchSourceTimer?
     
     init?(uuid: String, aria2: Aria2?,
@@ -34,7 +35,7 @@ class ServerProfile: NSObject, NSCopying, NSCoding {
          taskStatRefreshInterval tsri: Double, activeTaskTotal atTotal: Int,
          waitingTaskTotal wtTotal: Int, stoppedTaskTotal stTotal: Int,
          taskStartNotiEnabled startNotiEnabled: Bool, taskPauseNotiEnabled pauseNotiEnabled: Bool,
-         taskCompleteNotiEnabled completeNotiEnabled: Bool
+         taskCompleteNotiEnabled completeNotiEnabled: Bool, isDefaultServer isDefault: Bool
         ) {
         guard let aria2 = aria2 else {
             return nil
@@ -51,21 +52,23 @@ class ServerProfile: NSObject, NSCopying, NSCoding {
         self.taskStartNotiEnabled = startNotiEnabled
         self.taskPauseNotiEnabled = pauseNotiEnabled
         self.taskCompleteNotiEnabled = completeNotiEnabled
+        self.isDefaultServer = isDefault
     }
     
     required init?(coder aDecoder: NSCoder) {
-        uuid = aDecoder.decodeObject(forKey: "id") as! String
-        aria2 = (aDecoder.decodeObject(forKey: "aria2") as? Aria2)!
-        ptclRawValue = aria2.ptcl.rawValue
-        remark = aDecoder.decodeObject(forKey: "remark") as! String
-        globalStatRefreshInterval = aDecoder.decodeDouble(forKey: "globalStatRefreshInterval")
-        taskStatRefreshInterval = Double(aDecoder.decodeDouble(forKey: "taskStatRefreshInterval"))
-        activeTaskTotal = Int(aDecoder.decodeInt64(forKey: "activeTaskMaxNum"))
-        waitingTaskTotal = Int(aDecoder.decodeInt64(forKey: "waitingTaskMaxNum"))
-        stoppedTaskTotal = Int(aDecoder.decodeInt64(forKey: "stoppedTaskMaxNum"))
-        taskStartNotiEnabled = aDecoder.containsValue(forKey: "notiOnTaskStartEnabled") ? aDecoder.decodeBool(forKey: "notiOnTaskStartEnabled") : false
-        taskPauseNotiEnabled = aDecoder.containsValue(forKey: "notiOnTaskPauseEnabled") ? aDecoder.decodeBool(forKey: "notiOnTaskPauseEnabled") : false
-        taskCompleteNotiEnabled = aDecoder.containsValue(forKey: "notiOnTaskCompleteEnabled") ? aDecoder.decodeBool(forKey: "notiOnTaskCompleteEnabled") : false
+        self.uuid = aDecoder.decodeObject(forKey: "id") as! String
+        self.aria2 = (aDecoder.decodeObject(forKey: "aria2") as? Aria2)!
+        self.ptclRawValue = aria2.ptcl.rawValue
+        self.remark = aDecoder.decodeObject(forKey: "remark") as! String
+        self.globalStatRefreshInterval = aDecoder.decodeDouble(forKey: "globalStatRefreshInterval")
+        self.taskStatRefreshInterval = Double(aDecoder.decodeDouble(forKey: "taskStatRefreshInterval"))
+        self.activeTaskTotal = Int(aDecoder.decodeInt64(forKey: "activeTaskMaxNum"))
+        self.waitingTaskTotal = Int(aDecoder.decodeInt64(forKey: "waitingTaskMaxNum"))
+        self.stoppedTaskTotal = Int(aDecoder.decodeInt64(forKey: "stoppedTaskMaxNum"))
+        self.taskStartNotiEnabled = aDecoder.containsValue(forKey: "notiOnTaskStartEnabled") ? aDecoder.decodeBool(forKey: "notiOnTaskStartEnabled") : false
+        self.taskPauseNotiEnabled = aDecoder.containsValue(forKey: "notiOnTaskPauseEnabled") ? aDecoder.decodeBool(forKey: "notiOnTaskPauseEnabled") : false
+        self.taskCompleteNotiEnabled = aDecoder.containsValue(forKey: "notiOnTaskCompleteEnabled") ? aDecoder.decodeBool(forKey: "notiOnTaskCompleteEnabled") : false
+        self.isDefaultServer = aDecoder.containsValue(forKey: "isDefaultServer") ? aDecoder.decodeBool(forKey: "isDefaultServer") : false
     }
     
     func encode(with aCoder: NSCoder) {
@@ -80,21 +83,24 @@ class ServerProfile: NSObject, NSCopying, NSCoding {
         aCoder.encode(taskStartNotiEnabled, forKey: "notiOnTaskStartEnabled")
         aCoder.encode(taskPauseNotiEnabled, forKey: "notiOnTaskPauseEnabled")
         aCoder.encode(taskCompleteNotiEnabled, forKey: "notiOnTaskCompleteEnabled")
+        aCoder.encode(isDefaultServer, forKey: "isDefaultServer")
     }
     
     convenience override init() {
-        self.init(uuid: NSUUID().uuidString, aria2: Aria2(ptcl: AMMDefault.ptcl, host: AMMDefault.host, port: AMMDefault.port, path: AMMDefault.path),
+        self.init(uuid: NSUUID().uuidString,
+                  aria2: Aria2(ptcl: AMMDefault.ptcl, host: AMMDefault.host, port: AMMDefault.port, path: AMMDefault.path),
                   remark: AMMDefault.remark, globalStatRefreshInterval: AMMDefault.globalStatRefreshInterval,
                   taskStatRefreshInterval: AMMDefault.taskStatRefreshInterval, activeTaskTotal: AMMDefault.activeTaskTotal,
                   waitingTaskTotal: AMMDefault.waitingTaskTotal, stoppedTaskTotal: AMMDefault.stoppedTaskTotal,
-                  taskStartNotiEnabled: false, taskPauseNotiEnabled: false, taskCompleteNotiEnabled: false)!
+                  taskStartNotiEnabled: false, taskPauseNotiEnabled: false, taskCompleteNotiEnabled: false, isDefaultServer: false)!
     }
     
     func copy(with zone: NSZone? = nil) -> Any {
         return ServerProfile(uuid: uuid, aria2: aria2.copy() as? Aria2, remark: remark,
                              globalStatRefreshInterval: globalStatRefreshInterval, taskStatRefreshInterval: taskStatRefreshInterval,
                              activeTaskTotal: activeTaskTotal, waitingTaskTotal: waitingTaskTotal, stoppedTaskTotal: stoppedTaskTotal,
-                             taskStartNotiEnabled: taskStartNotiEnabled, taskPauseNotiEnabled: taskPauseNotiEnabled, taskCompleteNotiEnabled: taskCompleteNotiEnabled) as Any
+                             taskStartNotiEnabled: taskStartNotiEnabled, taskPauseNotiEnabled: taskPauseNotiEnabled,
+                             taskCompleteNotiEnabled: taskCompleteNotiEnabled, isDefaultServer: isDefaultServer) as Any
     }
     
     func runTimer() {
