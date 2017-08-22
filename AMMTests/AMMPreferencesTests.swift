@@ -26,8 +26,8 @@ class AMMPreferencesTests: XCTestCase {
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
         let servers: [ServerProfile] = [
-            ServerProfile(uuid: NSUUID().uuidString, aria2: Aria2(ptcl: .ws, host: "host1", port: 1111, path: "/jsonrpc")!, remark: "test1", globalStatRefreshInterval: 1, taskStatRefreshInterval: 1, activeTaskTotal: 5, waitingTaskTotal: 5, stoppedTaskTotal: 5, taskStartNotiEnabled: false, taskPauseNotiEnabled: false, taskCompleteNotiEnabled: false)!,
-            ServerProfile(uuid: NSUUID().uuidString, aria2: Aria2(ptcl: .ws, host: "host2", port: 1111, path: "/jsonrpc")!, remark: "test2", globalStatRefreshInterval: 1, taskStatRefreshInterval: 1, activeTaskTotal: 5, waitingTaskTotal: 5, stoppedTaskTotal: 5, taskStartNotiEnabled: false, taskPauseNotiEnabled: false, taskCompleteNotiEnabled: false)!
+            ServerProfile(uuid: NSUUID().uuidString, aria2: Aria2(ptcl: .ws, host: "host1", port: 1111, path: "/jsonrpc")!, remark: "test1", globalStatRefreshInterval: 1, taskStatRefreshInterval: 1, activeTaskTotal: 5, waitingTaskTotal: 5, stoppedTaskTotal: 5, taskStartNotiEnabled: false, taskPauseNotiEnabled: false, taskCompleteNotiEnabled: false, isDefaultServer: false)!,
+            ServerProfile(uuid: NSUUID().uuidString, aria2: Aria2(ptcl: .ws, host: "host2", port: 1111, path: "/jsonrpc")!, remark: "test2", globalStatRefreshInterval: 1, taskStatRefreshInterval: 1, activeTaskTotal: 5, waitingTaskTotal: 5, stoppedTaskTotal: 5, taskStartNotiEnabled: false, taskPauseNotiEnabled: false, taskCompleteNotiEnabled: false, isDefaultServer: false)!
         ]
         preferences.reset()
         assert(preferences.servers.count == 0)
