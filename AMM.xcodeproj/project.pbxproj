@@ -12,7 +12,6 @@
 		2E02C97E1E4392C100A6272D /* AMMConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E02C97D1E4392C100A6272D /* AMMConstants.swift */; };
 		2E03C1751E3EE3B100E8BE9E /* TaskMenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E03C1741E3EE3B100E8BE9E /* TaskMenuItem.swift */; };
 		2E03C17B1E40870500E8BE9E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2E03C17A1E40870500E8BE9E /* Assets.xcassets */; };
-		2E045E501E3CB39B0079EE52 /* Aria2Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E045E4F1E3CB39B0079EE52 /* Aria2Tests.swift */; };
 		2E1195891F4BD34800A7AB81 /* SelectServerWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E1195871F4BD34800A7AB81 /* SelectServerWindowController.swift */; };
 		2E11958A1F4BD34800A7AB81 /* SelectServerWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2E1195881F4BD34800A7AB81 /* SelectServerWindowController.xib */; };
 		2E11958C1F4C7B7800A7AB81 /* UIHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E11958B1F4C7B7800A7AB81 /* UIHelper.swift */; };
@@ -34,7 +33,6 @@
 		2E468AAC1E39B123009C6CA3 /* Aria2Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E468AAB1E39B123009C6CA3 /* Aria2Task.swift */; };
 		2E468AAE1E39BA45009C6CA3 /* Aria2Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E468AAD1E39BA45009C6CA3 /* Aria2Constants.swift */; };
 		2E5DC59C1E69879600184E0B /* ResizableTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E5DC59B1E69879600184E0B /* ResizableTabViewController.swift */; };
-		2E644A551E41B24D00C6347C /* ServerProfileTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E644A541E41B24D00C6347C /* ServerProfileTests.swift */; };
 		2E644A611E422B1D00C6347C /* ServerProfileArrayController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E644A601E422B1D00C6347C /* ServerProfileArrayController.swift */; };
 		2E644A641E42CDD700C6347C /* ServerProfileMenuItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E644A621E42CDD700C6347C /* ServerProfileMenuItemViewController.swift */; };
 		2E644A671E42DE4200C6347C /* Aria2Stat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E644A661E42DE4200C6347C /* Aria2Stat.swift */; };
@@ -86,7 +84,6 @@
 		2E02C97D1E4392C100A6272D /* AMMConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AMMConstants.swift; sourceTree = "<group>"; };
 		2E03C1741E3EE3B100E8BE9E /* TaskMenuItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskMenuItem.swift; sourceTree = "<group>"; };
 		2E03C17A1E40870500E8BE9E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		2E045E4F1E3CB39B0079EE52 /* Aria2Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Aria2Tests.swift; sourceTree = "<group>"; };
 		2E1195871F4BD34800A7AB81 /* SelectServerWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectServerWindowController.swift; sourceTree = "<group>"; };
 		2E1195881F4BD34800A7AB81 /* SelectServerWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SelectServerWindowController.xib; sourceTree = "<group>"; };
 		2E11958B1F4C7B7800A7AB81 /* UIHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIHelper.swift; sourceTree = "<group>"; };
@@ -110,7 +107,6 @@
 		2E468AAB1E39B123009C6CA3 /* Aria2Task.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Aria2Task.swift; sourceTree = "<group>"; };
 		2E468AAD1E39BA45009C6CA3 /* Aria2Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Aria2Constants.swift; sourceTree = "<group>"; };
 		2E5DC59B1E69879600184E0B /* ResizableTabViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResizableTabViewController.swift; sourceTree = "<group>"; };
-		2E644A541E41B24D00C6347C /* ServerProfileTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerProfileTests.swift; sourceTree = "<group>"; };
 		2E644A601E422B1D00C6347C /* ServerProfileArrayController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerProfileArrayController.swift; sourceTree = "<group>"; };
 		2E644A621E42CDD700C6347C /* ServerProfileMenuItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerProfileMenuItemViewController.swift; sourceTree = "<group>"; };
 		2E644A661E42DE4200C6347C /* Aria2Stat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Aria2Stat.swift; sourceTree = "<group>"; };
@@ -247,9 +243,7 @@
 			isa = PBXGroup;
 			children = (
 				2E9E31D51E59BAB200316B9E /* AMMPreferencesTests.swift */,
-				2E045E4F1E3CB39B0079EE52 /* Aria2Tests.swift */,
 				2E468A6E1E398482009C6CA3 /* Info.plist */,
-				2E644A541E41B24D00C6347C /* ServerProfileTests.swift */,
 			);
 			path = AMMTests;
 			sourceTree = "<group>";
@@ -420,8 +414,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				2E9E31D61E59BAB200316B9E /* AMMPreferencesTests.swift in Sources */,
-				2E045E501E3CB39B0079EE52 /* Aria2Tests.swift in Sources */,
-				2E644A551E41B24D00C6347C /* ServerProfileTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
