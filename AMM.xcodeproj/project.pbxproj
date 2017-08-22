@@ -13,6 +13,9 @@
 		2E03C1751E3EE3B100E8BE9E /* TaskMenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E03C1741E3EE3B100E8BE9E /* TaskMenuItem.swift */; };
 		2E03C17B1E40870500E8BE9E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2E03C17A1E40870500E8BE9E /* Assets.xcassets */; };
 		2E045E501E3CB39B0079EE52 /* Aria2Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E045E4F1E3CB39B0079EE52 /* Aria2Tests.swift */; };
+		2E1195891F4BD34800A7AB81 /* SelectServerWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E1195871F4BD34800A7AB81 /* SelectServerWindowController.swift */; };
+		2E11958A1F4BD34800A7AB81 /* SelectServerWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2E1195881F4BD34800A7AB81 /* SelectServerWindowController.xib */; };
+		2E11958C1F4C7B7800A7AB81 /* UIHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E11958B1F4C7B7800A7AB81 /* UIHelper.swift */; };
 		2E1A64341E4447C60053F972 /* Source.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 2E1A64331E4447C60053F972 /* Source.rtf */; };
 		2E1A643F1E4455380053F972 /* ServerProfileMenuItemViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2E1A64411E4455380053F972 /* ServerProfileMenuItemViewController.xib */; };
 		2E1A64451E44553F0053F972 /* TaskMenuItemSeperatorViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2E1A64471E44553F0053F972 /* TaskMenuItemSeperatorViewController.xib */; };
@@ -84,6 +87,9 @@
 		2E03C1741E3EE3B100E8BE9E /* TaskMenuItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskMenuItem.swift; sourceTree = "<group>"; };
 		2E03C17A1E40870500E8BE9E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2E045E4F1E3CB39B0079EE52 /* Aria2Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Aria2Tests.swift; sourceTree = "<group>"; };
+		2E1195871F4BD34800A7AB81 /* SelectServerWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectServerWindowController.swift; sourceTree = "<group>"; };
+		2E1195881F4BD34800A7AB81 /* SelectServerWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SelectServerWindowController.xib; sourceTree = "<group>"; };
+		2E11958B1F4C7B7800A7AB81 /* UIHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIHelper.swift; sourceTree = "<group>"; };
 		2E1A64331E4447C60053F972 /* Source.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = Source.rtf; sourceTree = "<group>"; };
 		2E1A64401E4455380053F972 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/ServerProfileMenuItemViewController.xib; sourceTree = "<group>"; };
 		2E1A64461E44553F0053F972 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/TaskMenuItemSeperatorViewController.xib; sourceTree = "<group>"; };
@@ -150,6 +156,9 @@
 				2E468A5C1E398482009C6CA3 /* AppDelegate.swift */,
 				2E02C97D1E4392C100A6272D /* AMMConstants.swift */,
 				2E468A601E398482009C6CA3 /* MainMenu.xib */,
+				2E1195871F4BD34800A7AB81 /* SelectServerWindowController.swift */,
+				2E1195881F4BD34800A7AB81 /* SelectServerWindowController.xib */,
+				2E11958B1F4C7B7800A7AB81 /* UIHelper.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -357,6 +366,7 @@
 				2E1A64341E4447C60053F972 /* Source.rtf in Resources */,
 				2EB004DC1E59E16E004B0197 /* TaskMenuItemViewController.xib in Resources */,
 				2E468A621E398482009C6CA3 /* MainMenu.xib in Resources */,
+				2E11958A1F4BD34800A7AB81 /* SelectServerWindowController.xib in Resources */,
 				2E1A64451E44553F0053F972 /* TaskMenuItemSeperatorViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -379,6 +389,8 @@
 				2EA2D1511E4567430044F318 /* AMMTextField.swift in Sources */,
 				2E9E31D81E59C6DA00316B9E /* PreferencesWindowController.swift in Sources */,
 				2E02C97E1E4392C100A6272D /* AMMConstants.swift in Sources */,
+				2E1195891F4BD34800A7AB81 /* SelectServerWindowController.swift in Sources */,
+				2E11958C1F4C7B7800A7AB81 /* UIHelper.swift in Sources */,
 				2E42353C1E8906C700FCD5E3 /* ActionMenuItem.swift in Sources */,
 				2E468AAE1E39BA45009C6CA3 /* Aria2Constants.swift in Sources */,
 				2E468AA31E398B61009C6CA3 /* Aria2.swift in Sources */,

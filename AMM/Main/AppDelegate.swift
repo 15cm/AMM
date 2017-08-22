@@ -15,8 +15,29 @@ class AppDelegate: NSObject, NSApplicationDelegate, AMMPreferencesDelegate {
     var fixMenuItems: [NSMenuItem] = []
     var preferencesWindowController: PreferencesWindowController!
     var preferences = AMMPreferences.instance
+    var selectedServer: ServerProfile?
+    var selectServerWinCtrl: SelectServerWindowController!
 
     @IBOutlet weak var menu: NSMenu!
+    
+    // https://stackoverflow.com/questions/49510/how-do-you-set-your-cocoa-application-as-the-default-web-browser
+    func handleUrl(_ event: NSAppleEventDescriptor, with replyEvent: NSAppleEventDescriptor) {
+        if let url = event.paramDescriptor(forKeyword: keyDirectObject)?.stringValue {
+            selectServerWinCtrl = SelectServerWindowController(urlToHandle: url, servers)
+            selectServerWinCtrl.onServerSelected = { server in
+                print(url)
+                server?.addUri(url: [url], callback: {res in
+                    if let errorMsg = res["error"]["message"].string {
+                        showNotification(server?.remark, "Error: \(errorMsg)")
+                    }
+                })
+            }
+            selectServerWinCtrl.window?.center()
+            selectServerWinCtrl.window?.makeKeyAndOrderFront(self)
+        } else {
+            showAlert("Error", "Failed to open with unrecognized URL.")
+        }
+    }
     
     @IBAction func quickClicked(_ sender: NSMenuItem) {
         NSApplication.shared().terminate(self)
@@ -31,7 +52,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, AMMPreferencesDelegate {
             preferencesWindowController.window?.makeKeyAndOrderFront(self)
         }
     }
-
+    
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         // Insert code here to initialize your application
         let icon = NSImage(named: "menu-icon")
@@ -43,6 +64,10 @@ class AppDelegate: NSObject, NSApplicationDelegate, AMMPreferencesDelegate {
         }
         preferences.delegate = self
         updateMenuItems(withServerProfiles: preferences.copyServers())
+        
+        // Register event handler
+        let em = NSAppleEventManager.shared()
+        em.setEventHandler(self, andSelector: #selector(AppDelegate.handleUrl(_:with:)), forEventClass: AEEventClass(kInternetEventClass), andEventID: AEEventID(kAEGetURL))
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {
