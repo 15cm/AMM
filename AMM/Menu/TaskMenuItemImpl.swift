@@ -64,7 +64,7 @@ class TaskMenuItemImpl: TaskMenuItem {
             return
         }
         let taskFilePath = task.files[0].path
-        NSWorkspace.shared().activateFileViewerSelecting([URL(string: taskFilePath)!])
+        NSWorkspace.shared().activateFileViewerSelecting([URL(fileURLWithPath: taskFilePath)])
     }
 }
 
