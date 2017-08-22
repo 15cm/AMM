@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="12121"/>
     </dependencies>
@@ -27,7 +27,7 @@
                 <menuItem isSeparatorItem="YES" id="3vb-16-DSS"/>
                 <menuItem title="Quit" keyEquivalent="q" id="RuG-2j-vLq">
                     <connections>
-                        <action selector="quickClicked:" target="Voe-Tx-rLC" id="ObF-cq-EVe"/>
+                        <action selector="quitClicked:" target="Voe-Tx-rLC" id="EHZ-ji-dQe"/>
                     </connections>
                 </menuItem>
             </items>

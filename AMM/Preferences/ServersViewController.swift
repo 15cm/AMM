@@ -33,9 +33,13 @@ class ServersViewController: NSViewController, NSTableViewDataSource {
             }
         }
     }
+    @IBOutlet weak var setDefaultServerCheckBox: NSButton!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do view setup here.
+        setDefaultServerCheckBox.toolTip = "If you set this server as default, when opening associated items, AMM will send tasks to it directly instead of asking you to choose one"
     }
     
     // Drag & Drop to reorder rows
@@ -70,5 +74,17 @@ class ServersViewController: NSViewController, NSTableViewDataSource {
             return true
         }
         return false
+    }
+    
+    // Association Checkbox
+    @IBAction func setDefaultServercheckBoxClicked(_ sender: Any) {
+        let selectedServer = arrayController.selectedObjects[0] as! ServerProfile
+        if(selectedServer.isDefaultServer) {
+            for server in arrayController.arrangedObjects as! [ServerProfile] {
+                if server != selectedServer {
+                    server.isDefaultServer = false
+                }
+            }
+        }
     }
 }
