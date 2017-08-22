@@ -121,14 +121,9 @@ class ServerProfileMenuItem: NSMenuItem, Aria2NotificationDelegate {
     func onNotificationReceived(notificationType type: Aria2Notifications?, gids: [String]) {
         if let _type = type, notificationsShouldHandle.contains(_type) {
             for gid in gids {
-                let noti = NSUserNotification()
-                noti.title = server.remark
-                if _type == .onDownloadStart {
-                    server.tellStatus(gid: gid, callback: {task in
-                        noti.informativeText = "\(!task.title.isEmpty ? task.title : task.gid) \(_type.toString())."
-                        NSUserNotificationCenter.default.deliver(noti)
-                    })
-                }
+                server.tellStatus(gid: gid, callback: {[unowned self] task in
+                    showNotification(self.server.remark,  "\(!task.title.isEmpty ? task.title : task.gid) \(_type.toString()).")
+                })
             }
         }
     }
@@ -138,12 +133,10 @@ class ServerProfileMenuItem: NSMenuItem, Aria2NotificationDelegate {
         let urls = urlText?.components(separatedBy: "\n").filter({!$0.isEmpty}).map({$0.trimmingCharacters(in: [" "])})
         if let urls = urls {
             for url in urls {
-                server.addUri(url: [url], callback: {res in
+                print(url)
+                server.addUri(url: [url], callback: {[unowned self] res in
                     if let errorMsg = res["error"]["message"].string {
-                        let noti = NSUserNotification()
-                        noti.title = self.server.remark
-                        noti.informativeText = "Error: \(errorMsg)"
-                        NSUserNotificationCenter.default.deliver(noti)
+                        showNotification(self.server.remark, "Error: \(errorMsg)")
                     }
                 })
             }
