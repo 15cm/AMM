@@ -4,9 +4,11 @@ Aria2 Menubar Monitor,  在 macOS 菜单栏上监控 Aria2 的工具。
 # 功能
 - 通过 Aria2 RPC 接口获取 Aria2 状态，显示在 menubar 中（走 websocket）
 - 多服务器支持，可配置各个服务器状态和任务的刷新时间间隔
+- 拖曳调整服务器顺序
 - ws/wss(包括自签证书)支持
 - 暗色主题
 - 用于管理任务的控制模式
+- 关联磁力链接
 
 # 截图
 ## 亮色主题

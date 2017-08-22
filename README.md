@@ -5,10 +5,12 @@ Aria2 Menubar Monitor, a tool to help with monitoring Aria2 Status on the macOS 
 
 # Features
 - Fetch status of Aria2 server using Aria2 RPC (via websocket) and display it.
-- Multiple Aria2 server support. Refresh interval of global status and tasks can be configured for each server.
+- Multiple Aria2 servers support. Refresh interval of global status and tasks can be configured for each server.
+- Drag and Drop to reorder Aria2 servers.
 - ws/wss(self-signed certificate included) support
 - Dark Mode
 - Control Mode for task management
+- Associate with Magnet Link
 
 # Screenshots
 ## Light Mode
