@@ -17,7 +17,7 @@ class SelectServerWindowController: NSWindowController {
     @IBOutlet weak var urlToHandleLabel: NSTextField!
     
     convenience init() {
-        self.init(windowNibName: "SelectServerWindowController")
+        self.init(windowNibName: NSNib.Name(rawValue: "SelectServerWindowController"))
     }
     
     convenience init(urlToHandle url: String, _ servers: [ServerProfile]) {

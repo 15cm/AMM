@@ -10,18 +10,18 @@ import Foundation
 import SwiftyJSON
 
 class Aria2Task: NSObject{
-    dynamic var gid: String = ""
+    @objc dynamic var gid: String = ""
     var status: Aria2TaskStatus = .unknown {
         didSet {
             self.statusRawValue = self.status.rawValue
         }
     }
-    dynamic var statusRawValue: String = "unknown" // Workaround for enum KVO
-    dynamic var title: String = ""
-    dynamic var downloadSpeed: Int = 0
-    dynamic var uploadSpeed: Int = 0
-    dynamic var totalLength: Int = 0
-    dynamic var completedLength: Int = 0
+    @objc dynamic var statusRawValue: String = "unknown" // Workaround for enum KVO
+    @objc dynamic var title: String = ""
+    @objc dynamic var downloadSpeed: Int = 0
+    @objc dynamic var uploadSpeed: Int = 0
+    @objc dynamic var totalLength: Int = 0
+    @objc dynamic var completedLength: Int = 0
     var files: [Aria2File] = []
     
     struct Aria2File {
