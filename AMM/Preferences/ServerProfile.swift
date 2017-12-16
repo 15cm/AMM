@@ -27,7 +27,7 @@ class ServerProfile: NSObject, NSCopying, NSCoding {
     var taskStartNotiEnabled: Bool
     var taskPauseNotiEnabled: Bool
     var taskCompleteNotiEnabled: Bool
-    dynamic var isDefaultServer: Bool
+    @objc dynamic var isDefaultServer: Bool
     var timer: DispatchSourceTimer?
     
     init?(uuid: String, aria2: Aria2?,
@@ -114,7 +114,7 @@ class ServerProfile: NSObject, NSCopying, NSCoding {
                 }
             }
         }
-        timer?.scheduleRepeating(deadline: .now(), interval: AMMDefault.connectionCheckInterval)
+        timer?.schedule(deadline: .now(), repeating: AMMDefault.connectionCheckInterval)
         if #available(OSX 10.12, *) {
             timer?.activate()
         } else {

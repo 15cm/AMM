@@ -22,7 +22,7 @@ func confirmAlert(_ title: String, _ msg: String) -> Bool {
     alert.informativeText = msg
     alert.addButton(withTitle: "OK")
     alert.addButton(withTitle: "Cancel")
-    return alert.runModal() == NSAlertFirstButtonReturn
+    return alert.runModal() == NSApplication.ModalResponse.alertFirstButtonReturn
 }
 
 func showNotification(_ title: String?, _ msg: String?) {

@@ -43,9 +43,9 @@ class AMMTextField: NSTextField, AMMHighlightable {
     }
     
     override func performKeyEquivalent(with event: NSEvent) -> Bool {
-        let cmd = NSEventModifierFlags.command.rawValue
-        if event.type == NSEventType.keyDown {
-            switch (event.modifierFlags.rawValue & NSEventModifierFlags.deviceIndependentFlagsMask.rawValue)  {
+        let cmd = NSEvent.ModifierFlags.command.rawValue
+        if event.type == NSEvent.EventType.keyDown {
+            switch (event.modifierFlags.rawValue & NSEvent.ModifierFlags.deviceIndependentFlagsMask.rawValue)  {
             case cmd:
                 switch event.charactersIgnoringModifiers! {
                 case "a":
