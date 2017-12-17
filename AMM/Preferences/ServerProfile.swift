@@ -9,6 +9,7 @@
 import Foundation
 import SwiftyJSON
 
+@objcMembers
 class ServerProfile: NSObject, NSCopying, NSCoding {
     var uuid: String
     var aria2: Aria2
@@ -27,7 +28,7 @@ class ServerProfile: NSObject, NSCopying, NSCoding {
     var taskStartNotiEnabled: Bool
     var taskPauseNotiEnabled: Bool
     var taskCompleteNotiEnabled: Bool
-    @objc dynamic var isDefaultServer: Bool
+    dynamic var isDefaultServer: Bool
     var timer: DispatchSourceTimer?
     
     init?(uuid: String, aria2: Aria2?,

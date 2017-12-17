@@ -9,10 +9,10 @@
 import Cocoa
 
 class ServerProfileMenuItemViewController: NSViewController {
-    var server: ServerProfile? = nil
-    dynamic var status: String? = nil
-    dynamic var downloadSpeed: String? = nil
-    dynamic var uploadSpeed: String? = nil
+    @objc var server: ServerProfile? = nil
+    @objc dynamic var status: String? = nil
+    @objc dynamic var downloadSpeed: String? = nil
+    @objc dynamic var uploadSpeed: String? = nil
     var timer: DispatchSourceTimer?
 
     @IBOutlet var viewDark: NSView!
@@ -29,7 +29,7 @@ class ServerProfileMenuItemViewController: NSViewController {
     func startTimer(){
         let queue = DispatchQueue.global()
         timer = DispatchSource.makeTimerSource(flags: .strict, queue: queue)
-        timer?.scheduleRepeating(deadline: .now(), interval: (self.server?.globalStatRefreshInterval)!)
+        timer?.schedule(deadline: .now(), repeating: (self.server?.globalStatRefreshInterval)!)
         timer?.setEventHandler {
             [weak self] in
             if let strongSelf = self {

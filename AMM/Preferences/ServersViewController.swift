@@ -9,7 +9,7 @@
 import Cocoa
 
 class ServersViewController: NSViewController, NSTableViewDataSource {
-    let preferences = AMMPreferences.instance
+    @objc let preferences = AMMPreferences.instance
     let tableViewDragType = "amm.serverprofile"
 
     @IBOutlet var arrayController: ServerProfileArrayController!
@@ -21,7 +21,7 @@ class ServersViewController: NSViewController, NSTableViewDataSource {
     @IBOutlet weak var serversTableView: NSTableView! {
         didSet {
             serversTableView.dataSource = self
-            serversTableView.register(forDraggedTypes: [tableViewDragType])
+            serversTableView.registerForDraggedTypes([NSPasteboard.PasteboardType(tableViewDragType)])
         }
     }
     @IBOutlet weak var protocolPopUpBtn: NSPopUpButton! {
@@ -45,21 +45,21 @@ class ServersViewController: NSViewController, NSTableViewDataSource {
     // Drag & Drop to reorder rows
     func tableView(_ tableView: NSTableView, writeRowsWith rowIndexes: IndexSet, to pboard: NSPasteboard) -> Bool {
         let data = NSKeyedArchiver.archivedData(withRootObject: rowIndexes)
-        pboard.declareTypes([tableViewDragType], owner: self)
-        pboard.setData(data, forType: tableViewDragType)
+        pboard.declareTypes([NSPasteboard.PasteboardType(rawValue: tableViewDragType)], owner: self)
+        pboard.setData(data, forType: NSPasteboard.PasteboardType(rawValue: tableViewDragType))
         return true
     }
     
-    func tableView(_ tableView: NSTableView, validateDrop info: NSDraggingInfo, proposedRow row: Int, proposedDropOperation dropOperation: NSTableViewDropOperation) -> NSDragOperation {
+    internal func tableView(_ tableView: NSTableView, validateDrop info: NSDraggingInfo, proposedRow row: Int, proposedDropOperation dropOperation: NSTableView.DropOperation) -> NSDragOperation {
         if dropOperation == .above {
             return .move
         }
         return NSDragOperation()
     }
     
-    func tableView(_ tableView: NSTableView, acceptDrop info: NSDraggingInfo, row: Int, dropOperation: NSTableViewDropOperation) -> Bool {
+    internal func tableView(_ tableView: NSTableView, acceptDrop info: NSDraggingInfo, row: Int, dropOperation: NSTableView.DropOperation) -> Bool {
         let pbboard = info.draggingPasteboard()
-        if let indexesData = pbboard.data(forType: tableViewDragType) {
+        if let indexesData = pbboard.data(forType: NSPasteboard.PasteboardType(rawValue: tableViewDragType)) {
             let oldIndexes: IndexSet = NSKeyedUnarchiver.unarchiveObject(with: indexesData) as! IndexSet
             var profilesToMove:[ServerProfile] = []
             var offset = 0

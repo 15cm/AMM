@@ -8,7 +8,8 @@
 
 import Cocoa
 
-class PreferencesWindowController: NSWindowController, NSWindowDelegate {
+@objcMembers
+class PreferencesWindowController: NSWindowController {
     let preferences = AMMPreferences.instance
 
     override func windowDidLoad() {
@@ -17,10 +18,10 @@ class PreferencesWindowController: NSWindowController, NSWindowDelegate {
         // Implement this method to handle any initialization after your window controller's window has been loaded from its nib file.
     }
     
-    private func windowShouldClose(_ sender: Any) -> Bool {
-        preferences.save()
-        preferences.load()
-        return true
-    }
+//    private func windowShouldClose(_ sender: Any) -> Bool {
+//        preferences.save()
+//        preferences.load()
+//        return true
+//    }
 
 }
