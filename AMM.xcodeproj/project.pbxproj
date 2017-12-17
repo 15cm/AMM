@@ -111,6 +111,7 @@
 		2E644A621E42CDD700C6347C /* ServerProfileMenuItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerProfileMenuItemViewController.swift; sourceTree = "<group>"; };
 		2E644A661E42DE4200C6347C /* Aria2Stat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Aria2Stat.swift; sourceTree = "<group>"; };
 		2E644A6A1E43132B00C6347C /* AMMMenuItemBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AMMMenuItemBox.swift; sourceTree = "<group>"; };
+		2E79F7261FE607FA00B92AEA /* AMM.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AMM.entitlements; sourceTree = "<group>"; };
 		2E9E31D51E59BAB200316B9E /* AMMPreferencesTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AMMPreferencesTests.swift; sourceTree = "<group>"; };
 		2E9E31D71E59C6DA00316B9E /* PreferencesWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreferencesWindowController.swift; sourceTree = "<group>"; };
 		2EA2D1501E4567430044F318 /* AMMTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AMMTextField.swift; sourceTree = "<group>"; };
@@ -149,8 +150,8 @@
 		2E1A64351E4452520053F972 /* Main */ = {
 			isa = PBXGroup;
 			children = (
-				2E468A5C1E398482009C6CA3 /* AppDelegate.swift */,
 				2E02C97D1E4392C100A6272D /* AMMConstants.swift */,
+				2E468A5C1E398482009C6CA3 /* AppDelegate.swift */,
 				2E468A601E398482009C6CA3 /* MainMenu.xib */,
 				2E1195871F4BD34800A7AB81 /* SelectServerWindowController.swift */,
 				2E1195881F4BD34800A7AB81 /* SelectServerWindowController.xib */,
@@ -162,17 +163,17 @@
 		2E1A64371E4452DD0053F972 /* Menu */ = {
 			isa = PBXGroup;
 			children = (
+				2E42353B1E8906C700FCD5E3 /* ActionMenuItem.swift */,
 				2EF593841E3D8CC200454B9D /* ServerProfileMenuItem.swift */,
 				2E644A621E42CDD700C6347C /* ServerProfileMenuItemViewController.swift */,
 				2E1A64411E4455380053F972 /* ServerProfileMenuItemViewController.xib */,
 				2E03C1741E3EE3B100E8BE9E /* TaskMenuItem.swift */,
+				2E2B288C1E894ECD00A2BA81 /* TaskMenuItemImpl.swift */,
 				2E02C97B1E438F7B00A6272D /* TaskMenuItemSeperator.swift */,
 				2E02C9771E438DF500A6272D /* TaskMenuItemSeperatorViewController.swift */,
 				2E1A64471E44553F0053F972 /* TaskMenuItemSeperatorViewController.xib */,
 				2EB004D91E59E16E004B0197 /* TaskMenuItemViewController.swift */,
 				2EB004DA1E59E16E004B0197 /* TaskMenuItemViewController.xib */,
-				2E42353B1E8906C700FCD5E3 /* ActionMenuItem.swift */,
-				2E2B288C1E894ECD00A2BA81 /* TaskMenuItemImpl.swift */,
 			);
 			path = Menu;
 			sourceTree = "<group>";
@@ -186,11 +187,11 @@
 				2EE7F5661E5954D700724D3F /* GeneralViewController.swift */,
 				2EE7F5621E593CD800724D3F /* Preferences.storyboard */,
 				2E9E31D71E59C6DA00316B9E /* PreferencesWindowController.swift */,
+				2E5DC59B1E69879600184E0B /* ResizableTabViewController.swift */,
 				2EF593821E3D827500454B9D /* ServerProfile.swift */,
 				2E644A601E422B1D00C6347C /* ServerProfileArrayController.swift */,
 				2EE7F5681E5954F600724D3F /* ServersViewController.swift */,
 				2E1A64331E4447C60053F972 /* Source.rtf */,
-				2E5DC59B1E69879600184E0B /* ResizableTabViewController.swift */,
 			);
 			path = Preferences;
 			sourceTree = "<group>";
@@ -198,12 +199,11 @@
 		2E26BB071E496BEA00308A93 /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
-				2EE7F56A1E59A31900724D3F /* SwiftyUserDefaults.framework */,
 				2E26BB151E496C5B00308A93 /* Starscream.framework */,
 				2E26BB161E496C5B00308A93 /* SwiftyJSON.framework */,
+				2EE7F56A1E59A31900724D3F /* SwiftyUserDefaults.framework */,
 			);
-			name = Vendor;
-			path = ../Carthage/Build/Mac;
+			path = Vendor;
 			sourceTree = "<group>";
 		};
 		2E468A501E398482009C6CA3 = {
@@ -233,6 +233,7 @@
 				2E1A64381E44534C0053F972 /* Preferences */,
 				2EA2D14F1E4567150044F318 /* UIComponent */,
 				2E26BB071E496BEA00308A93 /* Vendor */,
+				2E79F7261FE607FA00B92AEA /* AMM.entitlements */,
 				2E03C17A1E40870500E8BE9E /* Assets.xcassets */,
 				2E468A631E398482009C6CA3 /* Info.plist */,
 			);
@@ -321,6 +322,11 @@
 					2E468A581E398482009C6CA3 = {
 						CreatedOnToolsVersion = 8.2.1;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Sandbox = {
+								enabled = 0;
+							};
+						};
 					};
 					2E468A671E398482009C6CA3 = {
 						CreatedOnToolsVersion = 8.2.1;
