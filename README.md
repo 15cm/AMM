@@ -26,10 +26,10 @@ OS X 10.10+ or macOS 10.12.x
 See [Releases](https://github.com/15cm/AMM/releases)
 
 # Test and Build Environment
-- macOS Sierra 10.12.5
-- Xcode 8.3.3 (8E3004b)
-- Swift 3.1
-- carthage 0.23.0
+- macOS Sierra 10.13.2
+- Xcode 9.2
+- Swift 4.0.3
+- carthage 0.27.0
 
 # How to build
 ``` sh
