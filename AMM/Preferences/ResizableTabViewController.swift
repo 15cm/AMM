@@ -15,7 +15,6 @@ class ResizableTabViewController: NSTabViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do view setup here.
-        self.tabView.delegate = self
     }
     
     override func tabView(_ tabView: NSTabView, willSelect tabViewItem: NSTabViewItem?) {
@@ -27,7 +26,13 @@ class ResizableTabViewController: NSTabViewController {
     
     override func tabView(_ tabView: NSTabView, didSelect tabViewItem: NSTabViewItem?) {
         super.tabView(tabView, didSelect: tabViewItem)
-        if let newItem = tabViewItem, let window = self.view.window, let contentSize = tabViewSizeDic[newItem.label] {
+        if let newItem = tabViewItem {
+            resizeWith(tabViewItem: newItem)
+        }
+    }
+    
+    private func resizeWith(tabViewItem item: NSTabViewItem) {
+        if let window = self.view.window, let contentSize = tabViewSizeDic[item.label] {
             let newWindowSize = window.frameRect(forContentRect: NSRect(origin: CGPoint.zero, size: contentSize)).size
             
             var frame = window.frame

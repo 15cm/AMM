@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="Afz-UV-sNG">
     <dependencies>
-        <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="13771"/>
         <capability name="box content view" minToolsVersion="7.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -14,8 +13,9 @@
                     <window key="window" title="AMM Preferences" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="oDV-gk-Z1l" userLabel="Prefrences">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-                        <rect key="contentRect" x="196" y="240" width="480" height="320"/>
+                        <rect key="contentRect" x="196" y="240" width="565" height="124"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1440" height="877"/>
+                        <value key="minSize" type="size" width="565" height="124"/>
                         <connections>
                             <outlet property="delegate" destination="Afz-UV-sNG" id="BfW-zE-al9"/>
                         </connections>
@@ -31,7 +31,7 @@
         <!--Resizable Tab View Controller-->
         <scene sceneID="54y-BY-790">
             <objects>
-                <tabViewController selectedTabViewItemIndex="0" tabStyle="toolbar" id="4dW-CE-LqW" customClass="ResizableTabViewController" customModule="AMM" customModuleProvider="target" sceneMemberID="viewController">
+                <tabViewController storyboardIdentifier="tabs" selectedTabViewItemIndex="0" tabStyle="toolbar" id="4dW-CE-LqW" customClass="ResizableTabViewController" customModule="AMM" customModuleProvider="target" sceneMemberID="viewController">
                     <tabViewItems>
                         <tabViewItem label="General" image="NSPreferencesGeneral" id="Rem-Tk-U5o"/>
                         <tabViewItem label="Aria2 Servers" image="fa-cloud-download" id="Byp-6K-5An"/>
@@ -63,11 +63,11 @@
             <objects>
                 <viewController title="About" id="aKH-5z-zwy" customClass="AboutViewController" customModule="AMM" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" wantsLayer="YES" id="4PE-q9-q8R">
-                        <rect key="frame" x="0.0" y="0.0" width="550" height="350"/>
+                        <rect key="frame" x="0.0" y="0.0" width="565" height="350"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="7Zn-Be-cK3">
-                                <rect key="frame" x="243" y="236" width="64" height="64"/>
+                                <rect key="frame" x="251" y="236" width="64" height="64"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="64" id="DM3-Xv-Rwf"/>
                                     <constraint firstAttribute="width" constant="64" id="Oiu-Hi-Ugk"/>
@@ -75,7 +75,7 @@
                                 <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="about-icon" id="0Sd-3E-f3c"/>
                             </imageView>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="I8S-bO-IV3">
-                                <rect key="frame" x="232" y="160" width="87" height="17"/>
+                                <rect key="frame" x="240" y="160" width="87" height="17"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Version Build" id="Yb6-Ag-3uT">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -83,7 +83,7 @@
                                 </textFieldCell>
                             </textField>
                             <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="E0J-yG-A2o" userLabel="App Source">
-                                <rect key="frame" x="238" y="123" width="75" height="17"/>
+                                <rect key="frame" x="246" y="123" width="75" height="17"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" allowsUndo="NO" sendsActionOnEndEditing="YES" state="on" alignment="left" title="App Source" allowsEditingTextAttributes="YES" id="MT3-qR-j2p">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
@@ -91,7 +91,7 @@
                                 </textFieldCell>
                             </textField>
                             <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="pgh-SC-V8i" userLabel="Contact Me">
-                                <rect key="frame" x="238" y="86" width="75" height="17"/>
+                                <rect key="frame" x="246" y="86" width="75" height="17"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" allowsUndo="NO" sendsActionOnEndEditing="YES" state="on" alignment="left" title="Contact me" allowsEditingTextAttributes="YES" id="u0X-Iz-41l">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
@@ -99,7 +99,7 @@
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="xWd-D9-iMI" userLabel="App Name">
-                                <rect key="frame" x="251" y="197" width="49" height="19"/>
+                                <rect key="frame" x="259" y="197" width="49" height="19"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="AMM" id="lTh-iH-xcJ" userLabel="AMM">
                                     <font key="font" metaFont="systemBold" size="16"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -107,7 +107,7 @@
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="kOj-gB-btT">
-                                <rect key="frame" x="242" y="49" width="68" height="17"/>
+                                <rect key="frame" x="250" y="49" width="68" height="17"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Copyright" id="8hp-wl-qOF">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -149,7 +149,7 @@
             <objects>
                 <viewController title="General" id="98S-dM-h5l" customClass="GeneralViewController" customModule="AMM" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" wantsLayer="YES" id="ZME-ix-6NR">
-                        <rect key="frame" x="0.0" y="0.0" width="424" height="124"/>
+                        <rect key="frame" x="0.0" y="0.0" width="565" height="124"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <button translatesAutoresizingMaskIntoConstraints="NO" id="JSX-rl-Iwd">
@@ -201,7 +201,7 @@
                                 </connections>
                             </button>
                             <box verticalHuggingPriority="750" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="TJb-Ak-ddx">
-                                <rect key="frame" x="10" y="45" width="404" height="5"/>
+                                <rect key="frame" x="10" y="45" width="545" height="5"/>
                             </box>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="wmM-b2-7Of">
                                 <rect key="frame" x="36" y="20" width="204" height="17"/>
@@ -343,10 +343,9 @@
                                                         </connections>
                                                     </secureTextField>
                                                     <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Ewh-Bf-4lc">
-                                                        <rect key="frame" x="198" y="34" width="113" height="24"/>
+                                                        <rect key="frame" x="182" y="34" width="129" height="24"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="24" id="Ypa-8s-nhM"/>
-                                                            <constraint firstAttribute="width" constant="113" id="y88-aG-C18"/>
                                                         </constraints>
                                                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="rhV-Yj-VUN">
                                                             <font key="font" metaFont="system"/>
@@ -424,6 +423,7 @@
                                                     <constraint firstItem="9W7-vV-7Id" firstAttribute="leading" secondItem="p4l-7A-svN" secondAttribute="leading" constant="12" id="MkK-DP-Orp"/>
                                                     <constraint firstItem="Ewh-Bf-4lc" firstAttribute="baseline" secondItem="gfG-PT-l5s" secondAttribute="baseline" id="PvQ-qM-HMV"/>
                                                     <constraint firstItem="CVm-Hu-AyY" firstAttribute="trailing" secondItem="gfG-PT-l5s" secondAttribute="trailing" id="SHy-Dt-JVo"/>
+                                                    <constraint firstItem="Ewh-Bf-4lc" firstAttribute="leading" secondItem="S1X-nF-1Nd" secondAttribute="trailing" constant="2" id="XJ3-yL-uPC"/>
                                                     <constraint firstItem="S1X-nF-1Nd" firstAttribute="bottom" secondItem="gfG-PT-l5s" secondAttribute="bottom" id="bbe-4m-uPY"/>
                                                     <constraint firstItem="wWc-nS-sIR" firstAttribute="centerY" secondItem="DRp-GT-UdY" secondAttribute="centerY" id="cJT-B1-6bb"/>
                                                     <constraint firstItem="ylG-zG-yWn" firstAttribute="baseline" secondItem="gfG-PT-l5s" secondAttribute="baseline" id="dKn-0u-WzF"/>
@@ -1006,7 +1006,7 @@
                     </connections>
                 </arrayController>
             </objects>
-            <point key="canvasLocation" x="1837.5" y="374.5"/>
+            <point key="canvasLocation" x="1838" y="382"/>
         </scene>
     </scenes>
     <resources>

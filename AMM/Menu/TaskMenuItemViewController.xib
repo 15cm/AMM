@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="13771" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11762"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="13771"/>
         <capability name="box content view" minToolsVersion="7.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -30,7 +30,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="nFU-6k-MoZ"/>
                             </imageView>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xn4-am-4kJ" customClass="AMMTextField" customModule="AMM" customModuleProvider="target">
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="xn4-am-4kJ" customClass="AMMTextField" customModule="AMM" customModuleProvider="target">
                                 <rect key="frame" x="37" y="4" width="240" height="20"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="236" id="8fN-GY-T1J"/>
@@ -46,7 +46,7 @@
                                     <binding destination="-2" name="value" keyPath="self.task.title" id="EA1-nk-AgN"/>
                                 </connections>
                             </textField>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fop-U9-62H" customClass="AMMTextField" customModule="AMM" customModuleProvider="target">
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="fop-U9-62H" customClass="AMMTextField" customModule="AMM" customModuleProvider="target">
                                 <rect key="frame" x="285" y="4" width="64" height="20"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="20" id="0o6-DY-ule"/>
@@ -74,7 +74,7 @@
                                     <binding destination="-2" name="value" keyPath="self.task.percentage" id="jst-oN-tDN"/>
                                 </connections>
                             </progressIndicator>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="noX-yv-xj9" customClass="AMMTextField" customModule="AMM" customModuleProvider="target">
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="noX-yv-xj9" customClass="AMMTextField" customModule="AMM" customModuleProvider="target">
                                 <rect key="frame" x="483" y="6" width="80" height="17"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="76" id="u3h-p9-3Px"/>
@@ -88,7 +88,7 @@
                                     <binding destination="-2" name="value" keyPath="self.task.downloadSpeedReadable" id="TE9-cQ-33F"/>
                                 </connections>
                             </textField>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nCi-gb-HQQ" customClass="AMMTextField" customModule="AMM" customModuleProvider="target">
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="nCi-gb-HQQ" customClass="AMMTextField" customModule="AMM" customModuleProvider="target">
                                 <rect key="frame" x="591" y="6" width="84" height="17"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="80" id="Znu-tQ-zIl"/>
@@ -171,7 +171,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="8S5-Cf-clg"/>
                             </imageView>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QaI-Cz-LCP" customClass="AMMTextField" customModule="AMM" customModuleProvider="target">
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="QaI-Cz-LCP" customClass="AMMTextField" customModule="AMM" customModuleProvider="target">
                                 <rect key="frame" x="37" y="4" width="240" height="20"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="236" id="7ks-nh-U2Z"/>
@@ -187,7 +187,7 @@
                                     <binding destination="-2" name="value" keyPath="self.task.title" id="9ij-fH-I7a"/>
                                 </connections>
                             </textField>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RDh-kA-BQR" customClass="AMMTextField" customModule="AMM" customModuleProvider="target">
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="RDh-kA-BQR" customClass="AMMTextField" customModule="AMM" customModuleProvider="target">
                                 <rect key="frame" x="285" y="4" width="64" height="20"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="60" id="T3k-CI-Xzx"/>
@@ -212,7 +212,7 @@
                                     <binding destination="-2" name="value" keyPath="self.task.percentage" id="POS-pS-kNJ"/>
                                 </connections>
                             </progressIndicator>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cQf-Nq-oTY" customClass="AMMTextField" customModule="AMM" customModuleProvider="target">
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="cQf-Nq-oTY" customClass="AMMTextField" customModule="AMM" customModuleProvider="target">
                                 <rect key="frame" x="483" y="6" width="80" height="17"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="76" id="QbZ-rs-m9o"/>
@@ -226,7 +226,7 @@
                                     <binding destination="-2" name="value" keyPath="self.task.downloadSpeedReadable" id="XSb-Tc-OnC"/>
                                 </connections>
                             </textField>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="obX-V7-eVh" customClass="AMMTextField" customModule="AMM" customModuleProvider="target">
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="obX-V7-eVh" customClass="AMMTextField" customModule="AMM" customModuleProvider="target">
                                 <rect key="frame" x="591" y="6" width="84" height="17"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="80" id="6zm-dK-A54"/>
