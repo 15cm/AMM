@@ -19,10 +19,6 @@
 		2E1A643F1E4455380053F972 /* ServerProfileMenuItemViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2E1A64411E4455380053F972 /* ServerProfileMenuItemViewController.xib */; };
 		2E1A64451E44553F0053F972 /* TaskMenuItemSeperatorViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2E1A64471E44553F0053F972 /* TaskMenuItemSeperatorViewController.xib */; };
 		2E1A644E1E445E260053F972 /* Contact.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 2E1A644D1E445E260053F972 /* Contact.rtf */; };
-		2E26BB191E496C7200308A93 /* Starscream.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E26BB151E496C5B00308A93 /* Starscream.framework */; };
-		2E26BB1A1E496C7200308A93 /* Starscream.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2E26BB151E496C5B00308A93 /* Starscream.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		2E26BB1B1E496C7200308A93 /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E26BB161E496C5B00308A93 /* SwiftyJSON.framework */; };
-		2E26BB1C1E496C7200308A93 /* SwiftyJSON.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2E26BB161E496C5B00308A93 /* SwiftyJSON.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2E2B288D1E894ECD00A2BA81 /* TaskMenuItemImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E2B288C1E894ECD00A2BA81 /* TaskMenuItemImpl.swift */; };
 		2E4150561E58035600B35BE8 /* AMMHighlightable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E4150551E58035600B35BE8 /* AMMHighlightable.swift */; };
 		2E42353C1E8906C700FCD5E3 /* ActionMenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E42353B1E8906C700FCD5E3 /* ActionMenuItem.swift */; };
@@ -37,6 +33,12 @@
 		2E644A641E42CDD700C6347C /* ServerProfileMenuItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E644A621E42CDD700C6347C /* ServerProfileMenuItemViewController.swift */; };
 		2E644A671E42DE4200C6347C /* Aria2Stat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E644A661E42DE4200C6347C /* Aria2Stat.swift */; };
 		2E644A6B1E43132B00C6347C /* AMMMenuItemBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E644A6A1E43132B00C6347C /* AMMMenuItemBox.swift */; };
+		2E79F7331FE62CD200B92AEA /* Starscream.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E79F7321FE62CD100B92AEA /* Starscream.framework */; };
+		2E79F7341FE62CD200B92AEA /* Starscream.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2E79F7321FE62CD100B92AEA /* Starscream.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		2E79F7371FE62CE900B92AEA /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E79F7351FE62CE800B92AEA /* SwiftyJSON.framework */; };
+		2E79F7381FE62CE900B92AEA /* SwiftyJSON.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2E79F7351FE62CE800B92AEA /* SwiftyJSON.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		2E79F7391FE62CE900B92AEA /* SwiftyUserDefaults.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E79F7361FE62CE800B92AEA /* SwiftyUserDefaults.framework */; };
+		2E79F73A1FE62CE900B92AEA /* SwiftyUserDefaults.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2E79F7361FE62CE800B92AEA /* SwiftyUserDefaults.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2E9E31D61E59BAB200316B9E /* AMMPreferencesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9E31D51E59BAB200316B9E /* AMMPreferencesTests.swift */; };
 		2E9E31D81E59C6DA00316B9E /* PreferencesWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9E31D71E59C6DA00316B9E /* PreferencesWindowController.swift */; };
 		2EA2D1511E4567430044F318 /* AMMTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EA2D1501E4567430044F318 /* AMMTextField.swift */; };
@@ -46,8 +48,6 @@
 		2EE7F5651E594B2B00724D3F /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EE7F5641E594B2B00724D3F /* AboutViewController.swift */; };
 		2EE7F5671E5954D700724D3F /* GeneralViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EE7F5661E5954D700724D3F /* GeneralViewController.swift */; };
 		2EE7F5691E5954F600724D3F /* ServersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EE7F5681E5954F600724D3F /* ServersViewController.swift */; };
-		2EE7F56B1E59A31900724D3F /* SwiftyUserDefaults.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2EE7F56A1E59A31900724D3F /* SwiftyUserDefaults.framework */; };
-		2EE7F56D1E59A31D00724D3F /* SwiftyUserDefaults.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2EE7F56A1E59A31900724D3F /* SwiftyUserDefaults.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2EF593831E3D827500454B9D /* ServerProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF593821E3D827500454B9D /* ServerProfile.swift */; };
 		2EF593851E3D8CC200454B9D /* ServerProfileMenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF593841E3D8CC200454B9D /* ServerProfileMenuItem.swift */; };
 /* End PBXBuildFile section */
@@ -69,9 +69,9 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				2EE7F56D1E59A31D00724D3F /* SwiftyUserDefaults.framework in Embed Frameworks */,
-				2E26BB1C1E496C7200308A93 /* SwiftyJSON.framework in Embed Frameworks */,
-				2E26BB1A1E496C7200308A93 /* Starscream.framework in Embed Frameworks */,
+				2E79F73A1FE62CE900B92AEA /* SwiftyUserDefaults.framework in Embed Frameworks */,
+				2E79F7381FE62CE900B92AEA /* SwiftyJSON.framework in Embed Frameworks */,
+				2E79F7341FE62CD200B92AEA /* Starscream.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -91,8 +91,6 @@
 		2E1A64401E4455380053F972 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/ServerProfileMenuItemViewController.xib; sourceTree = "<group>"; };
 		2E1A64461E44553F0053F972 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/TaskMenuItemSeperatorViewController.xib; sourceTree = "<group>"; };
 		2E1A644D1E445E260053F972 /* Contact.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = Contact.rtf; sourceTree = "<group>"; };
-		2E26BB151E496C5B00308A93 /* Starscream.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Starscream.framework; sourceTree = "<group>"; };
-		2E26BB161E496C5B00308A93 /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SwiftyJSON.framework; sourceTree = "<group>"; };
 		2E2B288C1E894ECD00A2BA81 /* TaskMenuItemImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskMenuItemImpl.swift; sourceTree = "<group>"; };
 		2E4150551E58035600B35BE8 /* AMMHighlightable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AMMHighlightable.swift; sourceTree = "<group>"; };
 		2E42353B1E8906C700FCD5E3 /* ActionMenuItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActionMenuItem.swift; sourceTree = "<group>"; };
@@ -112,6 +110,9 @@
 		2E644A661E42DE4200C6347C /* Aria2Stat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Aria2Stat.swift; sourceTree = "<group>"; };
 		2E644A6A1E43132B00C6347C /* AMMMenuItemBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AMMMenuItemBox.swift; sourceTree = "<group>"; };
 		2E79F7261FE607FA00B92AEA /* AMM.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AMM.entitlements; sourceTree = "<group>"; };
+		2E79F7321FE62CD100B92AEA /* Starscream.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Starscream.framework; path = Carthage/Build/Mac/Starscream.framework; sourceTree = "<group>"; };
+		2E79F7351FE62CE800B92AEA /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = Carthage/Build/Mac/SwiftyJSON.framework; sourceTree = "<group>"; };
+		2E79F7361FE62CE800B92AEA /* SwiftyUserDefaults.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyUserDefaults.framework; path = Carthage/Build/Mac/SwiftyUserDefaults.framework; sourceTree = "<group>"; };
 		2E9E31D51E59BAB200316B9E /* AMMPreferencesTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AMMPreferencesTests.swift; sourceTree = "<group>"; };
 		2E9E31D71E59C6DA00316B9E /* PreferencesWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreferencesWindowController.swift; sourceTree = "<group>"; };
 		2EA2D1501E4567430044F318 /* AMMTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AMMTextField.swift; sourceTree = "<group>"; };
@@ -121,7 +122,6 @@
 		2EE7F5641E594B2B00724D3F /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		2EE7F5661E5954D700724D3F /* GeneralViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeneralViewController.swift; sourceTree = "<group>"; };
 		2EE7F5681E5954F600724D3F /* ServersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServersViewController.swift; sourceTree = "<group>"; };
-		2EE7F56A1E59A31900724D3F /* SwiftyUserDefaults.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SwiftyUserDefaults.framework; sourceTree = "<group>"; };
 		2EF593821E3D827500454B9D /* ServerProfile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerProfile.swift; sourceTree = "<group>"; };
 		2EF593841E3D8CC200454B9D /* ServerProfileMenuItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerProfileMenuItem.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -131,9 +131,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2EE7F56B1E59A31900724D3F /* SwiftyUserDefaults.framework in Frameworks */,
-				2E26BB1B1E496C7200308A93 /* SwiftyJSON.framework in Frameworks */,
-				2E26BB191E496C7200308A93 /* Starscream.framework in Frameworks */,
+				2E79F7391FE62CE900B92AEA /* SwiftyUserDefaults.framework in Frameworks */,
+				2E79F7371FE62CE900B92AEA /* SwiftyJSON.framework in Frameworks */,
+				2E79F7331FE62CD200B92AEA /* Starscream.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -196,22 +196,15 @@
 			path = Preferences;
 			sourceTree = "<group>";
 		};
-		2E26BB071E496BEA00308A93 /* Vendor */ = {
-			isa = PBXGroup;
-			children = (
-				2E26BB151E496C5B00308A93 /* Starscream.framework */,
-				2E26BB161E496C5B00308A93 /* SwiftyJSON.framework */,
-				2EE7F56A1E59A31900724D3F /* SwiftyUserDefaults.framework */,
-			);
-			path = Vendor;
-			sourceTree = "<group>";
-		};
 		2E468A501E398482009C6CA3 = {
 			isa = PBXGroup;
 			children = (
 				2E468A5B1E398482009C6CA3 /* AMM */,
 				2E468A6B1E398482009C6CA3 /* AMMTests */,
 				2E468A5A1E398482009C6CA3 /* Products */,
+				2E79F7321FE62CD100B92AEA /* Starscream.framework */,
+				2E79F7351FE62CE800B92AEA /* SwiftyJSON.framework */,
+				2E79F7361FE62CE800B92AEA /* SwiftyUserDefaults.framework */,
 			);
 			sourceTree = "<group>";
 		};
@@ -232,7 +225,6 @@
 				2E1A64371E4452DD0053F972 /* Menu */,
 				2E1A64381E44534C0053F972 /* Preferences */,
 				2EA2D14F1E4567150044F318 /* UIComponent */,
-				2E26BB071E496BEA00308A93 /* Vendor */,
 				2E79F7261FE607FA00B92AEA /* AMM.entitlements */,
 				2E03C17A1E40870500E8BE9E /* Assets.xcassets */,
 				2E468A631E398482009C6CA3 /* Info.plist */,
@@ -277,6 +269,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2E468A711E398482009C6CA3 /* Build configuration list for PBXNativeTarget "AMM" */;
 			buildPhases = (
+				2E79F7311FE62A4300B92AEA /* ShellScript */,
 				2E468A551E398482009C6CA3 /* Sources */,
 				2E468A561E398482009C6CA3 /* Frameworks */,
 				2E468A571E398482009C6CA3 /* Resources */,
@@ -380,6 +373,28 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		2E79F7311FE62A4300B92AEA /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/Mac/Starscream.framework",
+				"$(SRCROOT)/Carthage/Build/Mac/SwiftyJSON.framework",
+				"$(SRCROOT)/Carthage/Build/Mac/SwiftyUserDefaults.framework",
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Vendor/Starscream.framework",
+				"$(DERIVED_FILE_DIR)/Vendor/SwiftyJSON.framework",
+				"$(DERIVED_FILE_DIR)/Vendor/SwiftyUserDefaults.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		2E468A551E398482009C6CA3 /* Sources */ = {
