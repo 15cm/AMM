@@ -269,7 +269,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2E468A711E398482009C6CA3 /* Build configuration list for PBXNativeTarget "AMM" */;
 			buildPhases = (
-				2E79F7311FE62A4300B92AEA /* ShellScript */,
 				2E468A551E398482009C6CA3 /* Sources */,
 				2E468A561E398482009C6CA3 /* Frameworks */,
 				2E468A571E398482009C6CA3 /* Resources */,
@@ -373,28 +372,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		2E79F7311FE62A4300B92AEA /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"$(SRCROOT)/Carthage/Build/Mac/Starscream.framework",
-				"$(SRCROOT)/Carthage/Build/Mac/SwiftyJSON.framework",
-				"$(SRCROOT)/Carthage/Build/Mac/SwiftyUserDefaults.framework",
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Vendor/Starscream.framework",
-				"$(DERIVED_FILE_DIR)/Vendor/SwiftyJSON.framework",
-				"$(DERIVED_FILE_DIR)/Vendor/SwiftyUserDefaults.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "/usr/local/bin/carthage copy-frameworks";
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		2E468A551E398482009C6CA3 /* Sources */ = {
