@@ -34,19 +34,19 @@ class TaskMenuItemImpl: TaskMenuItem {
         }
     }
     
-    func pauseTask() {
+    @objc func pauseTask() {
         server?.pause(gid: task.gid)
     }
     
-    func unpauseTask() {
+    @objc func unpauseTask() {
         server?.unpause(gid: task.gid)
     }
     
-    func stopTask() {
+    @objc func stopTask() {
         server?.stop(gid: task.gid)
     }
     
-    func removeTask() {
+    @objc func removeTask() {
         server?.remove(gid: task.gid)
     }
     
@@ -59,12 +59,12 @@ class TaskMenuItemImpl: TaskMenuItem {
         return fileManager.fileExists(atPath: taskFilePath)
     }
     
-    func revealInFinder() {
+    @objc func revealInFinder() {
         if(!fileExists()) {
             return
         }
         let taskFilePath = task.files[0].path
-        NSWorkspace.shared().activateFileViewerSelecting([URL(fileURLWithPath: taskFilePath)])
+        NSWorkspace.shared.activateFileViewerSelecting([URL(fileURLWithPath: taskFilePath)])
     }
 }
 

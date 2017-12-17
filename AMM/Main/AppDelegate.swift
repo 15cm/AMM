@@ -10,7 +10,7 @@ import Cocoa
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate, AMMPreferencesDelegate {
-    var statusItem = NSStatusBar.system().statusItem(withLength: NSSquareStatusItemLength)
+    var statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.squareLength)
     var servers: [ServerProfile] = []
     var fixMenuItems: [NSMenuItem] = []
     var preferencesWindowController: PreferencesWindowController!
@@ -21,7 +21,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, AMMPreferencesDelegate {
     @IBOutlet weak var menu: NSMenu!
     
     // https://stackoverflow.com/questions/49510/how-do-you-set-your-cocoa-application-as-the-default-web-browser
-    func handleUrl(_ event: NSAppleEventDescriptor, with replyEvent: NSAppleEventDescriptor) {
+    @objc func handleUrl(_ event: NSAppleEventDescriptor, with replyEvent: NSAppleEventDescriptor) {
         if let url = event.paramDescriptor(forKeyword: keyDirectObject)?.stringValue {
             let addUriToServer = { (server: ServerProfile?) in
                 server?.addUri(url: [url], callback: { res in
@@ -46,11 +46,11 @@ class AppDelegate: NSObject, NSApplicationDelegate, AMMPreferencesDelegate {
     }
     
     @IBAction func quitClicked(_ sender: NSMenuItem) {
-        NSApplication.shared().terminate(self)
+        NSApplication.shared.terminate(self)
     }
     
     @IBAction func preferencesClicked(_ sender: NSMenuItem) {
-        let storyboard = NSStoryboard(name: "Preferences", bundle: nil)
+        let storyboard = NSStoryboard(name: NSStoryboard.Name(rawValue: "Preferences"), bundle: nil)
         if let ctrl = storyboard.instantiateInitialController() {
             preferencesWindowController = ctrl as! PreferencesWindowController
             NSApp.activate(ignoringOtherApps: true)
@@ -61,7 +61,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, AMMPreferencesDelegate {
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         // Insert code here to initialize your application
-        let icon = NSImage(named: "menu-icon")
+        let icon = NSImage(named: NSImage.Name(rawValue: "menu-icon"))
         icon?.isTemplate = true
         statusItem.image = icon
         statusItem.menu = menu

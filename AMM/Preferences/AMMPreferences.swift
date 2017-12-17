@@ -16,9 +16,9 @@ protocol AMMPreferencesDelegate: class{
 class AMMPreferences: NSObject {
     static let instance: AMMPreferences = AMMPreferences()
     weak var delegate: AMMPreferencesDelegate? = nil
-    var servers: [ServerProfile] = []
-    var darkModeEnabled: Bool = false
-    var controlModeEnabled: Bool = false
+    @objc var servers: [ServerProfile] = []
+    @objc var darkModeEnabled: Bool = false
+    @objc var controlModeEnabled: Bool = false
     
     fileprivate override init() {
         super.init()

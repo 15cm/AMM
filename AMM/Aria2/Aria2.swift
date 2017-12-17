@@ -14,6 +14,7 @@ protocol Aria2NotificationDelegate: class{
     func onNotificationReceived(notificationType type: Aria2Notifications?, gids: [String])
 }
 
+@objcMembers
 class Aria2: NSObject, NSCopying, NSCoding {
     var ptcl: Aria2Protocols
     var host: String
@@ -263,21 +264,25 @@ extension Aria2 {
  web socket delegate
  */
 extension Aria2: WebSocketDelegate {
-    public func websocketDidConnect(socket: WebSocket) {
+
+    func websocketDidConnect(socket: WebSocketClient) {
         status = .connected
         print("Aria2 connected at: \(rpc)")
     }
     
-    public func websocketDidDisconnect(socket: WebSocket, error: NSError?) {
+    func websocketDidDisconnect(socket: WebSocketClient, error: Error?) {
         status =  .disconnected
         print("Aria2 at \(rpc) disconnected: \(String(describing: error))")
     }
     
-    public func websocketDidReceiveData(socket: WebSocket, data: Data) {
+    func websocketDidReceiveData(socket: WebSocketClient, data: Data) {
     }
     
-    public func websocketDidReceiveMessage(socket: WebSocket, text: String) {
-        let res = JSON(data: text.data(using: .utf8)!)
+    func websocketDidReceiveMessage(socket: WebSocketClient, text: String) {
+        guard let textData = text.data(using: .utf8) else{
+            return
+        }
+        let res = JSON(textData)
         if let method = res["method"].string, let params = res["params"].array {
            // Notification
             let gids = params.flatMap({param in return param["gid"].string})

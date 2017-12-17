@@ -11,7 +11,7 @@ import Cocoa
 class TaskMenuItemSeperator: NSMenuItem {
     var viewController: TaskMenuItemSeperatorViewController? = nil
     init(name: String) {
-        viewController = TaskMenuItemSeperatorViewController(nibName: "TaskMenuItemSeperatorViewController", bundle: nil)
+        viewController = TaskMenuItemSeperatorViewController(nibName: NSNib.Name(rawValue: "TaskMenuItemSeperatorViewController"), bundle: nil)
         viewController?.name = name
         super.init(title: name, action: nil, keyEquivalent: "")
         self.view = viewController?.view

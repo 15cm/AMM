@@ -9,17 +9,17 @@
 import Cocoa
 
 class TaskMenuItemViewController: NSViewController {
-    var task: Aria2Task = Aria2Task()
+    @objc var task: Aria2Task = Aria2Task()
     
     @IBOutlet var viewDark: NSView!
     
     init() {
-        super.init(nibName: "TaskMenuItemViewController", bundle: nil)!
+        super.init(nibName: NSNib.Name(rawValue: "TaskMenuItemViewController"), bundle: nil)
     }
     
     init?(task: Aria2Task) {
         self.task = task
-        super.init(nibName: "TaskMenuItemViewController", bundle: nil)
+        super.init(nibName: NSNib.Name(rawValue: "TaskMenuItemViewController"), bundle: nil)
     }
     
     required init?(coder: NSCoder) {
@@ -37,7 +37,7 @@ class TaskMenuItemViewController: NSViewController {
 
 // KVO bindings
 extension Aria2Task {
-    dynamic var statusIcon: NSImage {
+    @objc dynamic var statusIcon: NSImage {
         switch status {
         case .active:
             return #imageLiteral(resourceName: "fa-download")
@@ -55,35 +55,35 @@ extension Aria2Task {
             return #imageLiteral(resourceName: "fa-question")
         }
     }
-    dynamic class func keyPathsForValuesAffectingStatusIcon() -> Set<String> {
+    @objc dynamic class func keyPathsForValuesAffectingStatusIcon() -> Set<String> {
         return Set(["statusRawValue"])
     }
     
-    dynamic var percentage: Double {
+    @objc dynamic var percentage: Double {
         return totalLength == 0 ? 0 : Double(completedLength) / Double(totalLength) * 100
     }
-    dynamic class func keyPathsForValuesAffectingPercentage() -> Set<String> {
+    @objc dynamic class func keyPathsForValuesAffectingPercentage() -> Set<String> {
         return Set(["completedLength", "totalLength"])
     }
     
-    dynamic var downloadSpeedReadable: String {
+    @objc dynamic var downloadSpeedReadable: String {
         return Aria2.getReadable(length: downloadSpeed) + "/s"
     }
-    dynamic class func keyPathsForValuesAffectingDownloadSpeedReadable() -> Set<String> {
+    @objc dynamic class func keyPathsForValuesAffectingDownloadSpeedReadable() -> Set<String> {
         return Set(["downloadSpeed"])
     }
     
-    dynamic var uploadSpeedReadable: String {
+    @objc dynamic var uploadSpeedReadable: String {
         return Aria2.getReadable(length: uploadSpeed) + "/s"
     }
-    dynamic class func keyPathsForValuesAffectingUploadSpeedReadable() -> Set<String> {
+    @objc dynamic class func keyPathsForValuesAffectingUploadSpeedReadable() -> Set<String> {
         return Set(["uploadSpeed"])
     }
     
-    dynamic var totalLengthReadable: String {
+    @objc dynamic var totalLengthReadable: String {
         return Aria2.getReadable(length: totalLength)
     }
-    dynamic class func keyPathsForValuesAffectingTotalLengthReadable() -> Set<String> {
+    @objc dynamic class func keyPathsForValuesAffectingTotalLengthReadable() -> Set<String> {
         return Set(["totalLength"])
     }
 }

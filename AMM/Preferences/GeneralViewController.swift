@@ -8,6 +8,7 @@
 
 import Cocoa
 
+@objcMembers
 class GeneralViewController: NSViewController {
     let preferences = AMMPreferences.instance
 

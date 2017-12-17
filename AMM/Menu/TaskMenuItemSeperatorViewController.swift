@@ -9,7 +9,7 @@
 import Cocoa
 
 class TaskMenuItemSeperatorViewController: NSViewController {
-    var name: String? = nil
+    @objc var name: String? = nil
 
     @IBOutlet var viewDark: NSView!
     
