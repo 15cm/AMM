@@ -19,6 +19,8 @@ class AMMPreferences: NSObject {
     @objc var servers: [ServerProfile] = []
     @objc var darkModeEnabled: Bool = false
     @objc var controlModeEnabled: Bool = false
+    @objc var connectionCheckInterval: Int = AMMDefault.connectionCheckInterval
+    @objc var connectionRetryLimit: Int = AMMDefault.connectionRetryLimit
     
     fileprivate override init() {
         super.init()
@@ -35,6 +37,8 @@ class AMMPreferences: NSObject {
         Defaults[.servers] = servers
         Defaults[.darkModeEnabled] = darkModeEnabled
         Defaults[.controlModeEnabled] = controlModeEnabled
+        Defaults[.connectionCheckInterval] = connectionCheckInterval
+        Defaults[.connectionRetryLimit] = connectionRetryLimit
         Defaults.synchronize()
     }
     
@@ -42,6 +46,8 @@ class AMMPreferences: NSObject {
         servers = Defaults[.servers]
         darkModeEnabled = Defaults[.darkModeEnabled]
         controlModeEnabled = Defaults[.controlModeEnabled]
+        connectionCheckInterval = Defaults[.connectionCheckInterval]
+        connectionRetryLimit = Defaults[.connectionRetryLimit]
         delegate?.onServerProfilesUpdate(withServerProfiles: copyServers())
     }
     
@@ -55,6 +61,8 @@ extension DefaultsKeys {
     static let servers = DefaultsKey<[ServerProfile]>("servers")
     static let darkModeEnabled = DefaultsKey<Bool>("darkModeEnabled")
     static let controlModeEnabled = DefaultsKey<Bool>("controlModeEnabled")
+    static let connectionCheckInterval = DefaultsKey<Int>("connectionCheckInterval")
+    static let connectionRetryLimit = DefaultsKey<Int>("connectionRetryLimit")
 }
 
 extension UserDefaults {
