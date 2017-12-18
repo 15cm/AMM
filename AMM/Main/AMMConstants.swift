@@ -9,7 +9,7 @@
 
 import Cocoa
 
-struct AMMDefault {
+enum AMMDefault {
     static let ptcl = Aria2Protocols.ws
     static let host = "localhost"
     static let port = 6800
@@ -20,7 +20,8 @@ struct AMMDefault {
     static let activeTaskTotal = 5
     static let waitingTaskTotal = 5
     static let stoppedTaskTotal = 5
-    static let connectionCheckInterval: Double = 5
+    static let connectionCheckInterval = 5
+    static let connectionRetryLimit = 10
     static let aria2TaskSpecificKeys = [
         "gid",
         "status",

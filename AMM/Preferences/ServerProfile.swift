@@ -44,6 +44,8 @@ class ServerProfile: NSObject, NSCopying, NSCoding {
     var taskPauseNotiEnabled: Bool
     var taskCompleteNotiEnabled: Bool
     dynamic var isDefaultServer: Bool
+    
+    var connectCounter: Int = 0
     var timer: DispatchSourceTimer?
     
     init?(uuid: String, aria2: Aria2?,
@@ -127,15 +129,24 @@ class ServerProfile: NSObject, NSCopying, NSCoding {
     func runTimer() {
         let queue = DispatchQueue.global()
         timer = DispatchSource.makeTimerSource(flags: .strict, queue: queue)
+        let pref = AMMPreferences.instance
         timer?.setEventHandler {
             [weak self] in
             if let strongSelf = self {
                 if strongSelf.aria2.status != .connected {
                     strongSelf.aria2.connect()
+                    print("\(strongSelf.remark) connecting (counter: \(strongSelf.connectCounter)")
+                    strongSelf.connectCounter += 1
+                    if(strongSelf.connectCounter >= pref.connectionRetryLimit) {
+                        strongSelf.aria2.disconnect()
+                        strongSelf.timer?.cancel()
+                    }
+                } else {
+                    strongSelf.connectCounter = 0
                 }
             }
         }
-        timer?.schedule(deadline: .now(), repeating: AMMDefault.connectionCheckInterval)
+        timer?.schedule(deadline: .now(), repeating: Double(pref.connectionCheckInterval))
         if #available(OSX 10.12, *) {
             timer?.activate()
         } else {
