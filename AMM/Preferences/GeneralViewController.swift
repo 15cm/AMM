@@ -10,7 +10,7 @@ import Cocoa
 
 @objcMembers
 class GeneralViewController: NSViewController {
-    let preferences = AMMPreferences.instance
+    let pref = AMMPreferences.instance
 
     override func viewDidLoad() {
         super.viewDidLoad()
