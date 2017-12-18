@@ -6,6 +6,21 @@
 //  Copyright © 2017 sinkerine. All rights reserved.
 //
 
+fileprivate enum SerializationKeys {
+     static let uuid = "id"
+     static let aria2 = "aria2"
+     static let remark = "remark"
+     static let globalStatRefreshInterval = "globalStatRefreshInterval"
+     static let taskStatRefreshInterval = "taskStatRefreshInterval"
+     static let activeTaskTotal = "activeTaskMaxNum"
+     static let waitingTaskTotal = "waitingTaskMaxNum"
+     static let stoppedTaskTotal = "stoppedTaskMaxNum"
+     static let taskStartNotiEnabled = "taskStartNotiEnabled"
+     static let taskPauseNotiEnabled = "taskPauseNotiEnabled"
+     static let taskCompleteNotiEnabled = "taskCompleteNotiEnabled"
+     static let isDefaultServer = "isDefaultServer"
+}
+
 import Foundation
 import SwiftyJSON
 
@@ -57,34 +72,39 @@ class ServerProfile: NSObject, NSCopying, NSCoding {
     }
     
     required init?(coder aDecoder: NSCoder) {
-        self.uuid = aDecoder.decodeObject(forKey: "id") as! String
-        self.aria2 = (aDecoder.decodeObject(forKey: "aria2") as? Aria2)!
+        self.uuid = aDecoder.decodeObject(forKey: SerializationKeys.uuid) as! String
+        self.aria2 = (aDecoder.decodeObject(forKey: SerializationKeys.aria2) as? Aria2)!
         self.ptclRawValue = aria2.ptcl.rawValue
-        self.remark = aDecoder.decodeObject(forKey: "remark") as! String
-        self.globalStatRefreshInterval = aDecoder.decodeDouble(forKey: "globalStatRefreshInterval")
-        self.taskStatRefreshInterval = Double(aDecoder.decodeDouble(forKey: "taskStatRefreshInterval"))
-        self.activeTaskTotal = Int(aDecoder.decodeInt64(forKey: "activeTaskMaxNum"))
-        self.waitingTaskTotal = Int(aDecoder.decodeInt64(forKey: "waitingTaskMaxNum"))
-        self.stoppedTaskTotal = Int(aDecoder.decodeInt64(forKey: "stoppedTaskMaxNum"))
-        self.taskStartNotiEnabled = aDecoder.containsValue(forKey: "notiOnTaskStartEnabled") ? aDecoder.decodeBool(forKey: "notiOnTaskStartEnabled") : false
-        self.taskPauseNotiEnabled = aDecoder.containsValue(forKey: "notiOnTaskPauseEnabled") ? aDecoder.decodeBool(forKey: "notiOnTaskPauseEnabled") : false
-        self.taskCompleteNotiEnabled = aDecoder.containsValue(forKey: "notiOnTaskCompleteEnabled") ? aDecoder.decodeBool(forKey: "notiOnTaskCompleteEnabled") : false
-        self.isDefaultServer = aDecoder.containsValue(forKey: "isDefaultServer") ? aDecoder.decodeBool(forKey: "isDefaultServer") : false
+        self.remark = aDecoder.decodeObject(forKey: SerializationKeys.remark) as! String
+        self.globalStatRefreshInterval = aDecoder.decodeDouble(forKey: SerializationKeys.globalStatRefreshInterval)
+        self.taskStatRefreshInterval = Double(aDecoder.decodeDouble(forKey: SerializationKeys.taskStatRefreshInterval))
+        self.activeTaskTotal = Int(aDecoder.decodeInt64(forKey: SerializationKeys.activeTaskTotal))
+        self.waitingTaskTotal = Int(aDecoder.decodeInt64(forKey: SerializationKeys.waitingTaskTotal))
+        self.stoppedTaskTotal = Int(aDecoder.decodeInt64(forKey: SerializationKeys.stoppedTaskTotal))
+        // Default value for parameters in new versions
+        self.taskStartNotiEnabled = aDecoder.containsValue(forKey: SerializationKeys.taskStartNotiEnabled) ?
+            aDecoder.decodeBool(forKey: SerializationKeys.taskStartNotiEnabled) : false
+        self.taskPauseNotiEnabled = aDecoder.containsValue(forKey: SerializationKeys.taskPauseNotiEnabled) ?
+            aDecoder.decodeBool(forKey: SerializationKeys.taskPauseNotiEnabled) : false
+        self.taskCompleteNotiEnabled = aDecoder.containsValue(forKey: SerializationKeys.taskCompleteNotiEnabled) ?
+            aDecoder.decodeBool(forKey: SerializationKeys.taskCompleteNotiEnabled) : false
+        self.isDefaultServer = aDecoder.containsValue(forKey: SerializationKeys.isDefaultServer) ?
+            aDecoder.decodeBool(forKey: SerializationKeys.isDefaultServer) : false
     }
     
     func encode(with aCoder: NSCoder) {
-        aCoder.encode(uuid, forKey: "id")
-        aCoder.encode(aria2, forKey: "aria2")
-        aCoder.encode(remark, forKey: "remark")
-        aCoder.encode(globalStatRefreshInterval, forKey: "globalStatRefreshInterval")
-        aCoder.encode(taskStatRefreshInterval, forKey: "taskStatRefreshInterval")
-        aCoder.encode(activeTaskTotal, forKey: "activeTaskMaxNum")
-        aCoder.encode(waitingTaskTotal, forKey: "waitingTaskMaxNum")
-        aCoder.encode(stoppedTaskTotal, forKey: "stoppedTaskMaxNum")
-        aCoder.encode(taskStartNotiEnabled, forKey: "notiOnTaskStartEnabled")
-        aCoder.encode(taskPauseNotiEnabled, forKey: "notiOnTaskPauseEnabled")
-        aCoder.encode(taskCompleteNotiEnabled, forKey: "notiOnTaskCompleteEnabled")
-        aCoder.encode(isDefaultServer, forKey: "isDefaultServer")
+        aCoder.encode(uuid, forKey: SerializationKeys.uuid)
+        aCoder.encode(aria2, forKey: SerializationKeys.aria2)
+        aCoder.encode(remark, forKey: SerializationKeys.remark)
+        aCoder.encode(globalStatRefreshInterval, forKey: SerializationKeys.globalStatRefreshInterval)
+        aCoder.encode(taskStatRefreshInterval, forKey: SerializationKeys.taskStatRefreshInterval)
+        aCoder.encode(activeTaskTotal, forKey: SerializationKeys.activeTaskTotal)
+        aCoder.encode(waitingTaskTotal, forKey: SerializationKeys.waitingTaskTotal)
+        aCoder.encode(stoppedTaskTotal, forKey: SerializationKeys.stoppedTaskTotal)
+        aCoder.encode(taskStartNotiEnabled, forKey: SerializationKeys.taskStartNotiEnabled)
+        aCoder.encode(taskPauseNotiEnabled, forKey: SerializationKeys.taskPauseNotiEnabled)
+        aCoder.encode(taskCompleteNotiEnabled, forKey: SerializationKeys.taskCompleteNotiEnabled)
+        aCoder.encode(isDefaultServer, forKey: SerializationKeys.isDefaultServer)
     }
     
     convenience override init() {
