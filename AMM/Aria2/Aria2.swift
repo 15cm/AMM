@@ -267,12 +267,10 @@ extension Aria2: WebSocketDelegate {
 
     func websocketDidConnect(socket: WebSocketClient) {
         status = .connected
-        print("Aria2 connected at: \(rpc)")
     }
     
     func websocketDidDisconnect(socket: WebSocketClient, error: Error?) {
         status =  .disconnected
-        print("Aria2 at \(rpc) disconnected: \(String(describing: error))")
     }
     
     func websocketDidReceiveData(socket: WebSocketClient, data: Data) {

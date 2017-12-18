@@ -133,7 +133,6 @@ class ServerProfileMenuItem: NSMenuItem, Aria2NotificationDelegate {
         let urls = urlText?.components(separatedBy: "\n").filter({!$0.isEmpty}).map({$0.trimmingCharacters(in: [" "])})
         if let urls = urls {
             for url in urls {
-                print(url)
                 server.addUri(url: [url], callback: {[unowned self] res in
                     if let errorMsg = res["error"]["message"].string {
                         showNotification(self.server.remark, "Error: \(errorMsg)")
