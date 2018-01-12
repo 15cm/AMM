@@ -135,10 +135,12 @@ class ServerProfile: NSObject, NSCopying, NSCoding {
             if let strongSelf = self {
                 if strongSelf.aria2.status != .connected {
                     strongSelf.aria2.connect()
-                    strongSelf.connectCounter += 1
-                    if(strongSelf.connectCounter >= pref.connectionRetryLimit) {
-                        strongSelf.aria2.disconnect()
-                        strongSelf.timer?.cancel()
+                    if(pref.connectionRetryLimit > 0) {
+                        strongSelf.connectCounter += 1
+                        if(strongSelf.connectCounter >= pref.connectionRetryLimit) {
+                            strongSelf.aria2.disconnect()
+                            strongSelf.timer?.cancel()
+                        }
                     }
                 } else {
                     strongSelf.connectCounter = 0
