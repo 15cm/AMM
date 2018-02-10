@@ -33,10 +33,12 @@ class ServerProfileMenuItem: NSMenuItem, Aria2NotificationDelegate {
         submenu = NSMenu(title: "Tasks")
         // Init control menu
         if pref.controlModeEnabled {
-            let controlMenuItem = NSMenuItem(title: "Control", action: nil, keyEquivalent: "")
-            controlMenuItem.submenu = NSMenu(title: "Control")
-            controlMenuItem.submenu?.addItem(ActionMenuItem(title: "Add URLs from Clipboard (Each URL on a seperate line)", action: #selector(ServerProfileMenuItem.addUriFromClipboard), keyEquivalent: "", target: self))
-            submenu?.addItem(controlMenuItem)
+            let addUrlItem: ActionMenuItem = ActionMenuItem(title: "Add URLs from Clipboard (URL per line)", action: #selector(ServerProfileMenuItem.addUriFromClipboard), keyEquivalent: "", target: self)
+            if let serverIndex = pref.getIndex(ofServer: server) {
+                addUrlItem.keyEquivalent = String(serverIndex + 1)
+                addUrlItem.keyEquivalentModifierMask = .command
+            }
+            submenu?.addItem(addUrlItem)
         }
         
         // Init fixed task menu items
