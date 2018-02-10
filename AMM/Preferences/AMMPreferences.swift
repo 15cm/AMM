@@ -55,6 +55,12 @@ class AMMPreferences: NSObject {
         Defaults.removeAll()
         load()
     }
+    
+    func getIndex(ofServer server: ServerProfile) -> Int? {
+        return servers.index(where: {ele in
+            ele.uuid == server.uuid
+        })
+    }
 }
 
 extension DefaultsKeys {
