@@ -232,7 +232,7 @@ extension Aria2 {
         } else {
             return nil
         }
-    }
+    /**/}
     
     static func getTask(fromResponse res: JSON) -> Aria2Task? {
         return Aria2Task(json: res["result"])
@@ -283,7 +283,7 @@ extension Aria2: WebSocketDelegate {
         let res = JSON(textData)
         if let method = res["method"].string, let params = res["params"].array {
            // Notification
-            let gids = params.flatMap({param in return param["gid"].string})
+            let gids = params.compactMap({param in return param["gid"].string})
             self.notificationDelegate?.onNotificationReceived(notificationType: Aria2Notifications(rawValue: method), gids: gids)
         } else {
             let id = res["id"].stringValue
