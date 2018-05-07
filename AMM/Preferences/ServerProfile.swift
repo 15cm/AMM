@@ -157,10 +157,10 @@ class ServerProfile: NSObject, NSCopying, NSCoding {
     }
     
     func getGlobalStat(callback cb: ((Aria2Stat) -> Void)?) {
-        let wrappedCallback = cb.map({ wrappedCallback -> Aria2RpcCallback in
+        let wrappedCallback = cb.map({ cb -> Aria2RpcCallback in
             { res in
                 if let stat = Aria2.getStat(fromResponse: res) {
-                    wrappedCallback(stat)
+                    cb(stat)
                 }
             }
         })
@@ -168,10 +168,10 @@ class ServerProfile: NSObject, NSCopying, NSCoding {
     }
     
     func tellActive(callback cb: (([Aria2Task]) -> Void)?) {
-        let wrappedCallback = cb.map({ wrappedCallback -> Aria2RpcCallback in
+        let wrappedCallback = cb.map({ cb -> Aria2RpcCallback in
             { res in
                 if let tasks = Aria2.getTasks(fromResponse: res) {
-                    wrappedCallback(tasks)
+                    cb(tasks)
                 }
             }
         })
@@ -179,10 +179,10 @@ class ServerProfile: NSObject, NSCopying, NSCoding {
     }
     
     func tellWaiting(callback cb: (([Aria2Task]) -> Void)?) {
-        let wrappedCallback = cb.map({ wrappedCallback -> Aria2RpcCallback in
+        let wrappedCallback = cb.map({ cb -> Aria2RpcCallback in
             { res in
                 if let tasks = Aria2.getTasks(fromResponse: res) {
-                    wrappedCallback(tasks)
+                    cb(tasks)
                 }
             }
         })
@@ -194,10 +194,10 @@ class ServerProfile: NSObject, NSCopying, NSCoding {
     }
     
     func tellStopped(callback cb: (([Aria2Task]) -> Void)?) {
-        let wrappedCallback = cb.map({ wrappedCallback -> Aria2RpcCallback in
+        let wrappedCallback = cb.map({ cb -> Aria2RpcCallback in
             { res in
                 if let tasks = Aria2.getTasks(fromResponse: res) {
-                    wrappedCallback(tasks)
+                    cb (tasks)
                 }
             }
         })
@@ -209,10 +209,10 @@ class ServerProfile: NSObject, NSCopying, NSCoding {
     }
     
     func tellStatus(gid: String, callback cb: ((Aria2Task) -> Void)?) {
-        let wrappedCallback = cb.map({wrappedCallback -> Aria2RpcCallback in
+        let wrappedCallback = cb.map({ cb -> Aria2RpcCallback in
             { res in
                 if let task = Aria2.getTask(fromResponse: res) {
-                    wrappedCallback(task)
+                    cb (task)
                 }
             }
         })
