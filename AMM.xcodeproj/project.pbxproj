@@ -44,6 +44,8 @@
 		2EA2D1511E4567430044F318 /* AMMTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EA2D1501E4567430044F318 /* AMMTextField.swift */; };
 		2EB004DB1E59E16E004B0197 /* TaskMenuItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EB004D91E59E16E004B0197 /* TaskMenuItemViewController.swift */; };
 		2EB004DC1E59E16E004B0197 /* TaskMenuItemViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2EB004DA1E59E16E004B0197 /* TaskMenuItemViewController.xib */; };
+		2ECC24DC209FF736002B1F87 /* MenuDelegate2TimerDelegates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ECC24DB209FF736002B1F87 /* MenuDelegate2TimerDelegates.swift */; };
+		2ECC24DE209FF92D002B1F87 /* MenuDelegateMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ECC24DD209FF92D002B1F87 /* MenuDelegateMapper.swift */; };
 		2EE7F5631E593CD800724D3F /* Preferences.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2EE7F5621E593CD800724D3F /* Preferences.storyboard */; };
 		2EE7F5651E594B2B00724D3F /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EE7F5641E594B2B00724D3F /* AboutViewController.swift */; };
 		2EE7F5671E5954D700724D3F /* GeneralViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EE7F5661E5954D700724D3F /* GeneralViewController.swift */; };
@@ -118,6 +120,8 @@
 		2EA2D1501E4567430044F318 /* AMMTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AMMTextField.swift; sourceTree = "<group>"; };
 		2EB004D91E59E16E004B0197 /* TaskMenuItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskMenuItemViewController.swift; sourceTree = "<group>"; };
 		2EB004DA1E59E16E004B0197 /* TaskMenuItemViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TaskMenuItemViewController.xib; sourceTree = "<group>"; };
+		2ECC24DB209FF736002B1F87 /* MenuDelegate2TimerDelegates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuDelegate2TimerDelegates.swift; sourceTree = "<group>"; };
+		2ECC24DD209FF92D002B1F87 /* MenuDelegateMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuDelegateMapper.swift; sourceTree = "<group>"; };
 		2EE7F5621E593CD800724D3F /* Preferences.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Preferences.storyboard; sourceTree = "<group>"; };
 		2EE7F5641E594B2B00724D3F /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		2EE7F5661E5954D700724D3F /* GeneralViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeneralViewController.swift; sourceTree = "<group>"; };
@@ -156,6 +160,7 @@
 				2E1195871F4BD34800A7AB81 /* SelectServerWindowController.swift */,
 				2E1195881F4BD34800A7AB81 /* SelectServerWindowController.xib */,
 				2E11958B1F4C7B7800A7AB81 /* UIHelper.swift */,
+				2ECC24DD209FF92D002B1F87 /* MenuDelegateMapper.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -174,6 +179,7 @@
 				2E1A64471E44553F0053F972 /* TaskMenuItemSeperatorViewController.xib */,
 				2EB004D91E59E16E004B0197 /* TaskMenuItemViewController.swift */,
 				2EB004DA1E59E16E004B0197 /* TaskMenuItemViewController.xib */,
+				2ECC24DB209FF736002B1F87 /* MenuDelegate2TimerDelegates.swift */,
 			);
 			path = Menu;
 			sourceTree = "<group>";
@@ -385,6 +391,7 @@
 				2E1195891F4BD34800A7AB81 /* SelectServerWindowController.swift in Sources */,
 				2E11958C1F4C7B7800A7AB81 /* UIHelper.swift in Sources */,
 				2E42353C1E8906C700FCD5E3 /* ActionMenuItem.swift in Sources */,
+				2ECC24DC209FF736002B1F87 /* MenuDelegate2TimerDelegates.swift in Sources */,
 				2E468AAE1E39BA45009C6CA3 /* Aria2Constants.swift in Sources */,
 				2E468AA31E398B61009C6CA3 /* Aria2.swift in Sources */,
 				2EF593831E3D827500454B9D /* ServerProfile.swift in Sources */,
@@ -393,6 +400,7 @@
 				2E644A611E422B1D00C6347C /* ServerProfileArrayController.swift in Sources */,
 				2E4150561E58035600B35BE8 /* AMMHighlightable.swift in Sources */,
 				2E03C1751E3EE3B100E8BE9E /* TaskMenuItem.swift in Sources */,
+				2ECC24DE209FF92D002B1F87 /* MenuDelegateMapper.swift in Sources */,
 				2EE7F5691E5954F600724D3F /* ServersViewController.swift in Sources */,
 				2E468A5D1E398482009C6CA3 /* AppDelegate.swift in Sources */,
 				2E644A6B1E43132B00C6347C /* AMMMenuItemBox.swift in Sources */,

@@ -12,13 +12,14 @@ import Cocoa
 class AppDelegate: NSObject, NSApplicationDelegate, AMMPreferencesDelegate {
     var statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.squareLength)
     var servers: [ServerProfile] = []
-    var fixMenuItems: [NSMenuItem] = []
+    var operationMenuItems: [NSMenuItem] = []
     var preferencesWindowController: PreferencesWindowController!
     var preferences = AMMPreferences.instance
     var selectedServer: ServerProfile?
     var selectServerWinCtrl: SelectServerWindowController!
+    var delegateMapper = MenuDelegate2TimerDelegates()
 
-    @IBOutlet weak var menu: NSMenu!
+    @IBOutlet weak var mainMenu: NSMenu!
     
     // https://stackoverflow.com/questions/49510/how-do-you-set-your-cocoa-application-as-the-default-web-browser
     @objc func handleUrl(_ event: NSAppleEventDescriptor, with replyEvent: NSAppleEventDescriptor) {
@@ -64,10 +65,16 @@ class AppDelegate: NSObject, NSApplicationDelegate, AMMPreferencesDelegate {
         let icon = NSImage(named: NSImage.Name(rawValue: "menu-icon"))
         icon?.isTemplate = true
         statusItem.image = icon
-        statusItem.menu = menu
-        for i in ((statusItem.menu?.numberOfItems)! - 3) ..< (statusItem.menu?.numberOfItems)! {
-            fixMenuItems.append((statusItem.menu?.item(at: i))!)
-        }
+        statusItem.menu = mainMenu
+        statusItem.menu?.delegate = delegateMapper
+
+        // Operation menu items
+        operationMenuItems.append(contentsOf: [
+            NSMenuItem(title: "Preferences", action: #selector(AppDelegate.preferencesClicked(_:)), keyEquivalent: ","),
+            NSMenuItem.separator(),
+            NSMenuItem(title: "Quit", action: #selector(AppDelegate.quitClicked(_:)), keyEquivalent: "q")
+            ])
+        
         preferences.delegate = self
         updateMenuItems(withServerProfiles: preferences.copyServers())
         
@@ -80,14 +87,15 @@ class AppDelegate: NSObject, NSApplicationDelegate, AMMPreferencesDelegate {
         // Insert code here to tear down your application
     }
 
-    
     func updateMenuItems(withServerProfiles servers: [ServerProfile]) {
         self.servers = servers
         statusItem.menu?.removeAllItems()
         for server in servers{
-            statusItem.menu?.addItem(ServerProfileMenuItem(server))
+            let menuItem = ServerProfileMenuItem(server)
+            delegateMapper.addDelegate(delegate: menuItem)
+            statusItem.menu?.addItem(menuItem)
         }
-        for item in fixMenuItems {
+        for item in operationMenuItems {
             statusItem.menu?.addItem(item)
         }
     }

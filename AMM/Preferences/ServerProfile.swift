@@ -25,7 +25,7 @@ import Foundation
 import SwiftyJSON
 
 @objcMembers
-class ServerProfile: NSObject, NSCopying, NSCoding {
+class ServerProfile: NSObject, NSCopying, NSCoding, TimerDelegate {
     var uuid: String
     var aria2: Aria2
     var ptclRawValue: String? {
@@ -126,34 +126,41 @@ class ServerProfile: NSObject, NSCopying, NSCoding {
                              taskCompleteNotiEnabled: taskCompleteNotiEnabled, isDefaultServer: isDefaultServer) as Any
     }
     
-    func runTimer() {
-        let queue = DispatchQueue.global()
-        timer = DispatchSource.makeTimerSource(flags: .strict, queue: queue)
-        let pref = AMMPreferences.instance
-        timer?.setEventHandler {
-            [weak self] in
-            if let strongSelf = self {
-                if strongSelf.aria2.status != .connected {
-                    strongSelf.aria2.connect()
-                    if(pref.connectionRetryLimit > 0) {
-                        strongSelf.connectCounter += 1
-                        if(strongSelf.connectCounter >= pref.connectionRetryLimit) {
-                            strongSelf.aria2.disconnect()
-                            strongSelf.timer?.cancel()
+    func startTimer() {
+        if timer == nil {
+            let queue = DispatchQueue.global()
+            timer = DispatchSource.makeTimerSource(flags: .strict, queue: queue)
+            let pref = AMMPreferences.instance
+            timer?.setEventHandler {
+                [weak self] in
+                if let strongSelf = self {
+                    if strongSelf.aria2.status != .connected {
+                        strongSelf.aria2.connect()
+                        if(pref.connectionRetryLimit > 0) {
+                            strongSelf.connectCounter += 1
+                            if(strongSelf.connectCounter >= pref.connectionRetryLimit) {
+                                strongSelf.aria2.disconnect()
+                                strongSelf.timer?.cancel()
+                            }
                         }
+                    } else {
+                        strongSelf.connectCounter = 0
                     }
-                } else {
-                    strongSelf.connectCounter = 0
                 }
             }
+            timer?.schedule(deadline: .now(), repeating: Double(pref.connectionCheckInterval))
+            if #available(OSX 10.12, *) {
+                timer?.activate()
+            } else {
+                // Fallback on earlier versions
+                timer?.resume()
+            }
         }
-        timer?.schedule(deadline: .now(), repeating: Double(pref.connectionCheckInterval))
-        if #available(OSX 10.12, *) {
-            timer?.activate()
-        } else {
-            // Fallback on earlier versions
-            timer?.resume()
-        }
+    }
+    
+    func stopTimer() {
+        timer?.cancel()
+        timer = nil
     }
     
     func getGlobalStat(callback cb: ((Aria2Stat) -> Void)?) {
@@ -247,5 +254,9 @@ class ServerProfile: NSObject, NSCopying, NSCoding {
     
     func isValid() -> Bool {
         return true
+    }
+    
+    deinit {
+        stopTimer()
     }
 }

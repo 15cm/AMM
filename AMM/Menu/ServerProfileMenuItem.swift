@@ -8,16 +8,17 @@
 
 import Cocoa
 
-class ServerProfileMenuItem: NSMenuItem, Aria2NotificationDelegate {
+class ServerProfileMenuItem: NSMenuItem, Aria2NotificationDelegate, TimerDelegate {
     let pref = AMMPreferences.instance
     var server: ServerProfile
     var viewController: ServerProfileMenuItemViewController?
     var notificationsShouldHandle = Set<Aria2Notifications>()
     var timer: DispatchSourceTimer?
     var startIndexOfActive: Int
+    
     init(_ profile: ServerProfile) {
         server = profile
-        server.runTimer()
+        server.startTimer()
         viewController = ServerProfileMenuItemViewController(nibName: NSNib.Name(rawValue: "ServerProfileMenuItemViewController"), bundle: nil)
         viewController?.server = server
         startIndexOfActive = pref.controlModeEnabled ? 2 : 1 // Set beginning offset of task menu items
@@ -66,9 +67,6 @@ class ServerProfileMenuItem: NSMenuItem, Aria2NotificationDelegate {
                 submenu?.addItem(TaskMenuItem())
             }
         }
-        
-        // Fetch tasks loop
-        startTimer()
     }
     
     required init(coder decoder: NSCoder) {
@@ -76,48 +74,55 @@ class ServerProfileMenuItem: NSMenuItem, Aria2NotificationDelegate {
     }
     
     func startTimer()  {
-        let queue = DispatchQueue.global()
-        timer = DispatchSource.makeTimerSource(flags: .strict, queue: queue)
-        timer?.schedule(deadline: .now(), repeating: self.server.taskStatRefreshInterval)
-        timer?.setEventHandler {
-            [weak self] in
-            if let strongSelf = self {
-                DispatchQueue.main.async {
-                    if strongSelf.server.aria2.status == .connected {
-                        func updateTasksMenuItems(menuItem: ServerProfileMenuItem, tasks: [Aria2Task], startIndexInMenu: Int, maxNum: Int) {
-                            for i in 0 ..< maxNum {
-                                let indexInMenu = i + startIndexInMenu
-                                if i >= tasks.count {
-                                    (menuItem.submenu?.item(at: indexInMenu) as! TaskMenuItem).isDisplayed = false
-                                } else {
-                                    (menuItem.submenu?.item(at: indexInMenu) as! TaskMenuItem).updateView(withTask: tasks[i])
+        if timer == nil {
+            let queue = DispatchQueue.global()
+            timer = DispatchSource.makeTimerSource(flags: .strict, queue: queue)
+            timer?.schedule(deadline: .now(), repeating: self.server.taskStatRefreshInterval)
+            timer?.setEventHandler {
+                [weak self] in
+                if let strongSelf = self {
+                    DispatchQueue.main.async {
+                        if strongSelf.server.aria2.status == .connected {
+                            func updateTasksMenuItems(menuItem: ServerProfileMenuItem, tasks: [Aria2Task], startIndexInMenu: Int, maxNum: Int) {
+                                for i in 0 ..< maxNum {
+                                    let indexInMenu = i + startIndexInMenu
+                                    if i >= tasks.count {
+                                        (menuItem.submenu?.item(at: indexInMenu) as! TaskMenuItem).isDisplayed = false
+                                    } else {
+                                        (menuItem.submenu?.item(at: indexInMenu) as! TaskMenuItem).updateView(withTask: tasks[i])
+                                    }
                                 }
                             }
+                            let startIndexOfWaiting = strongSelf.startIndexOfActive + strongSelf.server.activeTaskTotal + 1
+                            let startIndexOfStopped = startIndexOfWaiting + strongSelf.server.waitingTaskTotal + 1
+                            strongSelf.server.tellActive(callback: {
+                                tasks in
+                                updateTasksMenuItems(menuItem: strongSelf, tasks: tasks, startIndexInMenu: strongSelf.startIndexOfActive, maxNum: strongSelf.server.activeTaskTotal)
+                            })
+                            strongSelf.server.tellWaiting(callback: {
+                                tasks in
+                                updateTasksMenuItems(menuItem: strongSelf, tasks: tasks, startIndexInMenu: startIndexOfWaiting, maxNum: strongSelf.server.waitingTaskTotal)
+                            })
+                            strongSelf.server.tellStopped(callback: {
+                                tasks in
+                                updateTasksMenuItems(menuItem: strongSelf, tasks: tasks, startIndexInMenu: startIndexOfStopped, maxNum: strongSelf.server.stoppedTaskTotal)
+                            })
                         }
-                        let startIndexOfWaiting = strongSelf.startIndexOfActive + strongSelf.server.activeTaskTotal + 1
-                        let startIndexOfStopped = startIndexOfWaiting + strongSelf.server.waitingTaskTotal + 1
-                        strongSelf.server.tellActive(callback: {
-                            tasks in
-                            updateTasksMenuItems(menuItem: strongSelf, tasks: tasks, startIndexInMenu: strongSelf.startIndexOfActive, maxNum: strongSelf.server.activeTaskTotal)
-                        })
-                        strongSelf.server.tellWaiting(callback: {
-                            tasks in
-                            updateTasksMenuItems(menuItem: strongSelf, tasks: tasks, startIndexInMenu: startIndexOfWaiting, maxNum: strongSelf.server.waitingTaskTotal)
-                        })
-                        strongSelf.server.tellStopped(callback: {
-                            tasks in
-                            updateTasksMenuItems(menuItem: strongSelf, tasks: tasks, startIndexInMenu: startIndexOfStopped, maxNum: strongSelf.server.stoppedTaskTotal)
-                        })
                     }
                 }
             }
+            if #available(OSX 10.12, *) {
+                timer?.activate()
+            } else {
+                // Fallback on earlier versions
+                timer?.resume()
+            }
         }
-        if #available(OSX 10.12, *) {
-            timer?.activate()
-        } else {
-            // Fallback on earlier versions
-            timer?.resume()
-        }
+    }
+    
+    func stopTimer() {
+        timer?.cancel()
+        timer = nil
     }
     
     func onNotificationReceived(notificationType type: Aria2Notifications?, gids: [String]) {
@@ -142,5 +147,9 @@ class ServerProfileMenuItem: NSMenuItem, Aria2NotificationDelegate {
                 })
             }
         }
+    }
+    
+    deinit {
+        stopTimer()
     }
 }
