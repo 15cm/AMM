@@ -84,7 +84,7 @@ class Aria2: NSObject, NSCopying, NSCoding {
     
     // Call method via rpc and register callback
     fileprivate func call(withParams params: [Any]?, forMethod method: Aria2Methods, callback cb: Aria2RpcCallback?) {
-        var id: String? = nil
+        var id: String?
         if let cb = cb{
             id = NSUUID().uuidString
             objc_sync_enter(self.callbackMap)
