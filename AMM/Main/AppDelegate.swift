@@ -65,6 +65,8 @@ class AppDelegate: NSObject, NSApplicationDelegate, AMMPreferencesDelegate {
         icon?.isTemplate = true
         statusItem.image = icon
         statusItem.menu = mainMenu
+        
+        // main menu delegate, map to delegates of server menu items
         mainMenu.delegate = delegateMapper
 
         // Operation menu items
