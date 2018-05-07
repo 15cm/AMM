@@ -14,6 +14,8 @@ protocol Aria2NotificationDelegate: class{
     func onNotificationReceived(notificationType type: Aria2Notifications?, gids: [String])
 }
 
+typealias Aria2RpcCallback = (JSON) -> Void
+
 @objcMembers
 class Aria2: NSObject, NSCopying, NSCoding {
     var ptcl: Aria2Protocols
@@ -24,65 +26,8 @@ class Aria2: NSObject, NSCopying, NSCoding {
     var secret: String
     var socket: WebSocket
     var status: Aria2ConnectionStatus = .disconnected
-    fileprivate var callbacks: [String:Aria2RpcCallback]  = [:] // { uuid: callback }
+    fileprivate var callbackMap: [String:Aria2RpcCallback]  = [:] // { uuid: callback }
     weak var notificationDelegate: Aria2NotificationDelegate?
-    
-    fileprivate class Aria2RpcCallback {
-        var method: Aria2Methods
-        var callbackTasks: (([Aria2Task]) -> Void)?
-        var callbackTask: ((Aria2Task) -> Void)?
-        var callbackStat: ((Aria2Stat) -> Void)?
-        var callbackRaw: ((JSON) -> Void)?
-        
-        init(forMethod method: Aria2Methods) {
-            self.method = method
-        }
-        
-        init(forMethod method: Aria2Methods, callback cb: (([Aria2Task]) -> Void)?) {
-            self.method = method
-            self.callbackTasks = cb
-        }
-        
-        init(forMethod method: Aria2Methods, callback cb: ((Aria2Task) -> Void)?) {
-            self.method = method
-            self.callbackTask = cb
-        }
-        
-        init(forMethod method: Aria2Methods, callback cb: ((Aria2Stat) -> Void)?) {
-            self.method = method
-            self.callbackStat = cb
-        }
-        
-        init(forMethod method: Aria2Methods, callback cb: ((JSON) -> Void)?) {
-            self.method = method
-            self.callbackRaw = cb
-        }
-        
-        
-        func exec(_ arg: [Aria2Task]?) {
-            if (arg != nil) {
-                self.callbackTasks?(arg!)
-            }
-        }
-        
-        func exec(_ arg: Aria2Task?) {
-            if (arg != nil) {
-                self.callbackTask?(arg!)
-            }
-        }
-        
-        func exec(_ arg: Aria2Stat?) {
-            if (arg != nil) {
-                self.callbackStat?(arg!)
-            }
-        }
-        
-        func exec(_ arg: JSON?) {
-            if(arg != nil) {
-                self.callbackRaw?(arg!)
-            }
-        }
-    }
     
     init?(ptcl: Aria2Protocols,host: String, port: Int, path: String, secret: String? = nil) {
         self.ptcl = ptcl
@@ -138,19 +83,21 @@ class Aria2: NSObject, NSCopying, NSCoding {
     }
     
     // Call method via rpc and register callback
-    fileprivate func call(withParams params: [Any]?, callback cb: Aria2RpcCallback) {
-        let id = NSUUID()
-        let uuidStr = id.uuidString
-        objc_sync_enter(self.callbacks)
-        callbacks[uuidStr] = cb
-        objc_sync_exit(self.callbacks)
-        call(forMethod: cb.method, withParams: params, withID: id)
+    fileprivate func call(withParams params: [Any]?, forMethod method: Aria2Methods, callback cb: Aria2RpcCallback?) {
+        var id: String? = nil
+        if let cb = cb{
+            id = NSUUID().uuidString
+            objc_sync_enter(self.callbackMap)
+            callbackMap[id!] = cb
+            objc_sync_exit(self.callbackMap)
+        }
+        call(forMethod: method, withParams: params, withID: id)
     }
     
-    fileprivate func call(forMethod method: Aria2Methods, withParams params: [Any]?, withID id: NSUUID) {
+    fileprivate func call(forMethod method: Aria2Methods, withParams params: [Any]?, withID id: String?) {
         let dataObj: [String: Any] = [
             "jsonrpc": "2.0",
-            "id": id.uuidString,
+            "id": id ?? "",
             "method": "aria2.\(method.rawValue)",
             "params": ["token:\(secret)"] + (params ?? [])
         ]
@@ -171,50 +118,50 @@ class Aria2: NSObject, NSCopying, NSCoding {
         socket.disconnect()
     }
     
-    func getGlobalStat(callback cb: ((Aria2Stat) -> Void)?) {
-        call(withParams: nil, callback: Aria2RpcCallback(forMethod: .getGlobalStat, callback: cb))
+    func getGlobalStat(callback cb: Aria2RpcCallback?) {
+        call(withParams: nil, forMethod: .getGlobalStat, callback: cb)
     }
     
     // get active tasks
-    func tellActive(callback cb: (([Aria2Task]) -> Void)?) {
-        call(withParams: [AMMDefault.aria2TaskSpecificKeys], callback: Aria2RpcCallback(forMethod: .tellActive, callback: cb))
+    func tellActive(callback cb: Aria2RpcCallback?) {
+        call(withParams: [AMMDefault.aria2TaskSpecificKeys], forMethod: .tellActive, callback: cb)
     }
     
     // get waiting tasks
-    func tellWaiting(offset: Int?, num: Int, callback cb: (([Aria2Task]) -> Void)?) {
-        call(withParams: [offset ?? -1, num, AMMDefault.aria2TaskSpecificKeys], callback: Aria2RpcCallback(forMethod: .tellWaiting, callback: cb))
+    func tellWaiting(offset: Int?, num: Int, callback cb: Aria2RpcCallback?) {
+        call(withParams: [offset ?? -1, num, AMMDefault.aria2TaskSpecificKeys], forMethod: .tellWaiting, callback: cb)
     }
     
     // get stopped tasks
-    func tellStopped(offset: Int?, num: Int, callback cb: (([Aria2Task]) -> Void)?) {
-        call(withParams: [offset ?? -1, num, AMMDefault.aria2TaskSpecificKeys], callback: Aria2RpcCallback(forMethod: .tellStopped, callback: cb))
+    func tellStopped(offset: Int?, num: Int, callback cb: Aria2RpcCallback?) {
+        call(withParams: [offset ?? -1, num, AMMDefault.aria2TaskSpecificKeys], forMethod: .tellStopped, callback: cb)
     }
     
     // get a task specified by gid
-    func tellStatus(gid: String, callback cb: ((Aria2Task) -> Void)?) {
-        call(withParams: [gid, AMMDefault.aria2TaskSpecificKeys], callback: Aria2RpcCallback(forMethod: .tellStatus, callback: cb))
+    func tellStatus(gid: String, callback cb: Aria2RpcCallback?) {
+        call(withParams: [gid, AMMDefault.aria2TaskSpecificKeys], forMethod: .tellStatus, callback: cb)
     }
     
     // Create download tasks by urls
-    func addUri(url: [String], callback cb: ((JSON) -> Void)?) {
-        call(withParams: [url], callback: Aria2RpcCallback(forMethod: .addUri, callback: cb))
+    func addUri(url: [String], callback cb: Aria2RpcCallback?) {
+        call(withParams: [url], forMethod: .addUri, callback: cb)
     }
     
     // Control tasks
     func pause(gid: String) {
-        call(withParams: [gid], callback: Aria2RpcCallback(forMethod: .pause))
+        call(withParams: [gid], forMethod: .pause, callback: nil)
     }
     
     func unpause(gid: String) {
-        call(withParams: [gid], callback: Aria2RpcCallback(forMethod: .unpause))
+        call(withParams: [gid], forMethod: .unpause, callback: nil)
     }
     
     func stop(gid: String) {
-        call(withParams: [gid], callback: Aria2RpcCallback(forMethod: .remove))
+        call(withParams: [gid], forMethod: .remove, callback: nil)
     }
     
     func remove(gid: String) {
-        call(withParams: [gid], callback: Aria2RpcCallback(forMethod: .removeDownloadResult))
+        call(withParams: [gid], forMethod: .removeDownloadResult, callback: nil)
     }
     
     deinit {
@@ -287,28 +234,15 @@ extension Aria2: WebSocketDelegate {
             self.notificationDelegate?.onNotificationReceived(notificationType: Aria2Notifications(rawValue: method), gids: gids)
         } else {
             let id = res["id"].stringValue
-            if let callback = callbacks[id] {
-                switch callback.method {
-                case .getGlobalStat:
-                    callback.exec(Aria2.getStat(fromResponse: res))
-                case .tellActive:
-                    fallthrough
-                case .tellWaiting:
-                    fallthrough
-                case .tellStopped:
-                    callback.exec(Aria2.getTasks(fromResponse: res))
-                    break
-                case .tellStatus:
-                    callback.exec(Aria2.getTask(fromResponse: res))
-                    break
-                case .addUri:
-                    callback.exec(res)
-                default:
-                    break
-                }
-                callbacks.removeValue(forKey: id)
+            // empty id means no callback
+            if id.isEmpty {
+                return
+            }
+            if let callback = callbackMap[id] {
+                callback(res)
+                callbackMap.removeValue(forKey: id)
             } else {
-                print("Callback \(id) not found!")
+                print("Callback \(id) not found! id is empty: \(id.isEmpty)")
             }
         }
     }
