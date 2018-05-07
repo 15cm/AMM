@@ -18,9 +18,8 @@ class AppDelegate: NSObject, NSApplicationDelegate, AMMPreferencesDelegate {
     var selectedServer: ServerProfile?
     var selectServerWinCtrl: SelectServerWindowController!
     var delegateMapper = MenuDelegate2TimerDelegates()
+    var mainMenu = NSMenu(title: "Main Menu")
 
-    @IBOutlet weak var mainMenu: NSMenu!
-    
     // https://stackoverflow.com/questions/49510/how-do-you-set-your-cocoa-application-as-the-default-web-browser
     @objc func handleUrl(_ event: NSAppleEventDescriptor, with replyEvent: NSAppleEventDescriptor) {
         if let url = event.paramDescriptor(forKeyword: keyDirectObject)?.stringValue {
@@ -66,7 +65,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, AMMPreferencesDelegate {
         icon?.isTemplate = true
         statusItem.image = icon
         statusItem.menu = mainMenu
-        statusItem.menu?.delegate = delegateMapper
+        mainMenu.delegate = delegateMapper
 
         // Operation menu items
         operationMenuItems.append(contentsOf: [
@@ -89,14 +88,14 @@ class AppDelegate: NSObject, NSApplicationDelegate, AMMPreferencesDelegate {
 
     func updateMenuItems(withServerProfiles servers: [ServerProfile]) {
         self.servers = servers
-        statusItem.menu?.removeAllItems()
+        mainMenu.removeAllItems()
         for server in servers{
             let menuItem = ServerProfileMenuItem(server)
             delegateMapper.addDelegate(delegate: menuItem)
-            statusItem.menu?.addItem(menuItem)
+            mainMenu.addItem(menuItem)
         }
         for item in operationMenuItems {
-            statusItem.menu?.addItem(item)
+            mainMenu.addItem(item)
         }
     }
     
