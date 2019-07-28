@@ -1,6 +1,8 @@
 # AMM ![Travis CI](https://travis-ci.org/15cm/AMM.svg?branch=master)
 Aria2 Menubar Monitor, a tool to help with monitoring Aria2 Status on the macOS menubar.
 
+__The repo is no longer maintained as I don't use macOS as my daily OS anymore. Please consider using [AriaNG](https://github.com/mayswind/AriaNg) instead__
+
 [中文说明](./README_zh.md)
 
 # Features
